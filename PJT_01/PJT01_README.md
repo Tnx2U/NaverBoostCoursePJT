@@ -24,5 +24,5 @@
 
 
 # 🐻 프로젝트 산출물
-- [위키]()
+- [위키](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/wikis/lecture01)
 
