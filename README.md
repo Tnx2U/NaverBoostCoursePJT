@@ -10,9 +10,11 @@
 
 
 
-### 🐦 스타일 가이드(갱신 중)
+### 🐦 컨벤션(갱신 중)
 
-- 커밋 스타일 가이드는 https://siyoon210.tistory.com/56에 이슈번호를 추가하는 방식을 사용
+- 기본적으로 네이버 컨벤션 따르기
+
+- 커밋 메시지 컨벤션은 https://doublesprogramming.tistory.com/256에 이슈번호를 추가하는 방식을 사용
 
   ex) feat: #5 로그인 기본 레이아웃 구현
 
@@ -38,4 +40,4 @@
 
 ### 🐶 프로젝트별 READ ME
 
-1. [PJT01]()
+1. [PJT01](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/PJT1_dev/PJT_01/PJT01_README.md)
