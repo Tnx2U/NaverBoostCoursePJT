@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+body {
+	background-color: fff8cd;
+	display: block;
+}
+
+header, section, footer {
+	background-color: ffe05d;
+	margin: 30px;
+}
+
+header {
+	text-align: right;
+}
+
+section, footer {
+	text-align: center;
+}
+
+footer {
+	display: block;
+}
+
+nav {
+	display: inline-block;
+}
