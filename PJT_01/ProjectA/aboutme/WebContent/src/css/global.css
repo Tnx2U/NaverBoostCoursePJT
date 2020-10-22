@@ -7,6 +7,13 @@
 	url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap')
 	;
 
+/* 고려해보기 
+    색상값을 변수화 해서 사용해보기
+    화면사이즈 바뀌어도 최대한 덜 깨지게 해보기
+    
+*/
+
+
 /* 전체 레이아웃 및 전역설정 */
 html, body {
 	height: 100%;
