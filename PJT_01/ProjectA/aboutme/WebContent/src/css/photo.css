@@ -1,19 +1,20 @@
 @charset "UTF-8";
 
 .ul_photolist li{
-    display: flex;
+    overflow: auto;
     margin: 5%;
     box-shadow: 0px 2px teal;
 }
 
 .ul_photolist img{
+	float: left;
 	width: 260px;
 	height: 200px;
 	border: 6px solid #ffd57e;
 }
 
 .ul_photolist img, .ul_photolist div{
-	margin: 10px;
+	margin: 18px;
 }
 
 .ul_photolist > li > div{
