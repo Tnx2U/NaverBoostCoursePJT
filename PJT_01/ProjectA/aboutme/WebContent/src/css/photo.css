@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.ul_photolist li{
+    display: flex;
+    margin: 5%;
+    box-shadow: 0px 2px teal;
+}
+
+.ul_photolist img{
+	width: 260px;
+	height: 200px;
+	border: 6px solid #ffd57e;
+}
+
+.ul_photolist img, .ul_photolist div{
+	margin: 10px;
+}
+
+.ul_photolist > li > div{
+	text-align: left;
+}
+
+.ul_photolist p{
+	color: #92817a;
+	font-size: x-large;
+    font-family: 'Gamja Flower', cursive;
+}

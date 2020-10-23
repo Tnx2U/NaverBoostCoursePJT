@@ -30,9 +30,9 @@
 
   3. 상수는 대문자 SNAKE_CASE
 
-  4. html tag classname은 -를 구분자로 사용하며 태그가 div가 아니라면 가장 마지막에 태그네임을 기재
+  4. html tag classname은 네이버 컨벤션을 참고하여 _ 를 구분자로 사용하되 "태그명 _기능명"의 형태로 작성
 
-     Ex) calendar-wrapper, login-signup-button
+     Ex) botton_introduce, article_photo
 
   5. 폴더 및 파일이름은 front는 camelCase를 사용하고 back은 kebab-case를 사용
 
