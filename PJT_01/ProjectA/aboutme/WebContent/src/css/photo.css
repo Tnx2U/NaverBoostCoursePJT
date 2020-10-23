@@ -12,6 +12,11 @@
 	height: 200px;
 	border: 6px solid #ffd57e;
 }
+.ul_photolist img:hover{
+    transform: scale(1.15);
+    transition: transform 500ms
+}
+
 
 .ul_photolist img, .ul_photolist div{
 	margin: 18px;
