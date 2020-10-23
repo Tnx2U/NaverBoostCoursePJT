@@ -1,8 +1,4 @@
 /* 섹션 */
-.section_content {
-	height: 80%;
-}
-
 .section_content>article {
 	margin: auto;
 	width: 100%
@@ -64,6 +60,6 @@
 }
 
 /* 지도 article */
-.article_map {
-	height: 20%;
+.article_map > div{
+	margin: 15px;
 }
