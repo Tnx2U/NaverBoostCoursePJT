@@ -35,25 +35,15 @@ public class Today extends HttpServlet {
 		StringBuilder htmlText = new StringBuilder();
 		LocalDateTime currentDateTime = LocalDateTime.now();
 		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
-		
 		String formatedTime = currentDateTime.format(timeFormat);
 		
 		htmlText.append("<html>");
 		htmlText.append("<head><title>today page</title></head>");
 		htmlText.append("<body>");
 		htmlText.append("<a href='http://localhost:8080/aboutme/index.html'>메인화면</a>");
-		
 		htmlText.append("<h1 style='margin: 50px;'>현재시간 : "+ formatedTime +"</h1>");
-		
 		htmlText.append("</html>");
 		
 		return htmlText.toString();
 	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
