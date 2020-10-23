@@ -8,6 +8,11 @@
     width: 100%
 }
 
+.article_descript > p {
+    font-size: x-large;
+    font-family: 'Nanum Pen Script', cursive;
+}
+
 .article_box {
     height: 15%;
     width: 100%;
@@ -51,9 +56,4 @@
 
 .article_map {
     height: 20%;
-}
-
-.p_descipt {
-    font-size: x-large;
-    font-family: 'Nanum Pen Script', cursive;
 }
