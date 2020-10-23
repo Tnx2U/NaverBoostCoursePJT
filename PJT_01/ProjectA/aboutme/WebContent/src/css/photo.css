@@ -22,7 +22,7 @@
 }
 
 .ul_photolist p{
-	color: #92817a;
 	font-size: x-large;
     font-family: 'Gamja Flower', cursive;
+    color: var(--main-text-color);
 }
