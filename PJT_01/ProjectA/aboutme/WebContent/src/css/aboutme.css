@@ -1,25 +1,21 @@
 @charset "UTF-8";
 
-.section_content{
+.section_content {
 	text-align: left;
 }
 
-.article_content{
-    margin: 3% 9% 3% 9%;
-    padding: 2%;
-    border-radius: 20px;
+article {
+	margin: 3% 9% 3% 9%;
+	padding: 2%;
+	border-radius: 20px;
 }
 
-.article_content:hover{
-    background-color: #b8de6f;
-    -webkit-transition: background-color 500ms linear;
+article:hover {
+	background-color: #b8de6f;
+	-webkit-transition: background-color 500ms linear;
 }
 
-.article_content p, .article_content h2{
-	margin: 2px;
-}
-
-.p_descript{
+article p {
 	color: #92817a;
 	font-size: x-large;
 	font-family: 'Nanum Pen Script', cursive;

@@ -1,59 +1,62 @@
 /* 섹션 */
 .section_content {
-    height: 80%;
+	height: 80%;
 }
 
 .section_content>article {
-    margin: auto;
-    width: 100%
+	margin: auto;
+	width: 100%
 }
 
-.article_descript > p {
-    font-size: x-large;
-    font-family: 'Nanum Pen Script', cursive;
+/* 설명 article */
+.article_descript>p {
+	font-size: x-large;
+	font-family: 'Nanum Pen Script', cursive;
 }
 
+.span_hilight{
+	font-family: 'Gugi', cursive;
+}
+
+/* 박스 article */
 .article_box {
-    height: 15%;
-    width: 100%;
+	height: 15%;
+	width: 100%;
 }
 
 .div_boxwrap {
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    margin: auto;
-    flex-direction: row;
+	width: 30%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	margin: auto;
 }
 
 .div_boxwrap>div {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    border-radius: 15px;
-    box-shadow: 3px 1.5px 1.5px #394867;
-    font-family: 'Noto Sans KR', sans-serif;
-    margin: auto;
-    background: #ffd57e;
-    color: #e8ffff;
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+	border-radius: 15px;
+	box-shadow: 3px 1.5px 1.5px #394867;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: auto;
+	background: #ffd57e;
+	color: #e8ffff;
 }
 
 .div_boxwrap>div:hover {
-    background-color: #f6830f;
-    -webkit-transition: background-color 500ms linear;
+	background-color: #f6830f;
+	-webkit-transition: background-color 500ms linear;
 }
 
 .div_boxwrap a {
-    color: #e8ffff;
+	margin: auto;
+	line-height: 6;
+	color: #e8ffff;
+	text-decoration: none;
 }
 
-.div_boxwrap a {
-    text-decoration: none;
-    margin: auto;
-    line-height: 6;
-}
-
+/* 지도 article */
 .article_map {
-    height: 20%;
+	height: 20%;
 }
