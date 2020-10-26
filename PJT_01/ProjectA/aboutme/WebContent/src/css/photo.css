@@ -1,19 +1,25 @@
 @charset "UTF-8";
 
 .ul_photolist li{
-    display: flex;
+    overflow: auto;
     margin: 5%;
     box-shadow: 0px 2px teal;
 }
 
 .ul_photolist img{
+	float: left;
 	width: 260px;
 	height: 200px;
 	border: 6px solid #ffd57e;
 }
+.ul_photolist img:hover{
+    transform: scale(1.15);
+    transition: transform 500ms
+}
+
 
 .ul_photolist img, .ul_photolist div{
-	margin: 10px;
+	margin: 18px;
 }
 
 .ul_photolist > li > div{
@@ -21,7 +27,7 @@
 }
 
 .ul_photolist p{
-	color: #92817a;
 	font-size: x-large;
     font-family: 'Gamja Flower', cursive;
+    color: var(--main-text-color);
 }

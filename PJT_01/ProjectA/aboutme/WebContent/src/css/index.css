@@ -1,8 +1,4 @@
 /* 섹션 */
-.section_content {
-	height: 80%;
-}
-
 .section_content>article {
 	margin: auto;
 	width: 100%
@@ -12,6 +8,7 @@
 .article_descript>p {
 	font-size: x-large;
 	font-family: 'Nanum Pen Script', cursive;
+	color: var(--main-text-color);
 }
 
 .span_hilight{
@@ -25,15 +22,14 @@
 }
 
 .div_boxwrap {
-	display: flex;
-    flex-direction: row;
+    overflow: auto;
     margin: auto;
-	width: 30%;
-	height: 100%;
+	width: 270px;
+	height: 125px;
 }
 
 .div_boxwrap > div {
-	margin: auto;
+	margin: 10px;
 	width: 100px;
 	height: 100px;
 	border: 1px solid black;
@@ -42,6 +38,14 @@
 	color: #e8ffff;
 	box-shadow: 3px 1.5px 1.5px #394867;
 	background: #ffd57e;
+}
+
+.div_boxwrap > div:nth-child(1){
+	float: left;
+}
+
+.div_boxwrap > div:nth-child(2){
+    float: right;
 }
 
 .div_boxwrap>div:hover {
@@ -57,6 +61,6 @@
 }
 
 /* 지도 article */
-.article_map {
-	height: 20%;
+.article_map > div{
+	margin: 15px;
 }

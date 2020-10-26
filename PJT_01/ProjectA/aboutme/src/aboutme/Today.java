@@ -36,12 +36,13 @@ public class Today extends HttpServlet {
 		LocalDateTime currentDateTime = LocalDateTime.now();
 		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
 		String formatedTime = currentDateTime.format(timeFormat);
+		String centerPosStyle = "position: absolute;top: 50%;left: 50%;width: 450px;margin: -20px 0 0 -225px;";
 		
 		htmlText.append("<html>");
 		htmlText.append("<head><title>today page</title></head>");
 		htmlText.append("<body>");
 		htmlText.append("<a href='http://localhost:8080/aboutme/index.html'>메인화면</a>");
-		htmlText.append("<h1 style='margin: 50px;'>현재시간 : "+ formatedTime +"</h1>");
+		htmlText.append("<div style='"+ centerPosStyle +"'><h1>현재시간 : "+ formatedTime +"</h1></div>");
 		htmlText.append("</html>");
 		
 		return htmlText.toString();

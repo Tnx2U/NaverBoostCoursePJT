@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 @import
@@ -21,7 +22,14 @@
     네이버 css 컨벤션 참고(id 사용 가급적 자제, _사용,)
 */
 
-/* 전체 레이아웃 및 전역설정 */
+/* 전역 변수 */
+:root{
+	--main-text-color: #92817a;
+	--main-address-color: #477373;
+}
+
+
+/* 전체 레이아웃 및 전역스타일링 */
 html, body {
 	height: 100%;
 }
@@ -88,5 +96,5 @@ footer {
 }
 
 footer span, footer a {
-	color: #477373;
+	color: var(--main-address-color);
 }
