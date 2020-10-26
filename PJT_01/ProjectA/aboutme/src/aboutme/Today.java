@@ -34,6 +34,7 @@ public class Today extends HttpServlet {
 	private String getHtmlSrc() {
 		StringBuilder htmlText = new StringBuilder();
 		LocalDateTime currentDateTime = LocalDateTime.now();
+		//date time formatter, builder pattern 학습
 		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
 		String formatedTime = currentDateTime.format(timeFormat);
 		String centerPosStyle = "position: absolute;top: 50%;left: 50%;width: 450px;margin: -20px 0 0 -225px;";

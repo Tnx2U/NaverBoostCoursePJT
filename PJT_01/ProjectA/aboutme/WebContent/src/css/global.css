@@ -30,12 +30,13 @@
 
 
 /* 전체 레이아웃 및 전역스타일링 */
-html, body {
-	height: 100%;
+html, body, #wrap {
+	margin: auto;
 }
 
-body {
+#wrap {
 	display: block;
+	padding: 3px;
 	background: darkturquoise;
 }
 
@@ -46,7 +47,7 @@ header, section, footer {
 	background: floralwhite;
 }
 
-section, footer {
+#content, footer {
 	text-align: center;
 }
 

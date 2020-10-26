@@ -1,32 +1,33 @@
 @charset "UTF-8";
 
-.ul_photolist li{
+
+.article_photolist > ul > li{
     overflow: auto;
     margin: 5%;
     box-shadow: 0px 2px teal;
 }
 
-.ul_photolist img{
+.article_photolist > ul img{
 	float: left;
 	width: 260px;
 	height: 200px;
 	border: 6px solid #ffd57e;
 }
-.ul_photolist img:hover{
+.article_photolist > ul img:hover{
     transform: scale(1.15);
     transition: transform 500ms
 }
 
 
-.ul_photolist img, .ul_photolist div{
+.article_photolist > ul img, .article_photolist > ul div{
 	margin: 18px;
 }
 
-.ul_photolist > li > div{
+.article_photolist > ul > li > div{
 	text-align: left;
 }
 
-.ul_photolist p{
+.article_photolist > ul p{
 	font-size: x-large;
     font-family: 'Gamja Flower', cursive;
     color: var(--main-text-color);
