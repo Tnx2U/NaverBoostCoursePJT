@@ -8,10 +8,10 @@
 .article_descript>p {
 	font-size: x-large;
 	font-family: 'Nanum Pen Script', cursive;
-	color: var(--main-text-color);
+	color: var(- -main-text-color);
 }
 
-.span_hilight{
+.span_hilight {
 	font-family: 'Gugi', cursive;
 }
 
@@ -22,13 +22,13 @@
 }
 
 .div_boxwrap {
-    overflow: auto;
-    margin: auto;
+	overflow: auto;
+	margin: auto;
 	width: 270px;
 	height: 125px;
 }
 
-.div_boxwrap > div {
+.div_boxwrap>div {
 	margin: 10px;
 	width: 100px;
 	height: 100px;
@@ -40,12 +40,12 @@
 	background: #ffd57e;
 }
 
-.div_boxwrap > div:nth-child(1){
+.div_boxwrap>div:nth-child(1) {
 	float: left;
 }
 
-.div_boxwrap > div:nth-child(2){
-    float: right;
+.div_boxwrap>div:nth-child(2) {
+	float: right;
 }
 
 .div_boxwrap>div:hover {
@@ -61,6 +61,6 @@
 }
 
 /* 지도 article */
-.article_map > div{
+.article_map>div {
 	margin: 15px;
 }
