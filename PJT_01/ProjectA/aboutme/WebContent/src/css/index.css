@@ -28,7 +28,8 @@
 	height: 125px;
 }
 
-.div_boxwrap>div {
+.div_boxwrap>a {
+	display: block;
 	margin: 10px;
 	width: 100px;
 	height: 100px;
@@ -38,27 +39,28 @@
 	color: #e8ffff;
 	box-shadow: 3px 1.5px 1.5px #394867;
 	background: #ffd57e;
+	line-height: 6em;
 }
 
-.div_boxwrap>div:nth-child(1) {
+.div_boxwrap>a:nth-child(1) {
 	float: left;
 }
 
-.div_boxwrap>div:nth-child(2) {
+.div_boxwrap>a:nth-child(2) {
 	float: right;
 }
 
-.div_boxwrap>div:hover {
+.div_boxwrap>a:hover {
 	background-color: #f6830f;
 	-webkit-transition: background-color 500ms linear;
 }
 
-.div_boxwrap a {
+/*.div_boxwrap a {
 	margin: auto;
 	line-height: 6;
 	color: #e8ffff;
 	text-decoration: none;
-}
+}*/
 
 /* 지도 article */
 .article_map>div {
