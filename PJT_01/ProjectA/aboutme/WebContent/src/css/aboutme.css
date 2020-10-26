@@ -18,5 +18,5 @@ article:hover {
 article p {
 	font-size: x-large;
 	font-family: 'Nanum Pen Script', cursive;
-	color: var(- -main-text-color);
+	color: var(--main-text-color);
 }

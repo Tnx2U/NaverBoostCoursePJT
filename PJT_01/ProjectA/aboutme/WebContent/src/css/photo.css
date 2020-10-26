@@ -29,5 +29,5 @@
 .article_photolist>ul p {
 	font-size: x-large;
 	font-family: 'Gamja Flower', cursive;
-	color: var(- -main-text-color);
+	color: var(--main-text-color);
 }

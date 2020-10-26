@@ -23,8 +23,8 @@
 
 /* 전역 변수 */
 :root {
-	-main-text-color: #92817a;
-	-main-address-color: #477373;
+	--main-text-color: #92817a;
+	--main-address-color: #477373;
 }
 
 /* 전체 레이아웃 및 전역스타일링 */
@@ -80,18 +80,27 @@ header {
 	border-radius: 7px;
 	background: #a6f6f1;
 	box-shadow: 3px 1.5px 1.5px #f7dad9;
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: medium;
 	color: #41aea9;
 	text-align: center;
 }
 
 .list_globalnav li:hover {
 	background-color: #7579e7;
-	color: #a3d8f4;
 	cursor: pointer;
-	-webkit-transition: color 500ms linear;
 	-webkit-transition: background-color 500ms linear;
+}
+
+.list_globalnav li > a{
+	display: block;
+	width: 80px;
+	color: var(--main-address-color);
+	font-family: 'Noto Sans KR', sans-serif;
+    font-size: medium;
+}
+
+.list_globalnav li > a:hover{
+	color: #f8f1f1;
+	-webkit-transition: color 500ms linear;
 }
 
 /* 푸터 */
@@ -101,5 +110,5 @@ footer {
 }
 
 footer span, footer a {
-	color: var(- -main-address-color);
+	color: var(--main-address-color);
 }
