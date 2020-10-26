@@ -26,17 +26,14 @@ public class Today extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		out.print(getHtmlSrc());
+		out.print(getCurrentTimeHtmlSrc());
 		out.close();
 	}
 
 
-	private String getHtmlSrc() {
+	private String getCurrentTimeHtmlSrc() {
 		StringBuilder htmlText = new StringBuilder();
-		LocalDateTime currentDateTime = LocalDateTime.now();
-		//date time formatter, builder pattern 학습
-		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
-		String formatedTime = currentDateTime.format(timeFormat);
+		String formatedTime = getFormatedCurrentTime();
 		String centerPosStyle = "position: absolute;top: 50%;left: 50%;width: 450px;margin: -20px 0 0 -225px;";
 		
 		htmlText.append("<html>");
@@ -47,5 +44,12 @@ public class Today extends HttpServlet {
 		htmlText.append("</html>");
 		
 		return htmlText.toString();
+	}
+	
+	private String getFormatedCurrentTime() {
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
+
+		return currentDateTime.format(timeFormat);
 	}
 }
