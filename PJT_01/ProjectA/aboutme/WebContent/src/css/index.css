@@ -1,5 +1,5 @@
 /* 섹션 */
-.section_content>article {
+.container>article {
 	margin: auto;
 	width: 100%
 }
@@ -11,7 +11,7 @@
 	color: var(--main-text-color);
 }
 
-.span_hilight{
+.span_hilight {
 	font-family: 'Gugi', cursive;
 }
 
@@ -22,13 +22,14 @@
 }
 
 .div_boxwrap {
-    overflow: auto;
-    margin: auto;
+	overflow: auto;
+	margin: auto;
 	width: 270px;
 	height: 125px;
 }
 
-.div_boxwrap > div {
+.div_boxwrap>a {
+	display: block;
 	margin: 10px;
 	width: 100px;
 	height: 100px;
@@ -38,29 +39,30 @@
 	color: #e8ffff;
 	box-shadow: 3px 1.5px 1.5px #394867;
 	background: #ffd57e;
+	line-height: 6em;
 }
 
-.div_boxwrap > div:nth-child(1){
+.div_boxwrap>a:nth-child(1) {
 	float: left;
 }
 
-.div_boxwrap > div:nth-child(2){
-    float: right;
+.div_boxwrap>a:nth-child(2) {
+	float: right;
 }
 
-.div_boxwrap>div:hover {
+.div_boxwrap>a:hover {
 	background-color: #f6830f;
 	-webkit-transition: background-color 500ms linear;
 }
 
-.div_boxwrap a {
+/*.div_boxwrap a {
 	margin: auto;
 	line-height: 6;
 	color: #e8ffff;
 	text-decoration: none;
-}
+}*/
 
 /* 지도 article */
-.article_map > div{
+.article_map>div {
 	margin: 15px;
 }
