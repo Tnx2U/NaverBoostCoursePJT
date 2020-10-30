@@ -18,6 +18,7 @@ public class Card {
 		this.columnType = columnType;
 	}
 	
+	//자동 생성 파라미터를 제외한 지역변수만 받는 생성자
 	public Card(String title, String managerName, int priority, String columnType) {
 		super();
 		this.id = -1;

@@ -22,7 +22,6 @@ public class CardServlet extends HttpServlet {
     public CardServlet() {
         super();
     }
-
     
     //전체 카드목록을 반환
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,15 +39,4 @@ public class CardServlet extends HttpServlet {
 		out.close();
 				
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
-
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 }

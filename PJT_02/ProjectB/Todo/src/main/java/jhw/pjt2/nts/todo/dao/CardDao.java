@@ -16,6 +16,8 @@ public class CardDao {
 	private static final String DB_USER = "user05";
 	private static final String DB_PASSWORD = "user05";
 
+	
+	//새로운 카드 추가
 	public int addCard(Card inputCard) {
 		int insertCount = 0;
 
@@ -52,6 +54,7 @@ public class CardDao {
 		return insertCount;
 	}
 
+	//번호로 특정 카드 조회
 	public Card getCardById(Integer cardId) {
 		Card card = null;
 		Connection conn = null;
@@ -90,6 +93,43 @@ public class CardDao {
 		return card;
 	}
 
+	//번호로 특정 카드 삭제
+	public int removeCardById(Integer cardId) {
+		int removeCount = 0;
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+			String removeCardByIdQuery = "DELETE FROM card_tb WHERE id = ?";
+			ps = conn.prepareStatement(removeCardByIdQuery);
+			ps.setInt(1, cardId);
+			
+			removeCount = ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("error occured in opening SQLconnection : " + e);
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println("error occured in closing SQLconnection : " + e);
+				e.printStackTrace();
+			}
+		}
+
+		return removeCount;
+	}
+	
+	//번호로 특정 카드 업데이트
+
+	
+	
+	//전체 카드 조회
 	public List<Card> getAllCard() {
 		List<Card> cardList = new ArrayList<>();
 
