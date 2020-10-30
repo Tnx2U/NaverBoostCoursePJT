@@ -101,6 +101,7 @@ public class CardDao {
 
 		String getAllCardQuery = "SELECT id, title, manager_name, priority, registed_date, column_type FROM card_tb";
 
+		//try-with-resource 방식
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 				PreparedStatement ps = conn.prepareStatement(getAllCardQuery)) {
 			try (ResultSet rs = ps.executeQuery()) {

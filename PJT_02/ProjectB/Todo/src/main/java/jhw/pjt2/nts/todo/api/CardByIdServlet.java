@@ -2,7 +2,6 @@ package jhw.pjt2.nts.todo.api;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,40 +14,46 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jhw.pjt2.nts.todo.dao.CardDao;
 import jhw.pjt2.nts.todo.dto.Card;
 
-@WebServlet("/cards")
-public class CardServlet extends HttpServlet {
+/**
+ * Servlet implementation class CardByIdServlet
+ */
+@WebServlet("/cards/*")
+public class CardByIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CardServlet() {
+    public CardByIdServlet() {
         super();
     }
 
-    
-    //전체 카드목록을 반환
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
 		
+		String pathInfo = request.getPathInfo();
+		String[] pathParts = pathInfo.split("/");
+		String idStr = pathParts[1];
+		int id = Integer.parseInt(idStr);
+		
 		CardDao cardDao = new CardDao();
-		List<Card> cardList = cardDao.getAllCard();
+		Card targetCard = cardDao.getCardById(id);
 		
 		ObjectMapper objectMapper = new ObjectMapper();
-		String jsonedCardList = objectMapper.writeValueAsString(cardList);
-		
+		String jsonedTargetCard = objectMapper.writeValueAsString(targetCard);
 		PrintWriter out = response.getWriter();
-		out.println(jsonedCardList);
+		out.print(jsonedTargetCard);
 		out.close();
-				
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 	}
-
 }
