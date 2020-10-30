@@ -4,8 +4,11 @@ import jhw.pjt2.nts.todo.dto.Card;
 public class APITest {
 	public static void main(String[] args) {
 		CardDao dao = new CardDao();
-		Card result = dao.getCardById(1);
+
+		System.out.println("addCard(testCard1, 조현욱, 1, 'todo')");
+		dao.addCard(new Card("testCard1", "조현욱", 1, "todo"));
 		
-		System.out.println(result.toString());
+		Card result = dao.getCardById(2);
+		System.out.println("getCardById(1)"+result.toString());
 	}
 }

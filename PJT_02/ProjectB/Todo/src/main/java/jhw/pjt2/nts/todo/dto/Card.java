@@ -18,6 +18,16 @@ public class Card {
 		this.columnType = columnType;
 	}
 	
+	public Card(String title, String managerName, int priority, String columnType) {
+		super();
+		this.id = -1;
+		this.title = title;
+		this.managerName = managerName;
+		this.priority = priority;
+		this.registedDate = "2020/10/20";
+		this.columnType = columnType;
+	}
+	
 	public int getId() {
 		return id;
 	}
