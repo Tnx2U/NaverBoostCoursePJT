@@ -37,6 +37,5 @@ public class CardServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println(jsonedCardList);
 		out.close();
-				
 	}
 }
