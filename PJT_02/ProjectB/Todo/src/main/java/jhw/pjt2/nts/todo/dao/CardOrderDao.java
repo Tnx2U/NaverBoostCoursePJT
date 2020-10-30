@@ -55,7 +55,7 @@ public class CardOrderDao {
 
 	
 	// 전체 카드오더 조회
-	public List<CardOrder> getAllCard() {
+	public List<CardOrder> getAllCardOrder() {
 		List<CardOrder> cardOrderList = new ArrayList<>();
 
 		try {
@@ -64,7 +64,7 @@ public class CardOrderDao {
 			e.printStackTrace();
 		}
 
-		String getAllCardOrderQuery = "SELECT id, column_id, card_id, card_order FROM card_order_tb";
+		String getAllCardOrderQuery = "SELECT id, column_id, card_id, card_order FROM card_order_tb ORDER BY column_id, card_order";
 
 		// try-with-resource 방식
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

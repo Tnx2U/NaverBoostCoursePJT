@@ -155,4 +155,37 @@ public class CardDao {
 
 		return cardList;
 	}
+	
+	// 정렬된 전체 카드 조회
+	public List<Card> getOrderedAllCard() {
+		List<Card> cardList = new ArrayList<>();
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		String getOrderedAllCardQuery = "SELECT c.id, c.title, c.manager_name, c.priority, c.registed_date, co.column_id, co.card_order FROM card_tb AS c LEFT JOIN card_order_tb AS co ON c.id = co.card_id ORDER BY co.column_id, co.card_order";
+
+		// try-with-resource 방식
+		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+				PreparedStatement ps = conn.prepareStatement(getOrderedAllCardQuery)) {
+			try (ResultSet rs = ps.executeQuery()) {
+				while (rs.next()) {
+					Card card = new Card(rs.getInt("c.id"), rs.getString("c.title"), rs.getString("c.manager_name"),
+							rs.getInt("c.priority"), rs.getString("c.registed_date"), rs.getInt("co.column_id"), rs.getInt("co.card_order"));
+					cardList.add(card);
+				}
+			} catch (Exception e) {
+				System.out.println("error occured in ResultSet : " + e);
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			System.out.println("error occured in Connection jdbc: " + e);
+			e.printStackTrace();
+		}
+
+		return cardList;
+	}
 }

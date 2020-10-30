@@ -6,6 +6,20 @@ public class Card {
 	private String managerName;
 	private int priority;
 	private String registedDate;
+	private int columnId;
+	private int cardOrder;
+
+	public Card(int id, String title, String managerName, int priority, String registedDate, int columnId,
+			int cardOrder) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.managerName = managerName;
+		this.priority = priority;
+		this.registedDate = registedDate;
+		this.columnId = columnId;
+		this.cardOrder = cardOrder;
+	}
 
 	public Card(int id, String title, String managerName, int priority, String registedDate) {
 		super();
@@ -66,9 +80,25 @@ public class Card {
 		this.registedDate = registedDate;
 	}
 
+	public int getColumnId() {
+		return columnId;
+	}
+
+	public void setColumnId(int columnId) {
+		this.columnId = columnId;
+	}
+
+	public int getCardOrder() {
+		return cardOrder;
+	}
+
+	public void setCardOrder(int cardOrder) {
+		this.cardOrder = cardOrder;
+	}
+
 	@Override
 	public String toString() {
 		return "Card [id=" + id + ", title=" + title + ", managerName=" + managerName + ", priority=" + priority
-				+ ", registedDate=" + registedDate + "]";
+				+ ", registedDate=" + registedDate + ", columnId=" + columnId + ", cardOrder=" + cardOrder + "]";
 	}
 }
