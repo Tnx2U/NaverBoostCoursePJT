@@ -27,13 +27,12 @@ public class CardDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			String addCardQuery = "insert into card_tb (title, manager_name, priority, column_type) values (?,?,?,?)";
+			String addCardQuery = "insert into card_tb (title, manager_name, priority) values (?,?,?)";
 			ps = conn.prepareStatement(addCardQuery);
 
 			ps.setString(1, inputCard.getTitle());
 			ps.setString(2, inputCard.getManagerName());
 			ps.setInt(3, inputCard.getPriority());
-			ps.setString(4, inputCard.getColumnType());
 
 			insertCount = ps.executeUpdate();
 		} catch (Exception e) {
@@ -64,14 +63,14 @@ public class CardDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			String getCardByIdQuery = "SELECT id, title, manager_name, priority, registed_date, column_type FROM card_tb WHERE id = ?";
+			String getCardByIdQuery = "SELECT id, title, manager_name, priority, registed_date FROM card_tb WHERE id = ?";
 			ps = conn.prepareStatement(getCardByIdQuery);
 			ps.setInt(1, cardId);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
 				card = new Card(rs.getInt("id"), rs.getString("title"), rs.getString("manager_name"),
-						rs.getInt("priority"), rs.getString("registed_date"), rs.getString("column_type"));
+						rs.getInt("priority"), rs.getString("registed_date"));
 			}
 		} catch (Exception e) {
 			System.out.println("error occured in opening SQLconnection : " + e);
@@ -95,7 +94,7 @@ public class CardDao {
 
 	//번호로 특정 카드 삭제
 	public int removeCardById(Integer cardId) {
-		int removeCount = 0;
+		int removedCardId = 0;
 		Connection conn = null;
 		PreparedStatement ps = null;
 
@@ -106,7 +105,7 @@ public class CardDao {
 			ps = conn.prepareStatement(removeCardByIdQuery);
 			ps.setInt(1, cardId);
 			
-			removeCount = ps.executeUpdate();
+			removedCardId = ps.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("error occured in opening SQLconnection : " + e);
 			e.printStackTrace();
@@ -122,11 +121,50 @@ public class CardDao {
 			}
 		}
 
-		return removeCount;
+		return removedCardId;
 	}
 	
 	//번호로 특정 카드 업데이트
+	public int updateCardById(Integer cardId) {
+		int updatedCardId = 0;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+			
+			String getColumnTypeByIdQuery = "SELECT column_type FROM card_tb WHERE id = ?";
+			ps = conn.prepareStatement(getColumnTypeByIdQuery);
+			ps.setInt(1, cardId);
+			rs = ps.executeQuery();
+			String removeCardByIdQuery = "UPDATE card_tb SET column_type = ? WHERE id = ?";
+			
+			
+			ps = conn.prepareStatement(removeCardByIdQuery);
+			ps.setInt(1, cardId);
+			
+			updatedCardId = ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("error occured in opening SQLconnection : " + e);
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println("error occured in closing SQLconnection : " + e);
+				e.printStackTrace();
+			}
+		}
+
+		return updatedCardId;
+	}
 	
 	
 	//전체 카드 조회
@@ -147,7 +185,7 @@ public class CardDao {
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
 					Card card = new Card(rs.getInt("id"), rs.getString("title"), rs.getString("manager_name"),
-							rs.getInt("priority"), rs.getString("registed_date"), rs.getString("column_type"));
+							rs.getInt("priority"), rs.getString("registed_date"));
 					cardList.add(card);
 				}
 			} catch (Exception e) {
