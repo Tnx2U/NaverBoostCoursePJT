@@ -16,8 +16,7 @@ public class CardDao {
 	private static final String DB_USER = "user05";
 	private static final String DB_PASSWORD = "user05";
 
-	
-	//새로운 카드 추가
+	// 새로운 카드 추가
 	public int addCard(Card inputCard) {
 		int insertCount = 0;
 
@@ -53,7 +52,7 @@ public class CardDao {
 		return insertCount;
 	}
 
-	//번호로 특정 카드 조회
+	// 번호로 특정 카드 조회
 	public Card getCardById(Integer cardId) {
 		Card card = null;
 		Connection conn = null;
@@ -92,7 +91,7 @@ public class CardDao {
 		return card;
 	}
 
-	//번호로 특정 카드 삭제
+	// 번호로 특정 카드 삭제
 	public int removeCardById(Integer cardId) {
 		int removedCardId = 0;
 		Connection conn = null;
@@ -104,7 +103,7 @@ public class CardDao {
 			String removeCardByIdQuery = "DELETE FROM card_tb WHERE id = ?";
 			ps = conn.prepareStatement(removeCardByIdQuery);
 			ps.setInt(1, cardId);
-			
+
 			removedCardId = ps.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("error occured in opening SQLconnection : " + e);
@@ -123,51 +122,8 @@ public class CardDao {
 
 		return removedCardId;
 	}
-	
-	//번호로 특정 카드 업데이트
-	public int updateCardById(Integer cardId) {
-		int updatedCardId = 0;
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
 
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			
-			String getColumnTypeByIdQuery = "SELECT column_type FROM card_tb WHERE id = ?";
-			ps = conn.prepareStatement(getColumnTypeByIdQuery);
-			ps.setInt(1, cardId);
-			rs = ps.executeQuery();
-			String removeCardByIdQuery = "UPDATE card_tb SET column_type = ? WHERE id = ?";
-			
-			
-			ps = conn.prepareStatement(removeCardByIdQuery);
-			ps.setInt(1, cardId);
-			
-			updatedCardId = ps.executeUpdate();
-		} catch (Exception e) {
-			System.out.println("error occured in opening SQLconnection : " + e);
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null)
-					rs.close();
-				if (ps != null)
-					ps.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				System.out.println("error occured in closing SQLconnection : " + e);
-				e.printStackTrace();
-			}
-		}
-
-		return updatedCardId;
-	}
-	
-	
-	//전체 카드 조회
+	// 전체 카드 조회
 	public List<Card> getAllCard() {
 		List<Card> cardList = new ArrayList<>();
 
@@ -179,7 +135,7 @@ public class CardDao {
 
 		String getAllCardQuery = "SELECT id, title, manager_name, priority, registed_date, column_type FROM card_tb";
 
-		//try-with-resource 방식
+		// try-with-resource 방식
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 				PreparedStatement ps = conn.prepareStatement(getAllCardQuery)) {
 			try (ResultSet rs = ps.executeQuery()) {
