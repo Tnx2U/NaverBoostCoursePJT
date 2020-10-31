@@ -15,7 +15,7 @@ public class Card implements Cloneable {
 		this.title = title;
 		this.managerName = managerName;
 		this.priority = priority;
-		this.registedDate = registedDate;
+		this.registedDate = registedDate.split(":")[0];
 		this.columnId = columnId;
 		this.cardOrder = cardOrder;
 	}
@@ -25,7 +25,7 @@ public class Card implements Cloneable {
 		this.title = title;
 		this.managerName = managerName;
 		this.priority = priority;
-		this.registedDate = registedDate;
+		this.registedDate = registedDate.split(":")[0];
 	}
 
 	// 자동 생성 파라미터를 제외한 지역변수만 받는 생성자
@@ -34,7 +34,7 @@ public class Card implements Cloneable {
 		this.title = title;
 		this.managerName = managerName;
 		this.priority = priority;
-		this.registedDate = "2020/10/20";
+		this.registedDate = "";
 	}
 
 	public int getId() {
