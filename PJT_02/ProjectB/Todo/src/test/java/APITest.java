@@ -8,8 +8,8 @@ public class APITest {
 	public static void main(String[] args) {
 		CardDao dao = new CardDao();
 
-//		System.out.println("addCard(testCard1, 조현욱, 1, 'todo')");
-//		dao.addCard(new Card("testCard1", "조현욱", 1, "todo"));
+		System.out.println("addCard(testCard1, 조현욱, 1, 'todo')");
+		dao.addCard(new Card("testCard1", "조현욱", 1, "todo"));
 		
 		Card result = dao.getCardById(2);
 		System.out.println("getCardById(1)"+result.toString());
@@ -22,5 +22,15 @@ public class APITest {
 		for(Card c : list) {
 			System.out.println(c.toString());
 		}
+		
+//		MainServlet mains = new MainServlet();
+//		List<Card> orderedCards[] = mains.getOrderedCards(); 
+//		for (int i = 0; i < orderedCards.length; i++) {
+//			for (int j = 0; j < orderedCards[i].size(); j++) {
+//				System.out.println(orderedCards[i].get(j).toString());
+//			}
+//			System.out.println("--------");
+//		}
+		
 	}
 }
