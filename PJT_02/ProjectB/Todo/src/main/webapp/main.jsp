@@ -12,7 +12,7 @@
 <body>
 	<div id="wrap">
 		<header>
-			<a>새로운 TODO 등록</a>
+			<a href="addpage">새로운 TODO 등록</a>
 		</header>
 		<div id="container">
 			<div id="content">
@@ -38,7 +38,6 @@
 							</ul>
 						</div>
 					</div>
-
 				</c:forEach>
 			</div>
 		</div>
