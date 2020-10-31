@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import jhw.pjt2.nts.todo.dao.CardDao;
 import jhw.pjt2.nts.todo.dao.CardOrderDao;
+import jhw.pjt2.nts.todo.dao.ColumnDao;
 import jhw.pjt2.nts.todo.dto.Card;
 import jhw.pjt2.nts.todo.dto.CardOrder;
+import jhw.pjt2.nts.todo.dto.Column;
 
 @WebServlet({ "/main", "/" })
 public class MainServlet extends HttpServlet {
@@ -29,8 +31,12 @@ public class MainServlet extends HttpServlet {
 
 		List<Card> orderedCards[] = new ArrayList[3];
 		orderedCards = getOrderedCards();
-
+		List<Column> columnList = new ArrayList<>();
+		ColumnDao columnDao = new ColumnDao();
+		columnList = columnDao.getAllColumn();
+		
 		request.setAttribute("orderedCards", orderedCards);
+		request.setAttribute("columnList", columnList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
 		dispatcher.forward(request, response);
