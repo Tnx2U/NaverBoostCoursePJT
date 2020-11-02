@@ -20,6 +20,7 @@ import jhw.pjt2.nts.todo.dto.CardOrder;
 @WebServlet("/card")
 public class AddCardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final int TODO_COLUMN_ID = 1;
        
     public AddCardServlet() {
         super();
@@ -31,20 +32,22 @@ public class AddCardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		CardDao cardDao = new CardDao();
+		CardOrderDao cardOrderDao = new CardOrderDao();
 		
 		//1. body로부터 input값들 가져옴
 		//2. cardDto로부터 카드 객체로 만듬
-		Card inputCard = new Card(request.getParameter("title"), request.getParameter("manager"), Integer.parseInt(request.getParameter("priority")));
-		
 		//3. cardDao의 addCard를 호출하며 파라미터로 줌
-		CardDao cardDao = new CardDao();
+		Card inputCard = new Card(request.getParameter("title"), request.getParameter("manager"), Integer.parseInt(request.getParameter("priority")));
+
+		//4. card입력이 정상적인지 확인하기 위한 insertCount와 해당 카드의 인덱스인 insertedCardIndex를 가져옴
 		int insertCount = cardDao.addCard(inputCard);
 		int insertedCardIndex = cardDao.getRecentCardId();
 		
-		CardOrderDao cardOrderDao = new CardOrderDao();
-		//1번 컬럼 카드숫자 가져오기
-		int columnSize = cardOrderDao.getColumnSizeById(1);
+		// todo 컬럼이 보유한 카드갯수를 가져옴
+		int columnSize = cardOrderDao.getColumnSizeById(TODO_COLUMN_ID);
 		
+		// 해당 사이즈 + 1 의 위치에 새로운 카드를 삽입
 		CardOrder inputCardOrder = new CardOrder(1, insertedCardIndex, columnSize+1);
 		cardOrderDao.addCardOrder(inputCardOrder);
 		

@@ -24,7 +24,18 @@
 
 
 
+#  기술 요구사항
+
+- css 외부 라이브러리 사용 불가
+- jQuery 사용 불가
+- ajax는 XMLHTTPRequest사용
+- maven 프로젝트로 작업
+- 모든 사이트진입 요청은 서블릿으로 받아서 jsp로 포워딩하는 방식을 사용
+
+
+
 
 # 🐻 프로젝트 산출물
 - [위키](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/wikis/lecture02)
 
+- [DB 상세구조]()

@@ -8,8 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Main Page</title>
-<style type="text/css">
-</style>
 <link rel="stylesheet" href="resources/css/todo.css">
 </head>
 <body>
@@ -32,14 +30,14 @@
 									    <div class="card_content">
 									       <div class="card_title">${card.getTitle()}</div>
 									       <div class="card_desc">
-                                                <span>등록날짜:${card.getRegistedDate()}, </span> <span>${card.getTitle()},</span>
+                                                <span>등록날짜:${card.getRegistedDate()}, </span> <span>${card.getManagerName()},</span>
                                                 <span>우선순위${card.getPriority()}</span>
                                             </div> 
 									    </div>
 									    <div class="card_btnwrap">
 									        <c:if test="${card.getColumnId() != 3}">
-                                                <button class="btn_next" id="btn_card_${card.getId()}"
-                                                    onclick="handleClickNext(${card.getId()}, ${card.getColumnId()}, ${card.getCardOrder()})">></button>
+                                                <button class="btn_next" id="btn_card_${card.getColumnId()}_${card.getCardOrder()}_${card.getId()}">
+                                                    ></button>
                                             </c:if>
 									    </div>
 									</li>
@@ -51,5 +49,6 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="resources/js/todo.js"></script>
 </body>
 </html>

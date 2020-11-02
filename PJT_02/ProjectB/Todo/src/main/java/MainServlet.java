@@ -16,7 +16,7 @@ import jhw.pjt2.nts.todo.dto.Card;
 import jhw.pjt2.nts.todo.dto.CardOrder;
 import jhw.pjt2.nts.todo.dto.Column;
 
-@WebServlet({ "/main" })
+@WebServlet({ "/main", "" })
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final int COLUMN_LENGTH = 3;
