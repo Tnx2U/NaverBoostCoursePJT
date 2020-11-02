@@ -38,7 +38,7 @@
 				<div class="button_wrap">
 					<a class="button" id="a_back" href="main">이전</a>
 				    <input class="button" id="input_submit" type="submit" value="제출">
-					<button class="button" id="btn_remove" onclick="handleClickRemove()">내용 지우기</button>
+					<button class="button" id="btn_remove" type="reset">내용 지우기</button>
 				</div>
 			</form>
 		</div>

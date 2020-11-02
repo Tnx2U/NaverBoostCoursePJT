@@ -1,5 +1,5 @@
 function moveClickedCard(columnId, cardOrder, cardId){
-    console.log("moveClickedCard activate : ",columnId, cardOrder, cardId);
+    const columnSize = 3;
     //기존 돔 제거
     let targetCardDom = document.querySelector(`#card_${cardId}`);
     const targetCardHtml = targetCardDom.outerHTML;
@@ -7,7 +7,8 @@ function moveClickedCard(columnId, cardOrder, cardId){
     //이동 위치에 추가
     let targetColumnDom = document.querySelector(`#col_${++columnId}`).querySelector(`ul`);
     targetColumnDom.innerHTML += targetCardHtml;
-    targetColumnDom.querySelector(".btn_next").remove();
+    if(columnId == columnSize)
+        targetColumnDom.querySelector(`#card_${cardId} .btn_next`).remove();
 }
 
 function sendAjaxRequest(columnId, cardOrder, cardId) {
