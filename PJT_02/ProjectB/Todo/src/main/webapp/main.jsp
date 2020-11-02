@@ -129,7 +129,7 @@ header>a:hover {
 	background-color: #00587a;
 }
 </style>
-<link rel="stylesheet" href="./css/todo.css">
+<link rel="stylesheet" href="css/todo.css">
 </head>
 <body>
 	<div id="wrap">
