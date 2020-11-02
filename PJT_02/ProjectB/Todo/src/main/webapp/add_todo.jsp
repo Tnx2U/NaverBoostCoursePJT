@@ -13,7 +13,7 @@
 			<h1>할일 등록</h1>
 		</header>
 		<div id="container">
-			<form action="card" method="post" accept-charset="utf-8">
+			<form action="card" name="form_card" method="post" onsubmit="return validCheck()" accept-charset="utf-8">
 				<div>
 					<label>어떤 일인가요?</label><input class="input_text" id="input_title"
 						name="title" type="text" placeholder="프로젝트 완성하기(24자리까지)" />
@@ -43,5 +43,6 @@
 			</form>
 		</div>
 	</div>
+	<script type="text/javascript" src="resources/js/add_todo.js"></script>
 </body>
 </html>
