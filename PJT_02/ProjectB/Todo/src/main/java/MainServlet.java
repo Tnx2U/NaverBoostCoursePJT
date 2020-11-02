@@ -65,7 +65,6 @@ public class MainServlet extends HttpServlet {
 			if (cardList.get(i).getColumnId() != beforeColumn) {
 				orderedCardsIdx = cardList.get(i).getColumnId()-1;
 			}
-
 			orderedCards[orderedCardsIdx].add(cardList.get(i).clone());
 		}
 
