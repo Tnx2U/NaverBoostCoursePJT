@@ -7,17 +7,17 @@ function sendAjaxRequest(columnId, cardOrder, cardId) {
     const cardInfo = { 'columnId': columnId, 'cardOrder': cardOrder, 'cardId': cardId };
     
     xhRequest.onreadystatechange = function() {
-        if (xhRequest.readyState === xhr.DONE) {
-            if (xhr.status === 200 || xhr.status === 201) {
+        if (xhRequest.readyState === xhRequest.DONE) {
+            if (xhRequest.status === 200 || xhRequest.status === 201) {
                 moveClickedCard(columnId, cardOrder, cardId);
             } else {
                 console.error(xhRequest.responseText);
             }
         }
     };
-    xhr.open('PUT', 'http://localhost:8080/Todo/card-order');
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(JSON.stringify(cardInfo));
+    xhRequest.open('PUT', 'http://localhost:8080/Todo/card-order');
+    xhRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhRequest.send(JSON.stringify(cardInfo));
 }
 
 function handleClickNext(e) {

@@ -15,15 +15,15 @@
 	<url>http://www.example.com</url>
 
 	<properties>
-	   <!-- web.xml 파일을 삭제해도 이클립스에서 오류가 발생하지 않게 예외처리 해줌/ web.xml을 찾지 않게 해줌 -->
-	   <failOnMissingWebXml>false</failOnMissingWebXml>
+		<!-- web.xml 파일을 삭제해도 이클립스에서 오류가 발생하지 않게 예외처리 해줌/ web.xml을 찾지 않게 해줌 -->
+		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
 
 	<dependencies>
-	   <!-- jdbc를 사용하기 위한 드라이버 -->
+		<!-- jdbc를 사용하기 위한 드라이버 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -54,6 +54,11 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 	</dependencies>
 
