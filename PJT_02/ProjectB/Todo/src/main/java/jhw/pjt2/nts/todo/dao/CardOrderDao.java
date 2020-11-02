@@ -126,4 +126,72 @@ public class CardOrderDao {
 
 		return columnSize;
 	}
+
+
+	//카드오더의 위치 변경
+	public int updateClickedCardOrder(int cardId, int dstColumnId, int dstOrder) {
+		int updateCount = 0;
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+			String updateCardOrderQuery = "UPDATE card_order_tb SET column_id = ?, card_order = ? WHERE card_id = ?";
+			ps = conn.prepareStatement(updateCardOrderQuery);
+			ps.setInt(1, dstColumnId);
+			ps.setInt(2, dstOrder);
+			ps.setInt(3, cardId);
+
+			updateCount = ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("error occured in opening SQLconnection : " + e);
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println("error occured in closing SQLconnection : " + e);
+				e.printStackTrace();
+			}
+		}
+
+		return updateCount;
+	}
+
+	//이동한 카드보다 순서가 높은 카드들 1단계씩 낮추기
+	public int reduceCardOrder(int columnId, int cardOrder) {
+		int updateCount = 0;
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+			String reduceCardOrderQuery = "UPDATE card_order_tb SET card_order = card_order - 1 WHERE column_id = ? and card_order > ?";
+			ps = conn.prepareStatement(reduceCardOrderQuery);
+			ps.setInt(1, columnId);
+			ps.setInt(2, cardOrder);
+
+			updateCount = ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("error occured in opening SQLconnection : " + e);
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println("error occured in closing SQLconnection : " + e);
+				e.printStackTrace();
+			}
+		}
+
+		return updateCount;
+	}
 }
