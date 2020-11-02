@@ -85,4 +85,45 @@ public class CardOrderDao {
 
 		return cardOrderList;
 	}
+	
+	
+	// 특정 컬럼 길이 조회
+	public int getColumnSizeById(int columnId) {
+		int columnSize = -1;
+		String getColumnSizeByIdQuery = "SELECT count(*) as column_size FROM card_order_tb WHERE column_id = ?";
+
+		Card card = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+			ps = conn.prepareStatement(getColumnSizeByIdQuery);
+			ps.setInt(1, columnId);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				columnSize = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("error occured in opening SQLconnection : " + e);
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println("error occured in closing SQLconnection : " + e);
+				e.printStackTrace();
+			}
+		}
+
+		return columnSize;
+	}
 }

@@ -18,7 +18,7 @@ public class CardDao {
 
 	// 새로운 카드 추가
 	public int addCard(Card inputCard) {
-		int insertCount = 0;
+		int insertcount = 0;
 
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -33,7 +33,8 @@ public class CardDao {
 			ps.setString(2, inputCard.getManagerName());
 			ps.setInt(3, inputCard.getPriority());
 
-			insertCount = ps.executeUpdate();
+			insertcount = ps.executeUpdate();
+			
 		} catch (Exception e) {
 			System.out.println("error occured in opening SQLconnection : " + e);
 			e.printStackTrace();
@@ -49,7 +50,7 @@ public class CardDao {
 			}
 		}
 
-		return insertCount;
+		return insertcount;
 	}
 
 	// 번호로 특정 카드 조회
@@ -187,5 +188,36 @@ public class CardDao {
 		}
 
 		return cardList;
+	}
+	
+	// 최근 카드 id 조회
+	public int getRecentCardId() {
+		int cardId = -1;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		String getRecentCardIdQuery = "SELECT id FROM card_tb ORDER by id desc LIMIT 1";
+
+		// try-with-resource 방식
+		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+				PreparedStatement ps = conn.prepareStatement(getRecentCardIdQuery)) {
+			try (ResultSet rs = ps.executeQuery()) {
+				if(rs.next()) {
+					cardId = rs.getInt(1);
+				}
+			} catch (Exception e) {
+				System.out.println("error occured in ResultSet : " + e);
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			System.out.println("error occured in Connection jdbc: " + e);
+			e.printStackTrace();
+		}
+
+		return cardId;
 	}
 }
