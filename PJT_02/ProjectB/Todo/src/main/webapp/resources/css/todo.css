@@ -93,6 +93,19 @@ header>a:hover {
     width: 50px;
 }
 
+.btn_next{
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    background-color: #ffe05d;
+    cursor: pointer;
+}
+
+.btn_next:hover {
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.24), 0 5px 12px 0 rgba(0,0,0,0.19);
+}
+
 .card_desc {
     color: var(--main-text-color);
 }

@@ -31,18 +31,15 @@ public class AddCardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
 		
 		//1. body로부터 input값들 가져옴
 		//2. cardDto로부터 카드 객체로 만듬
-		System.out.println("request 확인용 : "+request.getParameter("title")+",,,"+request.getParameter("manager"));
 		Card inputCard = new Card(request.getParameter("title"), request.getParameter("manager"), Integer.parseInt(request.getParameter("priority")));
 		
 		//3. cardDao의 addCard를 호출하며 파라미터로 줌
 		CardDao cardDao = new CardDao();
 		int insertCount = cardDao.addCard(inputCard);
 		int insertedCardIndex = cardDao.getRecentCardId();
-		System.out.println("insertedCardIndex-------"+insertedCardIndex);
 		
 		CardOrderDao cardOrderDao = new CardOrderDao();
 		//1번 컬럼 카드숫자 가져오기
