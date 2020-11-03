@@ -22,14 +22,14 @@ public class CardOrderDao {
 	public int addCardOrder(CardOrder inputCardOrder) {
 		int insertCount = 0;
 
-		Connection conn = null;
-		PreparedStatement ps = null;
-
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			ps = conn.prepareStatement(QuerySelector.addCardOrderQuery);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 
+		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+				PreparedStatement ps = conn.prepareStatement(QuerySelector.addCardOrderQuery)) {
 			ps.setInt(1, inputCardOrder.getColumnId());
 			ps.setInt(2, inputCardOrder.getCardId());
 			ps.setInt(3, inputCardOrder.getCardOrder());
@@ -38,71 +38,53 @@ public class CardOrderDao {
 		} catch (Exception e) {
 			System.out.println("error occured in opening SQLconnection : " + e);
 			e.printStackTrace();
-		} finally {
-			try {
-				if (ps != null)
-					ps.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				System.out.println("error occured in closing SQLconnection : " + e);
-				e.printStackTrace();
-			}
 		}
 
 		return insertCount;
 	}
-	
-	
+
 	// 특정 컬럼 길이 조회
 	public int getColumnSizeById(int columnId) {
 		int columnSize = -1;
 		Card card = null;
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			ps = conn.prepareStatement(QuerySelector.getColumnSizeByIdQuery);
-			ps.setInt(1, columnId);
-			rs = ps.executeQuery();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 
-			if (rs.next()) {
-				columnSize = rs.getInt(1);
+		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+				PreparedStatement ps = conn.prepareStatement(QuerySelector.getColumnSizeByIdQuery);) {
+			ps.setInt(1, columnId);
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					columnSize = rs.getInt(1);
+				}
+			} catch (Exception e) {
+				System.out.println("error occured in resultSet SQLconnection : " + e);
+				e.printStackTrace();
 			}
 		} catch (Exception e) {
 			System.out.println("error occured in opening SQLconnection : " + e);
 			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (ps != null)
-					ps.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				System.out.println("error occured in closing SQLconnection : " + e);
-				e.printStackTrace();
-			}
 		}
 
 		return columnSize;
 	}
 
-
-	//카드오더의 위치 변경
+	// 카드오더의 위치 변경
 	public int updateClickedCardOrder(int cardId, int dstColumnId, int dstOrder) {
 		int updateCount = 0;
-		Connection conn = null;
-		PreparedStatement ps = null;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			ps = conn.prepareStatement(QuerySelector.updateCardOrderQuery);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+				PreparedStatement ps = conn.prepareStatement(QuerySelector.updateCardOrderQuery);) {
 			ps.setInt(1, dstColumnId);
 			ps.setInt(2, dstOrder);
 			ps.setInt(3, cardId);
@@ -111,31 +93,23 @@ public class CardOrderDao {
 		} catch (Exception e) {
 			System.out.println("error occured in opening SQLconnection : " + e);
 			e.printStackTrace();
-		} finally {
-			try {
-				if (ps != null)
-					ps.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				System.out.println("error occured in closing SQLconnection : " + e);
-				e.printStackTrace();
-			}
 		}
 
 		return updateCount;
 	}
 
-	//이동한 카드보다 순서가 높은 카드들 1단계씩 낮추기
+	// 이동한 카드보다 순서가 높은 카드들 1단계씩 낮추기
 	public int reduceCardOrder(int columnId, int cardOrder) {
 		int updateCount = 0;
-		Connection conn = null;
-		PreparedStatement ps = null;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			ps = conn.prepareStatement(QuerySelector.reduceCardOrderQuery);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+				PreparedStatement ps = conn.prepareStatement(QuerySelector.reduceCardOrderQuery);) {
 			ps.setInt(1, columnId);
 			ps.setInt(2, cardOrder);
 
@@ -143,16 +117,6 @@ public class CardOrderDao {
 		} catch (Exception e) {
 			System.out.println("error occured in opening SQLconnection : " + e);
 			e.printStackTrace();
-		} finally {
-			try {
-				if (ps != null)
-					ps.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				System.out.println("error occured in closing SQLconnection : " + e);
-				e.printStackTrace();
-			}
 		}
 
 		return updateCount;
