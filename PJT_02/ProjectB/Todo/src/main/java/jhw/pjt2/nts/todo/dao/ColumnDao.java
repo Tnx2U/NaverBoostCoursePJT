@@ -9,6 +9,7 @@ import java.util.List;
 
 import jhw.pjt2.nts.todo.dto.CardOrder;
 import jhw.pjt2.nts.todo.dto.Column;
+import jhw.pjt2.nts.todo.global.QuerySelector;
 
 public class ColumnDao {
 	// sql연결정보 추후 별도의 파일로 분리할 것(보안 이슈)
@@ -27,11 +28,9 @@ public class ColumnDao {
 			e.printStackTrace();
 		}
 
-		String getAllColumnQuery = "SELECT id, title FROM column_tb";
-
 		// try-with-resource 방식
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-				PreparedStatement ps = conn.prepareStatement(getAllColumnQuery)) {
+				PreparedStatement ps = conn.prepareStatement(QuerySelector.getAllColumnQuery)) {
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
 					Column column = new Column(rs.getInt(1), rs.getString(2));

@@ -10,6 +10,7 @@ import java.util.List;
 
 import jhw.pjt2.nts.todo.dto.Card;
 import jhw.pjt2.nts.todo.dto.CardOrder;
+import jhw.pjt2.nts.todo.global.QuerySelector;
 
 public class CardOrderDao {
 	// sql연결정보 추후 별도의 파일로 분리할 것(보안 이슈)
@@ -27,8 +28,7 @@ public class CardOrderDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			String addCardOrderQuery = "insert into card_order_tb (column_id, card_id, card_order) values (?,?,?)";
-			ps = conn.prepareStatement(addCardOrderQuery);
+			ps = conn.prepareStatement(QuerySelector.addCardOrderQuery);
 
 			ps.setInt(1, inputCardOrder.getColumnId());
 			ps.setInt(2, inputCardOrder.getCardId());
@@ -52,46 +52,11 @@ public class CardOrderDao {
 
 		return insertCount;
 	}
-
-	
-	// 전체 카드오더 조회
-	public List<CardOrder> getAllCardOrder() {
-		List<CardOrder> cardOrderList = new ArrayList<>();
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		String getAllCardOrderQuery = "SELECT id, column_id, card_id, card_order FROM card_order_tb ORDER BY column_id, card_order";
-
-		// try-with-resource 방식
-		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-				PreparedStatement ps = conn.prepareStatement(getAllCardOrderQuery)) {
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					CardOrder cardOrder = new CardOrder(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
-					cardOrderList.add(cardOrder);
-				}
-			} catch (Exception e) {
-				System.out.println("error occured in getAllCard ResultSet : " + e);
-				e.printStackTrace();
-			}
-		} catch (Exception e) {
-			System.out.println("error occured in getAllCard Connection jdbc: " + e);
-			e.printStackTrace();
-		}
-
-		return cardOrderList;
-	}
 	
 	
 	// 특정 컬럼 길이 조회
 	public int getColumnSizeById(int columnId) {
 		int columnSize = -1;
-		String getColumnSizeByIdQuery = "SELECT count(*) as column_size FROM card_order_tb WHERE column_id = ?";
-
 		Card card = null;
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -100,7 +65,7 @@ public class CardOrderDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			ps = conn.prepareStatement(getColumnSizeByIdQuery);
+			ps = conn.prepareStatement(QuerySelector.getColumnSizeByIdQuery);
 			ps.setInt(1, columnId);
 			rs = ps.executeQuery();
 
@@ -137,8 +102,7 @@ public class CardOrderDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			String updateCardOrderQuery = "UPDATE card_order_tb SET column_id = ?, card_order = ? WHERE card_id = ?";
-			ps = conn.prepareStatement(updateCardOrderQuery);
+			ps = conn.prepareStatement(QuerySelector.updateCardOrderQuery);
 			ps.setInt(1, dstColumnId);
 			ps.setInt(2, dstOrder);
 			ps.setInt(3, cardId);
@@ -171,8 +135,7 @@ public class CardOrderDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			String reduceCardOrderQuery = "UPDATE card_order_tb SET card_order = card_order - 1 WHERE column_id = ? and card_order > ?";
-			ps = conn.prepareStatement(reduceCardOrderQuery);
+			ps = conn.prepareStatement(QuerySelector.reduceCardOrderQuery);
 			ps.setInt(1, columnId);
 			ps.setInt(2, cardOrder);
 

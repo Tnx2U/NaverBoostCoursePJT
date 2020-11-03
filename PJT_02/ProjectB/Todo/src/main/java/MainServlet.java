@@ -60,7 +60,7 @@ public class MainServlet extends HttpServlet {
 			beforeColumn = cardList.get(0).getColumnId();
 		}
 		
-		// orderedCards의 각 행에
+		// orderedCards의 각 행에 컬럼별 카드 삽입
 		for (int i = 0; i < cardList.size(); i++) {
 			if (cardList.get(i).getColumnId() != beforeColumn) {
 				orderedCardsIdx = cardList.get(i).getColumnId()-1;
@@ -70,5 +70,4 @@ public class MainServlet extends HttpServlet {
 
 		return orderedCards;
 	}
-
 }

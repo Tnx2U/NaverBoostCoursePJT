@@ -1,7 +1,4 @@
-/**
- * 
- */
-
+//유효성 검사 함수
 function validCheck() {
     if (form_card.title.value == "") {
         alert("타이틀을 입력해 주세요.");
