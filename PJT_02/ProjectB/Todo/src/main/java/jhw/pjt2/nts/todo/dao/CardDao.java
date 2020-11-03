@@ -1,5 +1,6 @@
 package jhw.pjt2.nts.todo.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,11 +17,16 @@ public class CardDao {
 	private static final String DB_URL = "jdbc:mysql://10.113.116.52:13306/user05";
 	private static final String DB_USER = "user05";
 	private static final String DB_PASSWORD = "user05";
+	private static final int MIN_ORDER_VALUE = 1;
 
 	// 새로운 카드 추가
-	public int addCard(Card inputCard) {
+	public int addCard(Card inputCard) throws SQLException, IOException {
 		int insertcount = 0;
 
+		if(inputCard == null) {
+			throw new IOException();
+		}
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -34,16 +40,18 @@ public class CardDao {
 			ps.setInt(3, inputCard.getPriority());
 
 			insertcount = ps.executeUpdate();
-		} catch (Exception e) {
-			System.out.println("error occured in opening SQLconnection : " + e);
+		} catch (SQLException e) {
+			System.out.println("SQLConnection error occured in : addCard()");
+			System.out.println("params : " + inputCard.toString());
 			e.printStackTrace();
+			throw e;
 		}
 
 		return insertcount;
 	}
 
 	// 정렬된 전체 카드 조회
-	public List<Card> getOrderedAllCard() {
+	public List<Card> getOrderedAllCard() throws SQLException {
 		List<Card> cardList = new ArrayList<>();
 
 		try {
@@ -62,16 +70,18 @@ public class CardDao {
 						rs.getInt("co.card_order"));
 				cardList.add(card);
 			}
-		} catch (Exception e) {
-			System.out.println("error occured in Connection jdbc: " + e);
+		} catch (SQLException e) {
+			System.out.println("SQLConnection error occured in : getOrderedAllCard()");
+			System.out.println("params : ");
 			e.printStackTrace();
+			throw e;
 		}
 
 		return cardList;
 	}
 
 	// 최근 카드 id 조회
-	public int getRecentCardId() {
+	public int getRecentCardId() throws SQLException {
 		int cardId = -1;
 
 		try {
@@ -87,9 +97,11 @@ public class CardDao {
 			if (rs.next()) {
 				cardId = rs.getInt(1);
 			}
-		} catch (Exception e) {
-			System.out.println("error occured in Connection jdbc: " + e);
+		} catch (SQLException e) {
+			System.out.println("SQLConnection error occured in : getRecentCardId()");
+			System.out.println("params : ");
 			e.printStackTrace();
+			throw e;
 		}
 
 		return cardId;
