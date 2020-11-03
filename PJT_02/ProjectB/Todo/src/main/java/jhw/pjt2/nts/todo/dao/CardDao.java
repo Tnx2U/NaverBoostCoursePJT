@@ -58,7 +58,7 @@ public class CardDao {
 				ResultSet rs = ps.executeQuery()) {
 			while (rs.next()) {
 				Card card = new Card(rs.getInt("c.id"), rs.getString("c.title"), rs.getString("c.manager_name"),
-						rs.getInt("c.priority"), rs.getString("c.registed_date"), rs.getInt("co.column_id"),
+						rs.getInt("c.priority"), rs.getString("c.registed_date").split(":")[0], rs.getInt("co.column_id"),
 						rs.getInt("co.card_order"));
 				cardList.add(card);
 			}
