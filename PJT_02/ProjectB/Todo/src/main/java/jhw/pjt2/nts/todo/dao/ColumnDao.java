@@ -22,12 +22,6 @@ public class ColumnDao {
 
 		List<Column> columnList = new ArrayList<>();
 
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		// try-with-resource 방식
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 				PreparedStatement ps = conn.prepareStatement(QuerySelector.getAllColumnQuery);
@@ -38,7 +32,6 @@ public class ColumnDao {
 			}
 		} catch (Exception e) {
 			System.out.println("error occured in getAllColumn Connection jdbc: " + e);
-			e.printStackTrace();
 		}
 
 		return columnList;

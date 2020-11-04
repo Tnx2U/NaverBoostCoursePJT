@@ -29,12 +29,6 @@ public class CardOrderDao {
 		if(inputCardOrder == null) {
 			throw new IOException();
 		}
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 				PreparedStatement ps = conn.prepareStatement(QuerySelector.addCardOrderQuery)) {
@@ -46,7 +40,6 @@ public class CardOrderDao {
 		} catch (SQLException e) {
 			System.out.println("SQLconnection error occured in : addCardOrder()");
 			System.out.println("params : " + inputCardOrder.toString());
-			e.printStackTrace();
 			throw e;
 		}
 
@@ -61,12 +54,6 @@ public class CardOrderDao {
 		if(columnId < MIN_ID_VALUE) {
 			throw new IOException();
 		}
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 				PreparedStatement ps = conn.prepareStatement(QuerySelector.getColumnSizeByIdQuery);) {
@@ -78,13 +65,11 @@ public class CardOrderDao {
 			} catch (SQLException e) {
 				System.out.println("resultSet error occured in : getColumnSizeById()");
 				System.out.println("params : " + columnId);
-				e.printStackTrace();
 				throw e;
 			}
 		} catch (Exception e) {
 			System.out.println("SQLConnection error occured in : getColumnSizeById()");
 			System.out.println("params : " + columnId);
-			e.printStackTrace();
 			throw e;
 		}
 
@@ -94,12 +79,6 @@ public class CardOrderDao {
 	// 카드오더의 위치 변경
 	public int updateClickedCardOrder(int cardId, int dstColumnId, int dstOrder) throws SQLException, IOException {
 		int updateCount = 0;
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 		
 		if(cardId < MIN_ID_VALUE || dstColumnId < MIN_ID_VALUE+1 || dstOrder < MIN_ORDER_VALUE) {
 			throw new IOException();
@@ -115,7 +94,6 @@ public class CardOrderDao {
 		} catch (SQLException e) {
 			System.out.println("SQLConnection error occured in : updateClickedCardOrder()");
 			System.out.println("params : " + cardId + " " + dstColumnId + " " + dstOrder);
-			e.printStackTrace();
 			throw e;
 		}
 
@@ -129,12 +107,6 @@ public class CardOrderDao {
 		if(columnId < MIN_ID_VALUE || cardOrder < MIN_ORDER_VALUE) {
 			throw new IOException();
 		}
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 				PreparedStatement ps = conn.prepareStatement(QuerySelector.reduceCardOrderQuery);) {
@@ -145,7 +117,6 @@ public class CardOrderDao {
 		} catch (SQLException e) {
 			System.out.println("SQLConnection error occured in : reduceCardOrder()");
 			System.out.println("params : " + columnId + " " + cardOrder);
-			e.printStackTrace();
 			throw e;
 		}
 

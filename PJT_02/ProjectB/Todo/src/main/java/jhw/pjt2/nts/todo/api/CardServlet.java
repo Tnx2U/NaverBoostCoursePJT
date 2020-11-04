@@ -30,7 +30,7 @@ public class CardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
+		boolean hasException = false;
 		
 		CardDao cardDao = new CardDao();
 		CardOrderDao cardOrderDao = new CardOrderDao();
@@ -45,13 +45,20 @@ public class CardServlet extends HttpServlet {
 			CardOrder inputCardOrder = new CardOrder(1, insertedCardIndex, columnSize+1);
 			cardOrderDao.addCardOrder(inputCardOrder);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("SQLException occured in CardOrderServlet");
+			hasException = true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IOException occured in CardOrderServlet check parameter");
+			hasException = true;
 		} catch(Exception e) {
-			e.printStackTrace();
+			System.out.println("Unknown Exception occured in CardOrderServlet");
+			hasException = true;
 		}
 		
-		response.sendRedirect("main");
+		if(hasException) {
+			response.setStatus(400);
+		}else {
+			response.sendRedirect("main");
+		}
 	}
 }
