@@ -33,6 +33,7 @@ public class CardOrderDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
+			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
 			e.printStackTrace();
 		}
 
@@ -65,6 +66,7 @@ public class CardOrderDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
+			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
 			e.printStackTrace();
 		}
 
@@ -98,6 +100,7 @@ public class CardOrderDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
+			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
 			e.printStackTrace();
 		}
 		
@@ -133,6 +136,7 @@ public class CardOrderDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
+			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
 			e.printStackTrace();
 		}
 
