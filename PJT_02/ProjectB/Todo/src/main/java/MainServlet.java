@@ -59,7 +59,7 @@ public class MainServlet extends HttpServlet {
 
 			List<Card> tempList = new ArrayList<>();
 			int beforeColumn = -1;
-
+			
 			for (int i = 0; i < orderedCards.length; i++) {
 				orderedCards[i] = new ArrayList<>();
 			}
@@ -67,13 +67,14 @@ public class MainServlet extends HttpServlet {
 			if (cardList.size() != 0) {
 				beforeColumn = cardList.get(0).getColumnId();
 			}
-
+			
 			// orderedCards의 각 행에 컬럼별 카드 삽입
-			for (int i = 0; i < cardList.size(); i++) {
-				if (cardList.get(i).getColumnId() != beforeColumn) {
-					orderedCardsIdx = cardList.get(i).getColumnId() - 1;
+			for (Card card : cardList) {
+				if (card.getColumnId() != beforeColumn) {
+					orderedCardsIdx = card.getColumnId() - 1;
+					beforeColumn = card.getColumnId();
 				}
-				orderedCards[orderedCardsIdx].add(cardList.get(i).clone());
+				orderedCards[orderedCardsIdx].add(card.clone());
 			}
 
 		} catch (SQLException e) {
