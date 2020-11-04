@@ -2,6 +2,8 @@ package jhw.pjt2.nts.todo.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +30,7 @@ public class CardOrderServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
+		boolean hasException = false;
 		String input = getBody(request);
 		JSONParser jsonParser = new JSONParser();
 		JSONObject cardInfo = null;
@@ -42,15 +45,31 @@ public class CardOrderServlet extends HttpServlet {
 		int cardId = Integer.parseInt(cardInfo.get("cardId").toString());
 		int cardOrder = Integer.parseInt(cardInfo.get("cardOrder").toString());
 		
-		//column+1의 길이 구함
 		CardOrderDao cardOrderDao = new CardOrderDao();
-		int dstColumnSize = cardOrderDao.getColumnSizeById(columnId+1);
-		//해당 카드ID 의 COLUMN+1, 길이로 변환
-		cardOrderDao.updateClickedCardOrder(cardId, columnId+1, dstColumnSize+1);
-		//기존에 있던 컬럼에 ORDER > 애들 1씩 감소
-		cardOrderDao.reduceCardOrder(columnId, cardOrder);
+		int dstColumnSize;
+
+		try {
+			dstColumnSize = cardOrderDao.getColumnSizeById(columnId+1);
+			cardOrderDao.updateClickedCardOrder(cardId, columnId+1, dstColumnSize+1);
+			cardOrderDao.reduceCardOrder(columnId, cardOrder);
+		} catch (SQLException e) {
+			System.out.println("sql 연결에 실패하였습니다");
+			e.printStackTrace();
+			hasException = true;
+		} catch (IOException e) {
+			System.out.println("입력값에 문제가 있습니다.");
+			e.printStackTrace();
+			hasException = true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			hasException = true;
+		}
 		
-		response.setStatus(200);
+		if(hasException) {
+			response.setStatus(400);
+		}else {
+			response.setStatus(200);
+		}
 	}
 
 	// request의 BODY를 스트림하여 String값으로 리턴

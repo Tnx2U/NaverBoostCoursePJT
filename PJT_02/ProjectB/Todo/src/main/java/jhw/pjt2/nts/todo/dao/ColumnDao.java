@@ -30,15 +30,11 @@ public class ColumnDao {
 
 		// try-with-resource 방식
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-				PreparedStatement ps = conn.prepareStatement(QuerySelector.getAllColumnQuery)) {
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					Column column = new Column(rs.getInt(1), rs.getString(2));
-					columnList.add(column);
-				}
-			} catch (Exception e) {
-				System.out.println("error occured in getAllColumn ResultSet : " + e);
-				e.printStackTrace();
+				PreparedStatement ps = conn.prepareStatement(QuerySelector.getAllColumnQuery);
+				ResultSet rs = ps.executeQuery()) {
+			while (rs.next()) {
+				Column column = new Column(rs.getInt(1), rs.getString(2));
+				columnList.add(column);
 			}
 		} catch (Exception e) {
 			System.out.println("error occured in getAllColumn Connection jdbc: " + e);

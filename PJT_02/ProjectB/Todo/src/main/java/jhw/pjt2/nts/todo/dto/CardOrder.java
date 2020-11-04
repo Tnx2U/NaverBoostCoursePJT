@@ -25,32 +25,16 @@ public class CardOrder {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public int getColumnId() {
 		return columnId;
-	}
-
-	public void setColumnId(int columnId) {
-		this.columnId = columnId;
 	}
 
 	public int getCardId() {
 		return cardId;
 	}
 
-	public void setCardId(int cardId) {
-		this.cardId = cardId;
-	}
-
 	public int getCardOrder() {
 		return cardOrder;
-	}
-
-	public void setCardOrder(int cardOrder) {
-		this.cardOrder = cardOrder;
 	}
 
 	@Override

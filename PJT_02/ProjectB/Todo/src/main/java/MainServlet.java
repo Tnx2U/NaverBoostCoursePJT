@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +35,16 @@ public class MainServlet extends HttpServlet {
 		List<Column> columnList = new ArrayList<>();
 		ColumnDao columnDao = new ColumnDao();
 		columnList = columnDao.getAllColumn();
-		
-		request.setAttribute("orderedCards", orderedCards);
-		request.setAttribute("columnList", columnList);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
-		dispatcher.forward(request, response);
+		if(columnList == null || orderedCards == null) {
+			response.setStatus(400);
+		}else {
+			request.setAttribute("orderedCards", orderedCards);
+			request.setAttribute("columnList", columnList);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 	// 컬럼 안에서 카드 순서를 고려한 카드정보를 리턴
@@ -48,24 +53,33 @@ public class MainServlet extends HttpServlet {
 		int orderedCardsIdx = 0;
 
 		CardDao cardDao = new CardDao();
-		List<Card> cardList = cardDao.getOrderedAllCard();
-		List<Card> tempList = new ArrayList<>();
-		int beforeColumn = -1;
+		List<Card> cardList;
+		try {
+			cardList = cardDao.getOrderedAllCard();
 
-		for (int i = 0; i < orderedCards.length; i++) {
-			orderedCards[i] = new ArrayList<>();
-		}
+			List<Card> tempList = new ArrayList<>();
+			int beforeColumn = -1;
 
-		if (cardList.size() != 0) {
-			beforeColumn = cardList.get(0).getColumnId();
-		}
-		
-		// orderedCards의 각 행에 컬럼별 카드 삽입
-		for (int i = 0; i < cardList.size(); i++) {
-			if (cardList.get(i).getColumnId() != beforeColumn) {
-				orderedCardsIdx = cardList.get(i).getColumnId()-1;
+			for (int i = 0; i < orderedCards.length; i++) {
+				orderedCards[i] = new ArrayList<>();
 			}
-			orderedCards[orderedCardsIdx].add(cardList.get(i).clone());
+
+			if (cardList.size() != 0) {
+				beforeColumn = cardList.get(0).getColumnId();
+			}
+
+			// orderedCards의 각 행에 컬럼별 카드 삽입
+			for (int i = 0; i < cardList.size(); i++) {
+				if (cardList.get(i).getColumnId() != beforeColumn) {
+					orderedCardsIdx = cardList.get(i).getColumnId() - 1;
+				}
+				orderedCards[orderedCardsIdx].add(cardList.get(i).clone());
+			}
+
+		} catch (SQLException e) {
+			System.out.println("카드 정보 호출에 문제가 발생했습니다.");
+			e.printStackTrace();
+			return null;
 		}
 
 		return orderedCards;
