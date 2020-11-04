@@ -45,15 +45,13 @@ public class CardServlet extends HttpServlet {
 			CardOrder inputCardOrder = new CardOrder(1, insertedCardIndex, columnSize+1);
 			cardOrderDao.addCardOrder(inputCardOrder);
 		} catch (SQLException e) {
-			System.out.println("sql 연결에 실패하였습니다");
-			e.printStackTrace();
+			System.out.println("SQLException occured in CardOrderServlet");
 			hasException = true;
 		} catch (IOException e) {
-			System.out.println("입력값에 문제가 있습니다.");
-			e.printStackTrace();
+			System.out.println("IOException occured in CardOrderServlet check parameter");
 			hasException = true;
 		} catch(Exception e) {
-			e.printStackTrace();
+			System.out.println("Unknown Exception occured in CardOrderServlet");
 			hasException = true;
 		}
 		

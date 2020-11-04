@@ -78,8 +78,7 @@ public class MainServlet extends HttpServlet {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("카드 정보 호출에 문제가 발생했습니다.");
-			e.printStackTrace();
+			System.out.println("SQLException occured in getOrderedCards(). cant load data");
 			return null;
 		}
 

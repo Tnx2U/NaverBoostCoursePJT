@@ -47,7 +47,6 @@ public class CardOrderDao {
 		} catch (SQLException e) {
 			System.out.println("SQLconnection error occured in : addCardOrder()");
 			System.out.println("params : " + inputCardOrder.toString());
-			e.printStackTrace();
 			throw e;
 		}
 
@@ -80,13 +79,11 @@ public class CardOrderDao {
 			} catch (SQLException e) {
 				System.out.println("resultSet error occured in : getColumnSizeById()");
 				System.out.println("params : " + columnId);
-				e.printStackTrace();
 				throw e;
 			}
 		} catch (Exception e) {
 			System.out.println("SQLConnection error occured in : getColumnSizeById()");
 			System.out.println("params : " + columnId);
-			e.printStackTrace();
 			throw e;
 		}
 
@@ -118,7 +115,6 @@ public class CardOrderDao {
 		} catch (SQLException e) {
 			System.out.println("SQLConnection error occured in : updateClickedCardOrder()");
 			System.out.println("params : " + cardId + " " + dstColumnId + " " + dstOrder);
-			e.printStackTrace();
 			throw e;
 		}
 
@@ -149,7 +145,6 @@ public class CardOrderDao {
 		} catch (SQLException e) {
 			System.out.println("SQLConnection error occured in : reduceCardOrder()");
 			System.out.println("params : " + columnId + " " + cardOrder);
-			e.printStackTrace();
 			throw e;
 		}
 

@@ -39,7 +39,6 @@ public class ColumnDao {
 			}
 		} catch (Exception e) {
 			System.out.println("error occured in getAllColumn Connection jdbc: " + e);
-			e.printStackTrace();
 		}
 
 		return columnList;

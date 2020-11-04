@@ -30,8 +30,7 @@ public class CardDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
-			e.printStackTrace();
+			System.out.println("ClassNotFoundException occured in declare com.mysql.jdbc.Driver");
 		}
 
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -44,7 +43,6 @@ public class CardDao {
 		} catch (SQLException e) {
 			System.out.println("SQLConnection error occured in : addCard()");
 			System.out.println("params : " + inputCard.toString());
-			e.printStackTrace();
 			throw e;
 		}
 
@@ -59,7 +57,6 @@ public class CardDao {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
-			e.printStackTrace();
 		}
 
 		// try-with-resource 방식
@@ -75,7 +72,6 @@ public class CardDao {
 		} catch (SQLException e) {
 			System.out.println("SQLConnection error occured in : getOrderedAllCard()");
 			System.out.println("params : ");
-			e.printStackTrace();
 			throw e;
 		}
 
@@ -103,7 +99,6 @@ public class CardDao {
 		} catch (SQLException e) {
 			System.out.println("SQLConnection error occured in : getRecentCardId()");
 			System.out.println("params : ");
-			e.printStackTrace();
 			throw e;
 		}
 

@@ -53,15 +53,13 @@ public class CardOrderServlet extends HttpServlet {
 			cardOrderDao.updateClickedCardOrder(cardId, columnId+1, dstColumnSize+1);
 			cardOrderDao.reduceCardOrder(columnId, cardOrder);
 		} catch (SQLException e) {
-			System.out.println("sql 연결에 실패하였습니다");
-			e.printStackTrace();
+			System.out.println("SQLException occured in CardOrderServlet");
 			hasException = true;
 		} catch (IOException e) {
-			System.out.println("입력값에 문제가 있습니다.");
-			e.printStackTrace();
+			System.out.println("IOException occured in CardOrderServlet check parameter");
 			hasException = true;
 		} catch(Exception e) {
-			e.printStackTrace();
+			System.out.println("Unknown Exception occured in CardOrderServlet");
 			hasException = true;
 		}
 		
@@ -88,13 +86,13 @@ public class CardOrderServlet extends HttpServlet {
 				}
 			}
 		} catch (IOException exception) {
-			exception.printStackTrace();
+			System.out.println("IOException occured in getBody() check request's body");
 		} finally {
 			if (bufferedReader != null) {
 				try {
 					bufferedReader.close();
 				} catch (IOException exception) {
-					exception.printStackTrace();
+					System.out.println("IOException occured in getBody() check request's body");
 				}
 			}
 		}
