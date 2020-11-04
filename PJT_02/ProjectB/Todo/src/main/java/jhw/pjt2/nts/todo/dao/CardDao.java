@@ -26,12 +26,6 @@ public class CardDao {
 		if(inputCard == null) {
 			throw new IOException();
 		}
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException occured in declare com.mysql.jdbc.Driver");
-		}
 
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 				PreparedStatement ps = conn.prepareStatement(QuerySelector.addCardQuery)) {
@@ -52,12 +46,6 @@ public class CardDao {
 	// 정렬된 전체 카드 조회
 	public List<Card> getOrderedAllCard() throws SQLException {
 		List<Card> cardList = new ArrayList<>();
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
-		}
 
 		// try-with-resource 방식
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -81,13 +69,6 @@ public class CardDao {
 	// 최근 카드 id 조회
 	public int getRecentCardId() throws SQLException {
 		int cardId = -1;
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
-			e.printStackTrace();
-		}
 
 		// try-with-resource 방식
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

@@ -29,13 +29,6 @@ public class CardOrderDao {
 		if(inputCardOrder == null) {
 			throw new IOException();
 		}
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
-			e.printStackTrace();
-		}
 
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 				PreparedStatement ps = conn.prepareStatement(QuerySelector.addCardOrderQuery)) {
@@ -60,13 +53,6 @@ public class CardOrderDao {
 
 		if(columnId < MIN_ID_VALUE) {
 			throw new IOException();
-		}
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
-			e.printStackTrace();
 		}
 
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -93,13 +79,6 @@ public class CardOrderDao {
 	// 카드오더의 위치 변경
 	public int updateClickedCardOrder(int cardId, int dstColumnId, int dstOrder) throws SQLException, IOException {
 		int updateCount = 0;
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
-			e.printStackTrace();
-		}
 		
 		if(cardId < MIN_ID_VALUE || dstColumnId < MIN_ID_VALUE+1 || dstOrder < MIN_ORDER_VALUE) {
 			throw new IOException();
@@ -127,13 +106,6 @@ public class CardOrderDao {
 
 		if(columnId < MIN_ID_VALUE || cardOrder < MIN_ORDER_VALUE) {
 			throw new IOException();
-		}
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("com.mysql.jdbc.Driver 객체 선언에 문제가 발생했습니다.");
-			e.printStackTrace();
 		}
 
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

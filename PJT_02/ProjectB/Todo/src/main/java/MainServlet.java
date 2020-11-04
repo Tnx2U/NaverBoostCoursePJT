@@ -16,6 +16,7 @@ import jhw.pjt2.nts.todo.dao.ColumnDao;
 import jhw.pjt2.nts.todo.dto.Card;
 import jhw.pjt2.nts.todo.dto.CardOrder;
 import jhw.pjt2.nts.todo.dto.Column;
+import jhw.pjt2.nts.todo.global.JdbcDriverLoader;
 
 @WebServlet({ "/main", "" })
 public class MainServlet extends HttpServlet {
@@ -29,6 +30,15 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
+		
+		try {
+			JdbcDriverLoader.getStaticJdbcDriver();
+		} catch (ClassNotFoundException e) {
+			System.out.println("ClassNotFoundException occured in declare com.mysql.jdbc.Driver");
+			System.out.println("Server down Because of jdbc driver");
+			response.setStatus(400);
+			return;
+		}
 
 		List<Card> orderedCards[] = new ArrayList[3];
 		orderedCards = getOrderedCards();
