@@ -1,8 +1,7 @@
-package chw.intern.nts.reservation;
+package chw.intern.nts.reservation.dto;
 
 import org.springframework.stereotype.Component;
 
-// 이 클래스가 컴포넌트임(자동으로 bean객체화 해달라~)을 지정하는 어노테이션
 @Component
 public class Category {
 //	기본생성자 가져야함
@@ -11,9 +10,8 @@ public class Category {
 	private int count;
 	private int id;
 	private String name;
-	
-//@Autowired 아래에 DI할 객체를 선언하면 set함수 없어도 자동을 할당해줌
 
+//@Autowired 아래에 DI할 객체를 선언하면 set함수 없어도 자동을 할당해줌
 	public Category() {
 	};
 
@@ -45,5 +43,10 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [count=" + count + ", id=" + id + ", name=" + name + "]";
 	}
 }
