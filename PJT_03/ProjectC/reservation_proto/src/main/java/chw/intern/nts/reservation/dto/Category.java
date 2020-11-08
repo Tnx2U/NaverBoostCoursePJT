@@ -1,5 +1,8 @@
 package chw.intern.nts.reservation.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Category {
 //	기본생성자 가져야함
 //	필드는 프라이빗하게

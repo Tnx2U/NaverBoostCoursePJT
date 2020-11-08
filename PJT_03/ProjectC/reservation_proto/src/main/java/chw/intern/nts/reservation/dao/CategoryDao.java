@@ -3,6 +3,7 @@ package chw.intern.nts.reservation.dao;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -13,6 +14,7 @@ import static chw.intern.nts.reservation.dao.CategoryDaoSqls.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 //저장소라는 개념으로 repository 어노테이션 지정
 @Repository
@@ -27,5 +29,15 @@ public class CategoryDao {
 	
 	public List<Category> selectAll(){
 		return jdbc.query(SELECT_ALL, Collections.emptyMap(), rowMapper);
+	}
+	
+	public Category selectById(Integer id) {
+//		SqlParameterSource params = new BeanPropertySqlParameterSource(Category);
+		try {
+			Map<String, ?> params = Collections.singletonMap("id", id);
+			return jdbc.queryForObject(SELECT_BY_ID, params, rowMapper);
+		}catch(EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 }

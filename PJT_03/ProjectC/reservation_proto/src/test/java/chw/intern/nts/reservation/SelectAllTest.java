@@ -21,5 +21,7 @@ public class SelectAllTest {
 		for(Category ct : list) {
 			System.out.println(ct.toString());
 		}
-	}
+		
+		System.out.println(categoryDao.selectById(2).toString());
+	} 
 }
