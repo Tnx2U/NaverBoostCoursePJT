@@ -23,7 +23,7 @@ public class CategoryApiController {
 	public Map<String, Object> categoryList() {
 		List<Category> CategoryResponse = categoryService.getAllCategoriesWithCount();
 		Map<String, Object> map = new HashMap<>();
-		map.put("itmes", CategoryResponse);
+		map.put("items", CategoryResponse);
 
 		return map;
 	}
