@@ -17,11 +17,11 @@ import chw.intern.nts.reservation.service.PromotionService;
 @RequestMapping(path = "/api/promotions")
 public class PromotionApiController {
 	@Autowired
-	PromotionService service;
+	PromotionService promotionService;
 
 	@GetMapping
 	public Map<String, Object> promotionList() {
-		List<Promotion> PromotionResponse = service.getAllPromotionWithImgUrl();
+		List<Promotion> PromotionResponse = promotionService.getAllPromotionWithImgUrl();
 		Map<String, Object> map = new HashMap<>();
 		map.put("items", PromotionResponse);
 

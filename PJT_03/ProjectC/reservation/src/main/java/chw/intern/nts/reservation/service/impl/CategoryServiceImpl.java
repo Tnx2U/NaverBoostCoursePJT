@@ -3,12 +3,14 @@ package chw.intern.nts.reservation.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import chw.intern.nts.reservation.dao.CategoryDao;
 import chw.intern.nts.reservation.dto.Category;
 import chw.intern.nts.reservation.service.CategoryService;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	CategoryDao categoryDao;
