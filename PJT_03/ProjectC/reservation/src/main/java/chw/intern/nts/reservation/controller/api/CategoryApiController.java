@@ -15,20 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import chw.intern.nts.reservation.dao.CategoryDao;
 import chw.intern.nts.reservation.dto.Category;
-import chw.intern.nts.reservation.service.ReservationService;
+import chw.intern.nts.reservation.service.CategoryService;
 
 @RestController
-@RequestMapping(path="/api/categories")
+@RequestMapping(path = "/api/categories")
 public class CategoryApiController {
-	@Autowired 
-	ReservationService service;
-	
+	@Autowired
+	CategoryService service;
+
 	@GetMapping
-	public Map<String, Object> categoryList(){
+	public Map<String, Object> categoryList() {
 		List<Category> categoryList = service.getAllCategoriesWithCount();
 		Map<String, Object> map = new HashMap<>();
 		map.put("categoryList", categoryList);
-		
+
 		return map;
 	}
 }

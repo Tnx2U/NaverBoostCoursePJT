@@ -11,24 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import chw.intern.nts.reservation.dto.Category;
-import chw.intern.nts.reservation.service.ReservationService;
 
 @Controller
 public class ReservationController {
-	@Autowired
-	ReservationService service;
-	
 	@GetMapping(path="/main")
 	public String mainPage(ModelMap model) {
-		List<Category> categoryList = service.getAllCategories();
-		
-		model.addAttribute("categoryList", categoryList);
+//		List<Category> categoryList = service.getAllCategories();
+//		
+//		model.addAttribute("categoryList", categoryList);
 		
 		return "main";
 	}
-	
-//	@GetMapping(path="/api/categories")
-//	public void allCategories(@ModelAttribute Category category) {
-//		System.out.println(category);
-//	}
 }

@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import chw.intern.nts.reservation.dto.Category;
 import chw.intern.nts.reservation.dto.Promotion;
-import chw.intern.nts.reservation.service.ReservationService;
+import chw.intern.nts.reservation.service.PromotionService;
 
 @RestController
-@RequestMapping(path="/api/promotions")
+@RequestMapping(path = "/api/promotions")
 public class PromotionApiController {
-	@Autowired 
-	ReservationService service;
-	
+	@Autowired
+	PromotionService service;
+
 	@GetMapping
-	public Map<String, Object> promotionList(){
+	public Map<String, Object> promotionList() {
 		List<Promotion> productList = service.getAllPromotionWithImgUrl();
 		Map<String, Object> map = new HashMap<>();
 		map.put("productList", productList);
-		
+
 		return map;
 	}
 }
