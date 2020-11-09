@@ -2,7 +2,14 @@ function getTabHtml(category) {
     return `<li class="item" data-category="${category.id}"><a class="anchor"><span>${category.name}<span/></li>`;
 }
 
-function setCategoryEvent() {
+function toggleCategoryActive(selectCategoryId){
+    selectCategoryId = Number(selectCategoryId) + 1;
+    let eventTabElement = document.querySelector(".event_tab_lst");
+    eventTabElement.querySelector(".anchor.active").classList.remove("active");
+    eventTabElement.querySelector(`li:nth-child(${selectCategoryId}) a`).classList.add("active");
+}
+
+function handleCategoryClick() {
     let eventTabElement = document.querySelector(".event_tab_lst");
     
     eventTabElement.addEventListener('click', function(event) {
@@ -21,6 +28,9 @@ function setCategoryEvent() {
             "start" : 0,
         }
         handleGetAjax(renderProductList, "products", params);
+        
+        // 클릭된 카테고리에 active클래스 추가
+        toggleCategoryActive(selectCategoryId);
     })
 }
 
@@ -33,7 +43,7 @@ function renderCategoryList(response) {
         eventTabElement.innerHTML += getTabHtml(categoryList[idx]);
     }
 
-    setCategoryEvent();
+    handleCategoryClick();
     //event deligation으로 해당 카테고리버튼별 이벤트 추가
 }
 
@@ -42,6 +52,7 @@ function renderPromotionList(response) {
 }
 
 function renderProductList(response) {
+    
     console.log(response);
 }
 
