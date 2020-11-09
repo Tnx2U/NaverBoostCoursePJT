@@ -1,5 +1,6 @@
 package chw.intern.nts.reservation.dao;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,12 +25,29 @@ public class ProductDao {
 		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 	
-	public List<Product> selectByCategoryId(int categoryId, int start, int limit) {
+	public List<Product> selectByCategoryIdWithOffset(Integer categoryId, int start, int limit) {
 		Map<String, Integer> params = new HashMap<>();
 		params.put("categoryId", categoryId);
 		params.put("start", start);
 		params.put("limit", limit);
 		
-		return jdbcTemplate.query(SELECT_BY_CATEGORY_ID, params ,rowMapper);
+		return jdbcTemplate.query(SELECT_BY_CATEGORY_ID_WITH_OFFSET, params ,rowMapper);
+	}
+
+	public List<Product> selectAllWithOffset(int start, int limit) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("start", start);
+		params.put("limit", limit);
+		
+		return jdbcTemplate.query(SELECT_ALL_WITH_OFFSET, params ,rowMapper);
+	}
+
+	public int selectAllCount() {
+		return jdbcTemplate.queryForObject(SELECT_ALL_COUNT, Collections.emptyMap(), Integer.class);
+	}
+
+	public int selectCountByCategoryId(Integer categoryId) {
+		Map<String, Integer> params = Collections.singletonMap("categoryId", categoryId);
+		return jdbcTemplate.queryForObject(SELECT_COUNT_BY_CATEGORY_ID, params, Integer.class);
 	}
 }
