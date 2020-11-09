@@ -6,4 +6,5 @@ import chw.intern.nts.reservation.dto.Category;
 
 public interface ReservationService {
 	public List<Category> getAllCategories();
+	public List<Category> getAllCategoriesWithCount();
 }

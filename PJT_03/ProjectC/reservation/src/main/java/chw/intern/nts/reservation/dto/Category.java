@@ -18,16 +18,16 @@ public class Category {
 		this.name = name;
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public int getCount() {
 		return count;
 	}
 
 	public void setCount(int count) {
 		this.count = count;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public void setId(int id) {
@@ -44,6 +44,6 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [count=" + count + ", id=" + id + ", name=" + name + "]";
+		return "Category [count=" + count + "id=" + id + ", name=" + name + "]";
 	}
 }

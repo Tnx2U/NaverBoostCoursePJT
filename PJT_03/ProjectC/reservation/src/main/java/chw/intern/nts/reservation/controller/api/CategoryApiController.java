@@ -18,14 +18,14 @@ import chw.intern.nts.reservation.dto.Category;
 import chw.intern.nts.reservation.service.ReservationService;
 
 @RestController
-@RequestMapping(path="/categories")
+@RequestMapping(path="/api/categories")
 public class CategoryApiController {
 	@Autowired 
 	ReservationService service;
 	
 	@GetMapping
 	public Map<String, Object> categoryList(){
-		List<Category> list = service.getAllCategories();
+		List<Category> list = service.getAllCategoriesWithCount();
 		Map<String, Object> map = new HashMap<>();
 		map.put("categoryList", list);
 		

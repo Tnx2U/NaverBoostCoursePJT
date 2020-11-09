@@ -27,8 +27,8 @@ public class ReservationController {
 		return "main";
 	}
 	
-	@GetMapping(path="/api/categories")
-	public void allCategories(@ModelAttribute Category category) {
-		System.out.println(category);
-	}
+//	@GetMapping(path="/api/categories")
+//	public void allCategories(@ModelAttribute Category category) {
+//		System.out.println(category);
+//	}
 }

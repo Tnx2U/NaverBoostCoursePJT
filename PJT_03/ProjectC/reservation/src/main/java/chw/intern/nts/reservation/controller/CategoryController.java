@@ -9,8 +9,8 @@ import chw.intern.nts.reservation.dto.Category;
 
 @Controller
 public class CategoryController {
-	@RequestMapping(path="/api/categories", method=RequestMethod.POST)
-	public void allCategories(@ModelAttribute Category category) {
-		System.out.println(category);
-	}
+//	@RequestMapping(path="/api/categories", method=RequestMethod.POST)
+//	public void allCategories(@ModelAttribute Category category) {
+//		System.out.println(category);
+//	}
 }

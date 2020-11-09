@@ -38,4 +38,8 @@ public class CategoryDao {
 			return null;
 		}
 	}
+
+	public List<Category> selectAllWithCount() {
+		return jdbcTemplate.query(SELECT_ALL_WITH_COUNT, Collections.emptyMap(), rowMapper);
+	}
 }

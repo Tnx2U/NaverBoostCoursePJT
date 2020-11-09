@@ -22,4 +22,11 @@ public class ReservationServiceImpl implements ReservationService{
 		List<Category> categoryList = categoryDao.selectAll();
 		return categoryList;
 	}
+
+	@Override
+	@Transactional
+	public List<Category> getAllCategoriesWithCount() {
+		List<Category> categoryList = categoryDao.selectAllWithCount();
+		return categoryList;
+	}
 }
