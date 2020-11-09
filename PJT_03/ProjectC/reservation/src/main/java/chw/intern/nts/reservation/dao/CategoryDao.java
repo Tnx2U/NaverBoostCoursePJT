@@ -30,7 +30,6 @@ public class CategoryDao {
 	}
 
 	public Category selectById(Integer id) {
-//			SqlParameterSource params = new BeanPropertySqlParameterSource(Category);
 		try {
 			Map<String, ?> params = Collections.singletonMap("id", id);
 			return jdbcTemplate.queryForObject(SELECT_BY_ID, params, rowMapper);
