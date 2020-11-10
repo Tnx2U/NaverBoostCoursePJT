@@ -20,9 +20,9 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 		// 경로에 css, img, js가 붙은요청들은 각각 적절한 디렉토리에서 찾도록 경로설정
 		registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/META-INF/resources/webjars/")
 				.setCachePeriod(31556926);
-		registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(31556926);
-		registry.addResourceHandler("/img/**").addResourceLocations("/static/img/").setCachePeriod(31556926);
-		registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(31556926);
+		registry.addResourceHandler("/static/css/**").addResourceLocations("/static/css/").setCachePeriod(31556926);
+		registry.addResourceHandler("/static/img/**").addResourceLocations("/static/img/").setCachePeriod(31556926);
+		registry.addResourceHandler("/static/js/**").addResourceLocations("/static/js/").setCachePeriod(31556926);
 	}
 
 	// default servlet handler를 사용하게 합니다.
