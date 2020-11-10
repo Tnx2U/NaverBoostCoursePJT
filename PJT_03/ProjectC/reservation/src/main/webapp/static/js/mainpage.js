@@ -72,7 +72,8 @@ function renderProductList(response) {
     const totalCount = response.totalCount;
 
     let htmlTemplate = document.querySelector("#itemList").innerHTML;
-    //let productListHtml = "";
+    
+    document.querySelector(".event_lst_txt > .pink").innerText = `${totalCount}개`;
 
     productList.forEach((product, index) => {
         let childNumber = index % 2 + 1;
@@ -88,7 +89,6 @@ function renderProductList(response) {
     if (totalCount == globalLoadCount) {
         hideMoreButton();
     }
-    //document.querySelector(".lst_event_box").innerHTML = productListHtml;
 }
 
 //Get에 대한 ajax호출을 담당하는 함수

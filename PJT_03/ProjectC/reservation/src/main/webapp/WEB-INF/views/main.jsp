@@ -12,6 +12,7 @@
 	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
 <title>네이버 예약</title>
 <link href="static/css/reservation.css" rel="stylesheet">
+<link href="static/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -65,15 +66,6 @@
 					<li class="item"><a class="anchor active">
 							<span>전체리스트</span>
 					</a></li>
-					<!-- li class="item" data-category="7">
-                        <a class="anchor"> <span>클래스</span> </a>
-                    </li>
-                    <li class="item" data-category="8">
-                        <a class="anchor"> <span>체험</span> </a>
-                    </li>
-                    <li class="item" data-category="9">
-                        <a class="anchor last"> <span>키즈</span> </a>
-                    </li -->
 				</ul>
 			</div>
 			<div class="section_event_lst">
