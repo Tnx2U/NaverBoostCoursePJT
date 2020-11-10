@@ -1,8 +1,12 @@
 package chw.intern.nts.reservation.dao;
 
 public class ProductDaoSqls {
-	public static final String SELECT_ALL_COUNT = "SELECT COUNT(product.id) FROM product";
+	public static final String SELECT_ALL_COUNT = "SELECT COUNT(product.id) FROM product"
+			+ " JOIN display_info"
+			+ " ON product.id = display_info.product_id";
 	public static final String SELECT_COUNT_BY_CATEGORY_ID = "SELECT COUNT(product.id) FROM product"
+			+ " JOIN display_info"
+			+ " ON product.id = display_info.product_id"
 			+ " WHERE product.category_id = :categoryId";
 	public static final String SELECT_BY_CATEGORY_ID_WITH_OFFSET = "SELECT di.id display_info_id,"
 			+ " p.id product_id,"
