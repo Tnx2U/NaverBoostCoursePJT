@@ -6,7 +6,7 @@ public class PromotionDaoSqls {
 			+ " fi.save_file_name product_image_url"
 			+ " FROM promotion p"
 			+ " LEFT JOIN product_image pi"
-			+ " ON p.product_id = pi.product_id"
+			+ " ON p.product_id = pi.product_id AND pi.type ='th'"
 			+ " LEFT JOIN file_info fi"
 			+ " ON pi.file_id = fi.id"
 			+ " ORDER BY p.id";

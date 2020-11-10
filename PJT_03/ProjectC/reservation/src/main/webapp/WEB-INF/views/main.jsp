@@ -54,6 +54,7 @@
 							<div class="container_visual">
 								<!-- 슬라이딩기능: 이미지 (type = 'th')를 순차적으로 노출 -->
 								<ul class="visual_img">
+									<!--  <li><img class="img_promotion" alt="test" src="static/img/1_th_1.png"></li> -->
 								</ul>
 							</div>
 							<span class="nxt_fix" style="display: none;"></span>
@@ -63,8 +64,7 @@
 			</div>
 			<div class="section_event_tab">
 				<ul class="event_tab_lst tab_lst_min">
-					<li class="item"><a class="anchor active">
-							<span>전체리스트</span>
+					<li class="item"><a class="anchor active"> <span>전체리스트</span>
 					</a></li>
 				</ul>
 			</div>
@@ -102,7 +102,7 @@
 
 
 	<script type="rv-template" id="promotionItem">
-    <li class="item" style="background-image: url(http://211.249.62.123/productImages/${productId}/${productImageId});">
+    <li class="item" style="background-image: url('static/{productImageUrl}'); width: 414px">
         <a href="#"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
             <div class="event_txt">
                 <h4 class="event_txt_tit"></h4>
@@ -127,7 +127,7 @@
             </a>
         </li>
     </script>
-    <script type="text/javascript" src="static/js/mainpage.js"></script>
+	<script type="text/javascript" src="static/js/mainpage.js"></script>
 </body>
 
 </html>

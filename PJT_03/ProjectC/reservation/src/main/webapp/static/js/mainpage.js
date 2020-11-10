@@ -122,7 +122,19 @@ function renderProductList(response) {
 
 // 프로모션 랜더
 function renderPromotionList(response) {
-    console.log(response);
+    const promotionList = response.items;
+    let htmlTemplate = document.querySelector("#promotionItem").innerHTML;
+    let targetElement = document.querySelector(".visual_img");
+    
+    promotionList.forEach((promotion) => {
+        targetElement.innerHTML += htmlTemplate.replace("{productImageUrl}", promotion.productImageUrl);
+    })
+    
+    //TODO : 한쪽으로 이동구현
+    let promotionUlElement = document.querySelector(".visual_img");
+    promotionUlElement.style.left = "-1500px";
+    promotionUlElement.style.transition = "left 10s";
+    
 }
 
 
@@ -159,6 +171,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //초기 제품리스트 로딩
     handleGetAjax(renderProductList, "products", productParmas);
-    //handleGetAjax(renderPromotionList, "promotions");
+    
+    //초기 프로모션 로딩
+    handleGetAjax(renderPromotionList, "promotions");
     setInitialEventListener();
 })

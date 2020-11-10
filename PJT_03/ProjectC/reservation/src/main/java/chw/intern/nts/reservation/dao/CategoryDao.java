@@ -25,10 +25,6 @@ public class CategoryDao {
 		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public List<Category> selectAll() {
-		return jdbcTemplate.query(SELECT_ALL, Collections.emptyMap(), rowMapper);
-	}
-
 	public Category selectById(Integer id) {
 		try {
 			Map<String, ?> params = Collections.singletonMap("id", id);

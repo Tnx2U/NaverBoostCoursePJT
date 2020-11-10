@@ -225,6 +225,11 @@ hr {
     min-height: 327px
 }
 
+.img_promotion{
+	width: 100%;
+	height: fit-content;
+}
+
 .ct {
     position: relative
 }
