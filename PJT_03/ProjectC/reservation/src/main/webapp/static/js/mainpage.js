@@ -1,27 +1,45 @@
 // 함수 순서 정리 및 파일분할하기
 
+// -------- 전역 변수 영역 -------- 
 let globalCategoryId = null;
 let globalLoadCount = 0;
 
+
+// -------- 간단한 html 템플릿 함수 영역 --------
 function getTabHtml(category) {
     return `<li class="item" data-category="${category.id}"><a class="anchor"><span>${category.name}<span/></li>`;
 }
 
-// 클릭된 카테고리에 active클래스 추가
-function toggleCategoryActive(selectCategoryId) {
-    selectCategoryId = Number(selectCategoryId) + 1;
-    let eventTabElement = document.querySelector(".event_tab_lst");
-    eventTabElement.querySelector(".anchor.active").classList.remove("active");
-    eventTabElement.querySelector(`li:nth-child(${selectCategoryId}) a`).classList.add("active");
+
+// -------- AJAX 함수 영역 --------
+function handleGetAjax(renderFunction, target, params) {
+    let xhRequest = new XMLHttpRequest();
+    const baseUrl = `http://localhost:8080/reservation/api/${target}`;
+    let paramUrl = "";
+
+    if (params != null) {
+        paramUrl += "?";
+        for (key in params) {
+            paramUrl += `${key}=${params[key]}&`;
+        }
+    }
+
+    xhRequest.onreadystatechange = function() {
+        if (xhRequest.readyState === xhRequest.DONE) {
+            if (xhRequest.status === 200 || xhRequest.status === 201) {
+                renderFunction(JSON.parse(xhRequest.response));
+            } else {
+                console.error(xhRequest.status, xhRequest.responseText);
+            }
+        }
+    };
+    xhRequest.open('GET', baseUrl + paramUrl);
+    xhRequest.send();
 }
 
-function removeProduct() {
-    document.querySelector(`.lst_event_box:nth-child(1)`).innerHTML = "";
-    document.querySelector(`.lst_event_box:nth-child(2)`).innerHTML = "";
-    globalLoadCount = 0;
-}
 
-//카테고리 클릭시 발생하는 이벤트 처리
+// -------- 이벤트 핸들러 함수 영역 --------
+//카테고리 클릭시 이벤트
 function handleCategoryClick() {
     let eventTabElement = document.querySelector(".event_tab_lst");
 
@@ -50,6 +68,21 @@ function handleCategoryClick() {
     })
 }
 
+// 더보기 버튼 클릭 이벤트
+function handleClickMoreButton() {
+    document.querySelector("#button_more").addEventListener("click", function() {
+        let productParmas = { "categoryId": (globalCategoryId != null) ? globalCategoryId : "", "start": globalLoadCount };
+        handleGetAjax(renderProductList, "products", productParmas);
+    })
+}
+
+// 기존의 html 요소들 이벤트 등록
+function setInitialEventListener() {
+    handleClickMoreButton();
+}
+
+
+// -------- 렌더 함수 영역 --------
 //불러온 카테고리 정보로 탭을 랜더
 function renderCategoryList(response) {
     let categoryList = response.items;
@@ -62,11 +95,7 @@ function renderCategoryList(response) {
     handleCategoryClick();
 }
 
-function renderPromotionList(response) {
-    console.log(response);
-}
-
-
+// product 랜더
 function renderProductList(response) {
     const productList = response.items;
     const totalCount = response.totalCount;
@@ -91,61 +120,26 @@ function renderProductList(response) {
     }
 }
 
-//Get에 대한 ajax호출을 담당하는 함수
-function handleGetAjax(renderFunction, target, params) {
-    let xhRequest = new XMLHttpRequest();
-    const baseUrl = `http://localhost:8080/reservation/api/${target}`;
-    let paramUrl = "";
-
-    if (params != null) {
-        paramUrl += "?";
-        for (key in params) {
-            paramUrl += `${key}=${params[key]}&`;
-        }
-    }
-
-    xhRequest.onreadystatechange = function() {
-        if (xhRequest.readyState === xhRequest.DONE) {
-            if (xhRequest.status === 200 || xhRequest.status === 201) {
-                renderFunction(JSON.parse(xhRequest.response));
-            } else {
-                console.error(xhRequest.status, xhRequest.responseText);
-            }
-        }
-    };
-    xhRequest.open('GET', baseUrl + paramUrl);
-    xhRequest.send();
+// 프로모션 랜더
+function renderPromotionList(response) {
+    console.log(response);
 }
 
-function sendInitPromotionAjax() {
-    //ajax
-    // renderPromotionList();
+
+// -------- 기타 파생 이벤트 영역 --------
+// 클릭된 카테고리에 active클래스 추가
+function toggleCategoryActive(selectCategoryId) {
+    selectCategoryId = Number(selectCategoryId) + 1;
+    let eventTabElement = document.querySelector(".event_tab_lst");
+    eventTabElement.querySelector(".anchor.active").classList.remove("active");
+    eventTabElement.querySelector(`li:nth-child(${selectCategoryId}) a`).classList.add("active");
 }
 
-function sendInitProductAjax() {
-    //ajax
-    // renderProductList();
+function removeProduct() {
+    document.querySelector(`.lst_event_box:nth-child(1)`).innerHTML = "";
+    document.querySelector(`.lst_event_box:nth-child(2)`).innerHTML = "";
+    globalLoadCount = 0;
 }
-
-function handleClickMoreButton() {
-
-}
-
-function handleClickCategory() {
-
-}
-
-function handleClickMoreButton() {
-    document.querySelector("#button_more").addEventListener("click", function() {
-        let productParmas = { "categoryId": (globalCategoryId != null) ? globalCategoryId : "", "start": globalLoadCount };
-        handleGetAjax(renderProductList, "products", productParmas);
-    })
-}
-
-function setInitialEventListener() {
-    handleClickMoreButton();
-}
-
 
 function hideMoreButton() {
     document.querySelector(".more").style.display = "none";
@@ -156,6 +150,7 @@ function showMoreButton() {
 }
 
 
+// -------- 초기 실행 함수 --------
 document.addEventListener("DOMContentLoaded", function() {
     let productParmas = { "start": 0 };
 
