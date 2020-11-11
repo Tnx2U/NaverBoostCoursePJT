@@ -127,6 +127,10 @@
             </a>
         </li>
     </script>
+    <script type="text/javascript" src="static/js/ajaxhandler.js"></script>
+    <script type="text/javascript" src="static/js/eventhandler.js"></script>
+    <script type="text/javascript" src="static/js/renderer.js"></script>
+    <script type="text/javascript" src="static/js/template.js"></script>
 	<script type="text/javascript" src="static/js/mainpage.js"></script>
 </body>
 
