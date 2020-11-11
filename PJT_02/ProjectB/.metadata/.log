@@ -1009,3 +1009,24 @@ java.lang.NullPointerException
 
 !ENTRY org.eclipse.jst.server.tomcat.core 4 0 2020-11-11 14:46:29.246
 !MESSAGE Several ports (8005, 8080) required by Tomcat v8.5 Server at localhost are already in use. The server may already be running in another process, or a system process may be using the port. To start this server you will need to stop the other process or change the port number(s).
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-11-11 15:04:24.038
+!MESSAGE C:\Users\user\.m2\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-11-11 15:04:24.042
+!MESSAGE C:\Users\user\.m2\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-11-11 15:04:24.043
+!MESSAGE C:\Users\user\.m2\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-11-11 15:04:24.044
+!MESSAGE C:\Users\user\.m2\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-11-11 15:04:24.044
+!MESSAGE C:\Users\user\.m2\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-11-11 15:04:24.045
+!MESSAGE C:\Users\user\.m2\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2020-11-11 15:04:24.047
+!MESSAGE C:\Users\user\.m2\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar is not on its project's build path
