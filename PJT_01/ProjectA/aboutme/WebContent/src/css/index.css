@@ -1,0 +1,68 @@
+/* 섹션 */
+.container>article {
+	margin: auto;
+	width: 100%
+}
+
+/* 설명 article */
+.article_descript>p {
+	font-size: x-large;
+	font-family: 'Nanum Pen Script', cursive;
+	color: var(--main-text-color);
+}
+
+.span_hilight {
+	font-family: 'Gugi', cursive;
+}
+
+/* 박스 article */
+.article_box {
+	height: 15%;
+	width: 100%;
+}
+
+.div_boxwrap {
+	overflow: auto;
+	margin: auto;
+	width: 270px;
+	height: 125px;
+}
+
+.div_boxwrap>a {
+	display: block;
+	margin: 10px;
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+	border-radius: 15px;
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #e8ffff;
+	box-shadow: 3px 1.5px 1.5px #394867;
+	background: #ffd57e;
+	line-height: 6em;
+}
+
+.div_boxwrap>a:nth-child(1) {
+	float: left;
+}
+
+.div_boxwrap>a:nth-child(2) {
+	float: right;
+}
+
+.div_boxwrap>a:hover {
+	background-color: #f6830f;
+	-webkit-transition: background-color 500ms linear;
+}
+
+/*.div_boxwrap a {
+	margin: auto;
+	line-height: 6;
+	color: #e8ffff;
+	text-decoration: none;
+}*/
+
+/* 지도 article */
+.article_map>div {
+	margin: 15px;
+}
