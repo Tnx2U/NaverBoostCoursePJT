@@ -1,6 +1,0 @@
-package chw.intern.nts.reservation.service;
-
-
-public interface ReservationService {
-	public List<Category> getAllCategories();
-}

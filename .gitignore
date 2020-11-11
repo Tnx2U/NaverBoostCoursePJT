@@ -1,5 +1,5 @@
 ### Eclipse 설정 파일 ###
-/.metadata/
+.metadata/
 build/
 bin/
 Servers/
