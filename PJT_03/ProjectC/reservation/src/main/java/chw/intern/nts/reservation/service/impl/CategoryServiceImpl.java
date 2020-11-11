@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	// 읽기만 하는 함수이므로 read-only형태로 커넥션을 사용하게 해주는 어노테이션
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Category> getAllCategoriesWithCount() {
 		List<Category> categoryList = categoryDao.selectAllWithCount();
 		return categoryList;

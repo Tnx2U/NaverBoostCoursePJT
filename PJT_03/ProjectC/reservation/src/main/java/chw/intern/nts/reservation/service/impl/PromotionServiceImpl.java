@@ -16,7 +16,7 @@ public class PromotionServiceImpl implements PromotionService {
 	PromotionDao promotionDao;
 
 	@Override
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Promotion> getAllPromotionWithImgUrl() {
 		List<Promotion> promotionList = promotionDao.selectAllWithImgUrl();
 		return promotionList;

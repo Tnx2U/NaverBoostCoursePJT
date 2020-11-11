@@ -16,7 +16,7 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao productDao;
 
 	//readonly는 디비마다 메시지를 받아서 다르게 처리
-	@Transactional
+	@Transactional(readOnly=true)
 	@Override
 	public List<Product> getProductsByCategoryId(Integer categoryId, int start, int limit) {
 		List<Product> productList;
@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
 		return productList;
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
 	@Override
 	public int getProductsCount(Integer categoryId) {
 		int totalCount = -1;
