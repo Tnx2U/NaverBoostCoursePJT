@@ -1,0 +1,23 @@
+package chw.intern.nts.reservation.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import chw.intern.nts.reservation.dao.ProductDao;
+import chw.intern.nts.reservation.dto.Product;
+import chw.intern.nts.reservation.service.ProductService;
+import chw.intern.nts.reservation.dao.ProductDaoSqls.*;
+
+public class ProductServiceImpl implements ProductService {
+	@Autowired
+	ProductDao productDao;
+	
+	@Transactional
+	@Override
+	public List<Product> getProductsByCategoryId(int categoryId, int start) {
+		List<Product> productList = productDao.selectByCategoryId(int categoryId, int start);
+		return productList;
+	}
+}

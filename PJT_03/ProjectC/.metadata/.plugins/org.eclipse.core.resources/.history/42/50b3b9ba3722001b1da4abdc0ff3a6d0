@@ -1,0 +1,7 @@
+package chw.intern.nts.reservation.dto;
+
+public class Promotion {
+	private int id;
+	private int productId;
+	private String productImageUrl;
+}

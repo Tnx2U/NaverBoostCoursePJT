@@ -1,0 +1,11 @@
+package chw.intern.nts.reservation.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class CategoryController {
+	@RequestMapping(path="/api/categories", method=RequestMethod.POST)
+	public String allCategories(@ModelAttribute Category category) {
+		System.out.println(category);
+	}
+}

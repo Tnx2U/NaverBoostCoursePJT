@@ -1,0 +1,13 @@
+package chw.intern.nts.reservation.dao;
+
+public class PromotionDaoSqls {
+	public static final String SELECT_ALL_WITH_IMG_URL = "SELECT p.id id,"
+			+ " p.product_id product_id,"
+			+ " fi.save_file_name product_img_url"
+			+ " from promotion p"
+			+ " left join product_image pi"
+			+ " on p.product_id = pi.product_id"
+			+ " left join file_info fi"
+			+ " on pi.file_id = fi.id"
+			+ " order by p.id";
+}

@@ -1,0 +1,5 @@
+package chw.intern.nts.reservation.dto;
+
+public class Category {
+
+}

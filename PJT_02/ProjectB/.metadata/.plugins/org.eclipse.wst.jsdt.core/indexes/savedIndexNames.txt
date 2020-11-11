@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+C:\Project\cho_hyun_wook\PJT_02\ProjectB\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3770225493.index
-2501937935.index
-2268601591.index
-3058757777.index
-401926915.index
-979022485.index

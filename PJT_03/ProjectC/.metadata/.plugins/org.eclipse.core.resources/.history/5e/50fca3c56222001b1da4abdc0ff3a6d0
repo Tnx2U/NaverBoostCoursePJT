@@ -1,0 +1,5 @@
+package chw.intern.nts.reservation.dao;
+
+public class ProductDaoSqls {
+	public static final String SELECT_BY_CATEGORY_ID = "";
+}

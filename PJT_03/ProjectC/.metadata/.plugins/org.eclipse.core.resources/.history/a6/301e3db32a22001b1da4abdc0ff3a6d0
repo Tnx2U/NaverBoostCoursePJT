@@ -1,0 +1,13 @@
+package chw.intern.nts.reservation.dto;
+
+import java.sql.Date;
+
+public class Product {
+	private int id;
+	private int categoryId;
+	private String description;
+	private String content;
+	private String event;
+	private Date createDate;
+	private Date modifyDate;
+}

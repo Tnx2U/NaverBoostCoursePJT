@@ -1,0 +1,12 @@
+package chw.intern.nts.reservation.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import chw.intern.nts.reservation.service.ReservationService;
+
+@Controller
+public class ReservationController {
+	@Autowired
+	ReservationService service;
+}

@@ -1,0 +1,11 @@
+package chw.intern.nts.reservation.dao;
+
+public class PromotionDaoSqls {
+	public static final String = "SELECT promotion.id id,"
+			+ " promotion.product_id product_id,"
+			+ " product_image.file_id product_image_url"
+			+ " FROM promotion"
+			+ " LEFT JOIN product_image"
+			+ " ON promotion.product_id = product_image.product_id"
+			+ " ORDER BY promotion.id";
+}

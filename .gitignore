@@ -6,6 +6,8 @@ Servers/
 .classpath
 .settings/
 local.properties
+/target/
+
 
 ### 정적 리소스 파일 ### 
 img/

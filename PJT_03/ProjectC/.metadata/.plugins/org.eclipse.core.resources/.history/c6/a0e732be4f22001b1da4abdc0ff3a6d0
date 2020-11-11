@@ -1,0 +1,16 @@
+package chw.intern.nts.reservation.dto;
+
+import java.sql.Date;
+
+public class Product {
+	private int displayInfoId;
+	private int productid;
+	private String productDescription;
+	private String placeName;
+	private String productContent;
+	private String productImageUrl;
+
+	public Product() {
+
+	}
+}

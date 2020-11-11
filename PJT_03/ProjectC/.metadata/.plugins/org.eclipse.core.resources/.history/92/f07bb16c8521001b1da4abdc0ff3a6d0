@@ -1,0 +1,11 @@
+package chw.intern.nts.reservation.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class MainController {
+	@GetMapping(path="/main")
+	public String plusform() {
+		
+	}
+}
