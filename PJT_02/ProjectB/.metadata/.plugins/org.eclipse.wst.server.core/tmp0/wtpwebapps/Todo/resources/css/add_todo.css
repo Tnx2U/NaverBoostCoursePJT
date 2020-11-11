@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+:root {
+    --main-text-color: #734046;
+    --main-button-color: #bc6ff1;
+}
+
+
+#wrap {
+    margin: 10%;
+    padding: 10%;
+    border-radius: 15px;
+    background-color: floralwhite;
+}
+
+h1{
+    margin: 15px;
+}
+
+form > div{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}
+
+label,input{
+    margin: 3px;
+}
+
+label{
+    color: var(--main-text-color);
+}
+
+/* 하단 버튼 */
+.button_wrap{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.button{
+    margin: 5px;
+    padding: 2px;
+    width: 100px;
+    height: 40px;
+    border: solid 1.5px #898b8a;
+    font-size: 15px;
+}
+
+#a_back{
+    margin-right: auto;
+    line-height: 2em;
+    width: 90px;
+    height: 35px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: white;
+       
+}
+
+#input_submit, #btn_remove{
+    background-color: #bc6ff1;
+    color: white;
+    font-weight: border;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input_text{
+    height: 25px;
+}
