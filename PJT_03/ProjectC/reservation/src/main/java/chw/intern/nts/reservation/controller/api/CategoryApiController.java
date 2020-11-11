@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import chw.intern.nts.reservation.dto.Category;
 import chw.intern.nts.reservation.service.CategoryService;
+import org.apache.log4j.Logger;
 
 @CrossOrigin
 @RestController

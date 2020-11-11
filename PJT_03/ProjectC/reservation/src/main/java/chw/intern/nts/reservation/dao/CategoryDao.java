@@ -25,15 +25,6 @@ public class CategoryDao {
 		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public Category selectById(Integer id) {
-		try {
-			Map<String, ?> params = Collections.singletonMap("id", id);
-			return jdbcTemplate.queryForObject(SELECT_BY_ID, params, rowMapper);
-		} catch (EmptyResultDataAccessException e) {
-			return null;
-		}
-	}
-
 	public List<Category> selectAllWithCount() {
 		return jdbcTemplate.query(SELECT_ALL_WITH_COUNT, Collections.emptyMap(), rowMapper);
 	}
