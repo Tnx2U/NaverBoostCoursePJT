@@ -15,6 +15,7 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductDao productDao;
 
+	//readonly는 디비마다 메시지를 받아서 다르게 처리
 	@Transactional
 	@Override
 	public List<Product> getProductsByCategoryId(Integer categoryId, int start, int limit) {

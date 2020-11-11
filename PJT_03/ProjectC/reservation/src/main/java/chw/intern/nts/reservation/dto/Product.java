@@ -10,10 +10,6 @@ public class Product {
 	private String productContent;
 	private String productImageUrl;
 
-	public Product() {
-
-	}
-
 	public int getDisplayInfoId() {
 		return displayInfoId;
 	}

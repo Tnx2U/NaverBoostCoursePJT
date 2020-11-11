@@ -225,9 +225,9 @@ hr {
     min-height: 327px
 }
 
-.img_promotion{
-	width: 100%;
-	height: fit-content;
+/*커스텀 */
+.visual_img{
+    transition: right .5s ease-in-out;
 }
 
 .ct {

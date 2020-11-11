@@ -15,10 +15,10 @@ public class DaoTest {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		CategoryDao categorydao = ac.getBean(CategoryDao.class);
 		
-		List<Category> list = categorydao.selectAll();
+//		List<Category> list = categorydao.selectAll();
 		
-		for(Category cate : list) {
-			System.out.println(cate.toString());
-		}
+//		for(Category cate : list) {
+//			System.out.println(cate.toString());
+//		}
 	}
 }

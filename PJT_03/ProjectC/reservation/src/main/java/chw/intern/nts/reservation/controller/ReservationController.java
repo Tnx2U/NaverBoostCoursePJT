@@ -16,10 +16,6 @@ import chw.intern.nts.reservation.dto.Category;
 public class ReservationController {
 	@GetMapping(path="/main")
 	public String mainPage(ModelMap model) {
-//		List<Category> categoryList = service.getAllCategories();
-//		
-//		model.addAttribute("categoryList", categoryList);
-		
 		return "main";
 	}
 }

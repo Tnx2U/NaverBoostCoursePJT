@@ -3,6 +3,7 @@
 // -------- 전역 변수 영역 -------- 
 let globalCategoryId = null;
 let globalLoadCount = 0;
+let promotionElementLength = 0;
 
 
 // -------- 간단한 html 템플릿 함수 영역 --------
@@ -21,6 +22,7 @@ function handleGetAjax(renderFunction, target, params) {
         paramUrl += "?";
         for (key in params) {
             paramUrl += `${key}=${params[key]}&`;
+            // js에서 맨 뒤의 params문법 삭제해주는 라이브러리? 기능 공부
         }
     }
 
@@ -71,7 +73,7 @@ function handleCategoryClick() {
 // 더보기 버튼 클릭 이벤트
 function handleClickMoreButton() {
     document.querySelector("#button_more").addEventListener("click", function() {
-        let productParmas = { "categoryId": (globalCategoryId != null) ? globalCategoryId : "", "start": globalLoadCount };
+        const productParmas = { "categoryId": (globalCategoryId != null) ? globalCategoryId : "", "start": globalLoadCount };
         handleGetAjax(renderProductList, "products", productParmas);
     })
 }
@@ -131,14 +133,29 @@ function renderPromotionList(response) {
     })
     
     //TODO : 한쪽으로 이동구현
-    let promotionUlElement = document.querySelector(".visual_img");
-    promotionUlElement.style.left = "-1500px";
-    promotionUlElement.style.transition = "left 10s";
-    
+    setCarouselEvent();
 }
 
 
 // -------- 기타 파생 이벤트 영역 --------
+//카로셀 뷰 구현을 위한 이벤트
+function setCarouselEvent(){
+    let promotionUlElement = document.querySelector(".visual_img");
+    let promotionLiElements = document.querySelectorAll(".visual_img > .item");
+    let itemlength = promotionLiElements.length-1;
+    promotionUlElement.style.right = "0px";
+    
+    //TODO : 마지막 도달시 계속 같은방향으로 부드럽게 나타나도록 구현
+    setInterval(function(){
+        let nextRight = parseInt(promotionUlElement.style.right) + 414; 
+        if(nextRight >= 414*itemlength){
+            nextRight = 0;
+        }
+        promotionUlElement.style.right = `${nextRight}px`;
+    }, 3000);
+}
+
+
 // 클릭된 카테고리에 active클래스 추가
 function toggleCategoryActive(selectCategoryId) {
     selectCategoryId = Number(selectCategoryId) + 1;

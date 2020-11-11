@@ -5,10 +5,6 @@ public class Promotion {
 	private int productId;
 	private String productImageUrl;
 
-	public Promotion() {
-
-	}
-
 	public int getId() {
 		return id;
 	}
