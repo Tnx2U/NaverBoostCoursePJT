@@ -41,21 +41,50 @@ function setInitialEventListener() {
     handleClickMoreButton();
 }
 
-// -------- 기타 파생 이벤트 영역 --------
 //카로셀 뷰 구현을 위한 이벤트
 function setCarouselEvent(){
-    let promotionUlElement = document.querySelector(".visual_img");
+    let promotionUlElement = document.querySelector(".container_visual > .visual_img");
     let promotionLiElements = document.querySelectorAll(".visual_img > .item");
-    let itemlength = promotionLiElements.length-1;
-    promotionUlElement.style.right = "0px";
+    let itemLength = promotionLiElements.length;
+    let showIdx = 0;
+
+    promotionUlElement.style.position = "relative";
+        promotionLiElements.forEach((promotion,index) => {
+            if(index == 0){
+                promotion.style.zIndex ="20";
+                promotion.style.right ="0";
+            }
+            promotion.style.position = "absolute";
+            promotion.style.display = "inline-block";
+    })
+
     
-    //TODO : 마지막 도달시 계속 같은방향으로 부드럽게 나타나도록 구현
+    //TODO : class 적용이 안되는 문제 추후 해결
     setInterval(function(){
-        let nextRight = parseInt(promotionUlElement.style.right) + 414; 
-        if(nextRight >= 414*itemlength){
-            nextRight = 0;
+        promotionLiElements.forEach((promotion, index) => {
+            // promotion.classList.remove(".hide_promotion");
+            // promotion.classList.remove(".show_promotion");
+            promotion.style.zIndex ="0";
+            promotion.style.right ="-414px";
+
+
+            if(index == showIdx){
+                //promotion.classList.add(".show_promotion");
+                promotion.style.zIndex ="20";
+                promotion.style.right ="0";
+            }else if(index == showIdx - 1 || (index == itemLength-1 && showIdx==0)) {
+                promotion.style.zIndex ="10";
+                promotion.style.right ="414px";
+                //promotion.classList.add(".hide_promotion");
+            }
+        });
+
+        if(showIdx == itemLength-1){
+            showIdx = 0;
+        }else{
+            showIdx++;
         }
-        promotionUlElement.style.right = `${nextRight}px`;
+
     }, 3000);
 }
 
