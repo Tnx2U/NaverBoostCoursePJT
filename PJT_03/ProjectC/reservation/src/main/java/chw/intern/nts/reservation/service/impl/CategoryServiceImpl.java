@@ -1,5 +1,6 @@
 package chw.intern.nts.reservation.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,16 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	// 읽기만 하는 함수이므로 read-only형태로 커넥션을 사용하게 해주는 어노테이션
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Category> getAllCategoriesWithCount() {
-		List<Category> categoryList = categoryDao.selectAllWithCount();
+		List<Category> categoryList = Collections.emptyList();
+		try {
+			categoryList = categoryDao.selectAllWithCount();
+			return categoryList;
+		} catch (Exception e) {
+			String errorMsg = String.format("Error Occured with params : {}");
+			System.err.println(errorMsg + e.getLocalizedMessage());
+		}
 		return categoryList;
 	}
 }

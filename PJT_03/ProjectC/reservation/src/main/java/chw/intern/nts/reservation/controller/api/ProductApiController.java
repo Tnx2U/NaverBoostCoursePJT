@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.service.ProductService;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/api/products")
 public class ProductApiController {
@@ -21,9 +23,9 @@ public class ProductApiController {
 
 	@GetMapping
 	public Map<String, Object> productList(@RequestParam(name="categoryId", required=false)Integer categoryId
-	, @RequestParam(name="start", defaultValue="0")int start){
-		final int LIMIT = 4;
-		List<Product> ProductResponse = productService.getProductsByCategoryId(categoryId, start, LIMIT);
+	, @RequestParam(name="start", defaultValue="0")int start
+	, @RequestParam(name="limit", required=false, defaultValue="4")int limit){
+		List<Product> ProductResponse = productService.getProductsByCategoryId(categoryId, start, limit);
 		int totalCount = productService.getProductsCount(categoryId);
 		Map<String, Object> map = new HashMap<>();
 		map.put("items", ProductResponse);
