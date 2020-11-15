@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import chw.intern.nts.reservation.dto.Comment;
+import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ProductService;
@@ -67,7 +68,7 @@ public class ProductApiController {
 //		
 		map.put("averageScore", averageScore);
 		map.put("comments", commentList);
-//		map.put("displayInfo", displayInfo);
+		map.put("displayInfo", displayInfo);
 //		map.put("displayInfoImage", displayInfoImage);
 //		map.put("productImages", productImageList);
 //		map.put("productPrices", productPriceList);

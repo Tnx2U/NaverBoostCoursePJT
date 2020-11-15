@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import chw.intern.nts.reservation.dao.DisplayInfoDao;
 import chw.intern.nts.reservation.dao.ProductDao;
+import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.service.ProductService;
 
@@ -28,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 	// readonly는 디비마다 메시지를 받아서 다르게 처리
 	@Transactional(readOnly = true)
 	@Override
-	public List<Product> getProductsByCategoryId(Integer categoryId, int start, int limit) {
+	public List<Product> getProductsByCategoryId(Integer categoryId, Integer start, Integer limit) {
 		List<Product> productList = null;
 		try {
 			if (categoryId == null) {
@@ -62,7 +63,8 @@ public class ProductServiceImpl implements ProductService {
 
 		return totalCount;
 	}
-
+	
+	@Transactional(readOnly = true)
 	@Override
 	public int getProductIdByDisplayInfoId(Integer displayInfoId) {
 		int productId = -1;
@@ -73,5 +75,20 @@ public class ProductServiceImpl implements ProductService {
 			System.err.println(errorMsg + e.getLocalizedMessage());
 		}
 		return productId;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public DisplayInfo getDisplayInfoById(Integer displayInfoId) {
+		DisplayInfo displayInfo = null;
+		
+		try {
+			displayInfo = displayInfoDao.selectById(displayInfoId);
+		} catch (Exception e) {
+			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
+			System.err.println(errorMsg + e.getLocalizedMessage());
+		}
+		
+		return displayInfo;
 	}
 }
