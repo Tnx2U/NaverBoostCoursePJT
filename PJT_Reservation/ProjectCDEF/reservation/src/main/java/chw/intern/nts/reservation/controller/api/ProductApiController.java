@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.DisplayInfo;
+import chw.intern.nts.reservation.dto.DisplayInfoImage;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ProductService;

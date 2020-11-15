@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import chw.intern.nts.reservation.dao.DisplayInfoDao;
 import chw.intern.nts.reservation.dao.ProductDao;
 import chw.intern.nts.reservation.dto.DisplayInfo;
+import chw.intern.nts.reservation.dto.DisplayInfoImage;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.service.ProductService;
 
@@ -63,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
 
 		return totalCount;
 	}
-	
+
 	@Transactional(readOnly = true)
 	@Override
 	public int getProductIdByDisplayInfoId(Integer displayInfoId) {
@@ -81,14 +82,29 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public DisplayInfo getDisplayInfoById(Integer displayInfoId) {
 		DisplayInfo displayInfo = null;
-		
+
 		try {
 			displayInfo = displayInfoDao.selectById(displayInfoId);
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
 			System.err.println(errorMsg + e.getLocalizedMessage());
 		}
-		
+
 		return displayInfo;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public DisplayInfoImage getDisplayInfoImageByDisplayInfoId(Integer displayInfoId) {
+		DisplayInfoImage displayInfoImage = null;
+		
+		try {
+			displayInfoImage = displayInfoDao.selectDisplayInfoImageByDisplayInfoId(displayInfoId);
+		} catch (Exception e) {
+			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
+			System.err.println(errorMsg + e.getLocalizedMessage());
+		}
+
+		return displayInfoImage;
 	}
 }
