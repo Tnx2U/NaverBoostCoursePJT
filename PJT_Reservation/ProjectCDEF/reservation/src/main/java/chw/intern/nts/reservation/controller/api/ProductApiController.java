@@ -17,6 +17,7 @@ import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.DisplayInfoImage;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.dto.ProductImage;
+import chw.intern.nts.reservation.dto.ProductPrice;
 import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ProductService;
 
@@ -66,15 +67,15 @@ public class ProductApiController {
 		// productImages 객체 리스트
 		List<ProductImage> productImageList = productService.getProductImagesByProductId(productId);
 		
-//		// productsPrices 객체 리스트
-//		List<ProductPrice> productPriceList = productService.getProductPricesByProductId(productId);
-//		
+		// productsPrices 객체 리스트
+		List<ProductPrice> productPriceList = productService.getProductPricesByProductId(productId);
+		
 		map.put("averageScore", averageScore);
 		map.put("comments", commentList);
 		map.put("displayInfo", displayInfo);
 		map.put("displayInfoImage", displayInfoImage);
 		map.put("productImages", productImageList);
-//		map.put("productPrices", productPriceList);
+		map.put("productPrices", productPriceList);
 		
 		return map;
 	}

@@ -58,4 +58,14 @@ public class ProductDaoSqls {
 			+ " JOIN file_info fi"
 			+ " ON pi.file_id = fi.id"
 			+ " ORDER BY p.id, fi.id";
+	
+	public static final String SELECT_PRODUCT_PRICES_BY_PRODUCT_ID = "SELECT pp.create_date,"
+			+ " pp.discount_rate,"
+			+ " pp.modify_date,"
+			+ " pp.price,"
+			+ " pp.price_type_name,"
+			+ " pp.product_id,"
+			+ " pp.id product_price_id"
+			+ " FROM product_price pp"
+			+ " WHERE pp.product_id = :productId";
 }
