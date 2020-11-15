@@ -7,4 +7,5 @@ import chw.intern.nts.reservation.dto.Product;
 public interface ProductService {
 	public List<Product> getProductsByCategoryId(Integer categoryId, int start, int limit);
 	public int getProductsCount(Integer categoryId);
+	public int getProductIdByDisplayInfoId(Integer displayInfoId);
 }

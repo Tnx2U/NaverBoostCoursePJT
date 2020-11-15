@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import chw.intern.nts.reservation.dao.DisplayInfoDao;
 import chw.intern.nts.reservation.dao.ProductDao;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.service.ProductService;
@@ -20,6 +21,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductDao productDao;
+
+	@Autowired
+	DisplayInfoDao displayInfoDao;
 
 	// readonly는 디비마다 메시지를 받아서 다르게 처리
 	@Transactional(readOnly = true)
@@ -57,5 +61,17 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		return totalCount;
+	}
+
+	@Override
+	public int getProductIdByDisplayInfoId(Integer displayInfoId) {
+		int productId = -1;
+		try {
+			productId = displayInfoDao.selectProductIdById(displayInfoId);
+		} catch (Exception e) {
+			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
+			System.err.println(errorMsg + e.getLocalizedMessage());
+		}
+		return productId;
 	}
 }

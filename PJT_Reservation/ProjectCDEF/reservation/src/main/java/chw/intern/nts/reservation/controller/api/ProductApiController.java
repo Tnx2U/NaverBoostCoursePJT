@@ -38,13 +38,13 @@ public class ProductApiController {
 	public Map<String, Object> productDetailInfo(
 			@RequestParam(name = "displayInfoId", required = true) Integer displayInfoId) {
 		Map<String, Object> map = new HashMap<>();
-//		//필요한 준비
-//		int productId = productService.getProductIdByDisplayInfoId(displayInfoId);
-//		
-//		// averageScore 단일 double
-//		double averageScore = 0;
-//		
-//		// comments 객체 리스트
+		//필요한 준비
+		int productId = productService.getProductIdByDisplayInfoId(displayInfoId);
+		
+		// averageScore 단일 double
+		double averageScore = 0;
+		
+		// comments 객체 리스트
 //		List<Comment> commentList = commentService.getCommentsByProductId(productId);
 //				
 //		// displayInfo 단일 객체
