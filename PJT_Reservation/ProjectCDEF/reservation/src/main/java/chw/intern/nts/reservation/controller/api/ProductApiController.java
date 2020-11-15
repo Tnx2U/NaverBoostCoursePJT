@@ -58,9 +58,9 @@ public class ProductApiController {
 		// 네이밍 컨벤션 질문 (displayInfo, displayInfoResponse)
 		DisplayInfo displayInfo = productService.getDisplayInfoById(displayInfoId);
 				
-//		// displayInfoImage 단일 객체
-//		DisplayInfoImage displayInfoImage = productService.getDisplayInfoImageByDisplayInfoId(displayInfoId);
-//		
+		// displayInfoImage 단일 객체
+		DisplayInfoImage displayInfoImage = productService.getDisplayInfoImageByDisplayInfoId(displayInfoId);
+		
 //		// productImages 객체 리스트
 //		List<ProductImages> productImageList = productService.getProductImagesByProductId(productId);
 //		
@@ -70,7 +70,7 @@ public class ProductApiController {
 		map.put("averageScore", averageScore);
 		map.put("comments", commentList);
 		map.put("displayInfo", displayInfo);
-//		map.put("displayInfoImage", displayInfoImage);
+		map.put("displayInfoImage", displayInfoImage);
 //		map.put("productImages", productImageList);
 //		map.put("productPrices", productPriceList);
 		
