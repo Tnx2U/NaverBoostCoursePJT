@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.Product;
+import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ProductService;
 
 @CrossOrigin
@@ -20,6 +22,9 @@ import chw.intern.nts.reservation.service.ProductService;
 public class ProductApiController {
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	CommentService commentService;
 
 	@GetMapping
 	public Map<String, Object> productList(@RequestParam(name = "categoryId", required = false) Integer categoryId,
@@ -45,7 +50,7 @@ public class ProductApiController {
 		double averageScore = 0;
 		
 		// comments 객체 리스트
-//		List<Comment> commentList = commentService.getCommentsByProductId(productId);
+		List<Comment> commentList = commentService.getCommentsByProductId(productId);
 //				
 //		// displayInfo 단일 객체
 //		// 네이밍 컨벤션 질문 (displayInfo, displayInfoResponse)
