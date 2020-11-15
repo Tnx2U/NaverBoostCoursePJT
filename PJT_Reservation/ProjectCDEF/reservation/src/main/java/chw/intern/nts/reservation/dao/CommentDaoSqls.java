@@ -17,5 +17,18 @@ public class CommentDaoSqls {
 			+ " ON c.reservation_info_id = ri.id "
 			+ " ORDER BY c.product_id, ri.id";
 	
-	public static final String SELECT_ALL_BY_COMMENT_ID = "";
+	public static final String SELECT_ALL_BY_COMMENT_ID = "SELECT fi.content_type,"
+			+ " fi.create_date,"
+			+ " fi.delete_flag,"
+			+ " fi.id file_id,"
+			+ " fi.file_name,"
+			+ " ruci.id image_id,"
+			+ " fi.modify_date,"
+			+ " ruci.reservation_info_id,"
+			+ " ruci.reservation_user_comment_id,"
+			+ " fi.save_file_name"
+			+ " FROM (SELECT * FROM reservation_user_comment_image WHERE reservation_user_comment_id = :commentId) ruci"
+			+ " JOIN file_info fi"
+			+ " ON ruci.file_id = fi.id"
+			+ " ORDER BY ruci.id";
 }

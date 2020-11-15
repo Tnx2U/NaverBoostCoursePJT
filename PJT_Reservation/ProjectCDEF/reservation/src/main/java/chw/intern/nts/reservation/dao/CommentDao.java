@@ -20,19 +20,20 @@ import static chw.intern.nts.reservation.dao.ProductDaoSqls.SELECT_COUNT_BY_CATE
 @Repository
 public class CommentDao {
 	private NamedParameterJdbcTemplate jdbcTemplate;
-	private RowMapper<Comment> rowMapper = BeanPropertyRowMapper.newInstance(Comment.class);
-
+	private RowMapper<Comment> commentRowMapper = BeanPropertyRowMapper.newInstance(Comment.class);
+	private RowMapper<CommentImage> commentImageRowMapper = BeanPropertyRowMapper.newInstance(CommentImage.class);
+	
 	public CommentDao(DataSource dataSource) {
 		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
 	public List<Comment> selectAllByDisplayInfoId(Integer displayInfoId) {
-		Map<String, Integer> params = Collections.singletonMap("displayInfoId", displayInfoId);
-		return jdbcTemplate.query(SELECT_ALL_BY_DISPLAY_INFO_ID, params, rowMapper);
+		Map<String, Integer> param = Collections.singletonMap("displayInfoId", displayInfoId);
+		return jdbcTemplate.query(SELECT_ALL_BY_DISPLAY_INFO_ID, param, commentRowMapper);
 	}
 
 	public List<CommentImage> selectAllByCommentId(Integer commentId) {
-		Map<String, Integer> params = Collections.singletonMap("commentId", commentId);
-		return jdbcTemplate.query(SELECT_ALL_BY_COMMENT_ID, params, rowMapper);
+		Map<String, Integer> param = Collections.singletonMap("commentId", commentId);
+		return jdbcTemplate.query(SELECT_ALL_BY_COMMENT_ID, param, commentImageRowMapper);
 	}
 }
