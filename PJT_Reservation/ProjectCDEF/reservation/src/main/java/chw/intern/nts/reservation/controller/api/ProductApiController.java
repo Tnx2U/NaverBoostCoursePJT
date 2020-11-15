@@ -16,6 +16,7 @@ import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.DisplayInfoImage;
 import chw.intern.nts.reservation.dto.Product;
+import chw.intern.nts.reservation.dto.ProductImage;
 import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ProductService;
 
@@ -47,7 +48,7 @@ public class ProductApiController {
 			@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId) {
 		Map<String, Object> map = new HashMap<>();
 		//필요한 준비
-		int productId = productService.getProductIdByDisplayInfoId(displayInfoId);
+		Integer productId = productService.getProductIdByDisplayInfoId(displayInfoId);
 		
 		// averageScore 단일 double
 		double averageScore = 0;
@@ -62,9 +63,9 @@ public class ProductApiController {
 		// displayInfoImage 단일 객체
 		DisplayInfoImage displayInfoImage = productService.getDisplayInfoImageByDisplayInfoId(displayInfoId);
 		
-//		// productImages 객체 리스트
-//		List<ProductImages> productImageList = productService.getProductImagesByProductId(productId);
-//		
+		// productImages 객체 리스트
+		List<ProductImage> productImageList = productService.getProductImagesByProductId(productId);
+		
 //		// productsPrices 객체 리스트
 //		List<ProductPrice> productPriceList = productService.getProductPricesByProductId(productId);
 //		
@@ -72,7 +73,7 @@ public class ProductApiController {
 		map.put("comments", commentList);
 		map.put("displayInfo", displayInfo);
 		map.put("displayInfoImage", displayInfoImage);
-//		map.put("productImages", productImageList);
+		map.put("productImages", productImageList);
 //		map.put("productPrices", productPriceList);
 		
 		return map;

@@ -41,4 +41,21 @@ public class ProductDaoSqls {
 			+ " ORDER BY p.id"
 			+ " LIMIT :limit"
 			+ " OFFSET :start";
+	
+	public static final String SELECT_PRODUCT_IMAGES_BY_ID = "SELECT fi.content_type,"
+			+ " fi.create_date,"
+			+ " fi.delete_flag,"
+			+ " fi.id file_info_id,"
+			+ " fi.file_name,"
+			+ " fi.modify_date,"
+			+ " pi.product_id,"
+			+ " pi.id product_image_id,"
+			+ " fi.save_file_name,"
+			+ " pi.type"
+			+ " FROM (SELECT * FROM product WHERE id = :productId) p"
+			+ " JOIN product_image pi"
+			+ " ON p.id = pi.product_id"
+			+ " JOIN file_info fi"
+			+ " ON pi.file_id = fi.id"
+			+ " ORDER BY p.id, fi.id";
 }

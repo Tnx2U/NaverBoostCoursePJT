@@ -5,6 +5,7 @@ import java.util.List;
 import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.DisplayInfoImage;
 import chw.intern.nts.reservation.dto.Product;
+import chw.intern.nts.reservation.dto.ProductImage;
 
 public interface ProductService {
 	public List<Product> getProductsByCategoryId(Integer categoryId, Integer start, Integer limit);
@@ -12,4 +13,5 @@ public interface ProductService {
 	public int getProductIdByDisplayInfoId(Integer displayInfoId);
 	public DisplayInfo getDisplayInfoById(Integer displayInfoId);
 	public DisplayInfoImage getDisplayInfoImageByDisplayInfoId(Integer displayInfoId);
+	public List<ProductImage> getProductImagesByProductId(Integer productId);
 }

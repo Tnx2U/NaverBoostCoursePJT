@@ -15,6 +15,7 @@ import chw.intern.nts.reservation.dao.ProductDao;
 import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.DisplayInfoImage;
 import chw.intern.nts.reservation.dto.Product;
+import chw.intern.nts.reservation.dto.ProductImage;
 import chw.intern.nts.reservation.service.ProductService;
 
 @Service
@@ -106,5 +107,20 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		return displayInfoImage;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<ProductImage> getProductImagesByProductId(Integer productId) {
+		List<ProductImage> productImageList = null;
+		
+		try {
+			productImageList = productDao.selectProductImagesById(productId);
+		} catch (Exception e) {
+			String errorMsg = String.format("Error Occured with params : {productId : %d}", productId);
+			System.err.println(errorMsg + e.getLocalizedMessage());
+		}
+
+		return productImageList;
 	}
 }
