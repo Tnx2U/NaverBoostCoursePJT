@@ -50,7 +50,7 @@ public class ProductApiController {
 		double averageScore = 0;
 		
 		// comments 객체 리스트
-		List<Comment> commentList = commentService.getCommentsByProductId(productId);
+		List<Comment> commentList = commentService.getCommentsByDisplayInfoId(displayInfoId);
 //				
 //		// displayInfo 단일 객체
 //		// 네이밍 컨벤션 질문 (displayInfo, displayInfoResponse)

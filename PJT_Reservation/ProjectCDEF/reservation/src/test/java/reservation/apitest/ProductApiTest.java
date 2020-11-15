@@ -10,7 +10,6 @@ public class ProductApiTest {
 	static Scanner scan = new Scanner(System.in);
 	
 	@Autowired
-	static
 	DisplayInfoDao displayInfoDao;
 	
 	public static void main(String[] args) {
@@ -24,6 +23,6 @@ public class ProductApiTest {
 	private static void checkGetProductIdByDisplayInfoId() {
 		System.out.println("Check DisplayDao : GetProductIdByDisplayInfoId()");
 		int displayInfoId = scan.nextInt();
-		System.out.println(displayInfoDao.selectProductIdById(displayInfoId));		
+//		System.out.println(displayInfoDao.selectProductIdById(displayInfoId));		
 	}
 }
