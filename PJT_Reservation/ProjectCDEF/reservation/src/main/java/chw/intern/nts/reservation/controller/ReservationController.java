@@ -18,4 +18,9 @@ public class ReservationController {
 	public String mainPage(ModelMap model) {
 		return "main";
 	}
+	
+	@GetMapping(path="/detail")
+	public String detailPage() {
+		return "detail";
+	}
 }
