@@ -141,13 +141,8 @@
 					<div class="review_box">
 						<h3 class="title_h3">예매자 한줄평</h3>
 						<div class="short_review_area">
+							<!--
 							<div class="grade_area">
-								<!-- [D] 별점 graph_value는 퍼센트 환산하여 width 값을 넣어줌 -->
-								<span class="graph_mask"> <em class="graph_value"
-									style="width: 84%;"></em>
-								</span> <strong class="text_value"> <span>4.2</span> <em
-									class="total">5.0</em>
-								</strong> <span class="join_count"><em class="green">52건</em> 등록</span>
 							</div>
 							<ul class="list_short_review">
 								<li class="list_item">
@@ -206,6 +201,7 @@
 									</div>
 								</li>
 							</ul>
+							-->
 						</div>
 						<p class="guide">
 							<i class="spr_book2 ico_bell"></i> <span>네이버 예약을 통해 실제 방문한
@@ -332,6 +328,46 @@
 				</div>
 			</div>
 		</div>
+	</script>
+	<script type="template" id="template_grade_area">
+		<div class="grade_area">
+			<!-- [D] 별점 graph_value는 퍼센트 환산하여 width 값을 넣어줌 -->
+			<span class="graph_mask"> <em class="graph_value"
+				style="width: 84%;"></em>
+			</span> <strong class="text_value"> <span>{{averageScore}}</span> <em
+				class="total">5.0</em>
+			</strong> <span class="join_count"><em class="green">{{c}}</em>{{comments.length}}건 등록</span>
+		</div>
+	</script>
+	<script type="template" id="template_list_short_review">
+		<ul class="list_short_review">
+			{{#each comments}}
+			<li class="list_item">
+				<div>
+					<div class="review_area">
+						<div class="thumb_area">
+							{{#each commentImages}}
+								<a href="#" class="thumb" title="이미지 크게 보기">
+									<img width="90" height="90" class="img_vertical_top"
+										src="static/img/{{fileName}}"
+										alt="리뷰이미지">
+								</a>
+							{{/each}}
+							<span class="img_count" style="display: none;">{{commentImages.length}}</span>
+						</div>
+						<h4 class="resoc_name"></h4>
+						<p class="review">{{comment}}</p>
+					</div>
+					<div class="info_area">
+						<div class="review_info">
+							<span class="grade">{{score}}</span> <span class="name">{{reservationName}}</span>
+							<span class="date">{{reservationDate}} 방문</span>
+						</div>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+		</ul>
 	</script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>

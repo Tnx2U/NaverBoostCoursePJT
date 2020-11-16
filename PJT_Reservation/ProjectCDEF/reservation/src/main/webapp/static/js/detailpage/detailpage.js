@@ -31,6 +31,7 @@ function handleGetAjax(renderFunction, target, params) {
 function renderProductDetail(response){
     renderStoreDetail(response.displayInfo);
     renderEvent(response.displayInfo);
+    renderComment(response);
     console.log(response);
 }
 
@@ -50,6 +51,20 @@ function renderEvent(displayInfo){
     
     let eventElement = document.querySelector(".section_event");
     eventElement.innerHTML += htmlResult;
+}
+
+function renderComment(displayInfo){
+    let reviewElement = document.querySelector(".short_review_area");
+
+    let commentGradeTemplate = document.querySelector("#template_grade_area").innerText;
+    let bindCommentGradeTemplate = Handlebars.compile(commentGradeTemplate);
+    let commentGradeHtmlResult = bindCommentGradeTemplate(displayInfo);
+    reviewElement.innerHTML += commentGradeHtmlResult;
+
+    let commentListTemplate = document.querySelector("#template_list_short_review").innerText;
+    let bindCommentListTemplate = Handlebars.compile(commentListTemplate);
+    let commentListHtmlResult = bindCommentListTemplate(displayInfo);
+    reviewElement.innerHTML += commentListHtmlResult;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
