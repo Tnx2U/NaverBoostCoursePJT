@@ -130,32 +130,8 @@
 							title="공유하기"></a>
 					</div>
 				</div>
-				<div class="section_store_details">
-					<!-- [D] 펼쳐보기 클릭 시 store_details에 close3 제거 -->
-					<div class="store_details close3">
-						<p class="dsc"></p>
-					</div>
-					<!-- [D] 토글 상황에 따라 bk_more에 display:none 추가 -->
-					<a href="#" class="bk_more _open"> <span class="bk_more_txt">펼쳐보기</span>
-						<i class="fn fn-down2"></i>
-					</a> <a href="#" class="bk_more _close" style="display: none;"> <span
-						class="bk_more_txt">접기</span> <i class="fn fn-up2"></i>
-					</a>
-				</div>
-				<div class="section_event">
-					<div class="event_info_box">
-						<div class="event_info_tit">
-							<h4 class="in_tit">
-								<i class="spr_book ico_evt"></i> <span>이벤트 정보</span>
-							</h4>
-						</div>
-						<div class="event_info">
-							<div class="in_dsc">
-								[네이버예약 특별할인]<br>R석 50%, S석 60% 할인
-							</div>
-						</div>
-					</div>
-				</div>
+				<div class="section_store_details"></div>
+				<div class="section_event"></div>
 				<div class="section_btn">
 					<button type="button" class="bk_btn">
 						<i class="fn fn-nbooking-calender2"></i> <span>예매하기</span>
@@ -327,6 +303,39 @@
 		</div>
 	</footer>
 	<div id="photoviwer"></div>
+	<script type="template" id="template_store_detail">
+        <div class="section_store_details">
+			<!-- [D] 펼쳐보기 클릭 시 store_details에 close3 제거 -->
+			<div class="store_details close3">
+				<p class="dsc">{{productContent}}</p>
+			</div>
+			<!-- [D] 토글 상황에 따라 bk_more에 display:none 추가 -->
+			<a href="#" class="bk_more _open">
+				<span class="bk_more_txt">펼쳐보기</span>
+				<i class="fn fn-down2"></i>
+			</a>
+			<a href="#" class="bk_more _close" style="display: none;"> 
+				<span class="bk_more_txt">접기</span> <i class="fn fn-up2"></i>
+			</a>
+		</div>
+    </script>
+	<script type="template" id="template_event">
+		<div class="event_info_box">
+			<div class="event_info_tit">
+				<h4 class="in_tit">
+					<i class="spr_book ico_evt"></i> <span>이벤트 정보</span>
+				</h4>
+			</div>
+			<div class="event_info">
+				<div class="in_dsc">
+					{{productEvent}}
+				</div>
+			</div>
+		</div>
+	</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
+	<script type="module" src="static/js/detailpage/detailpage.js"></script>
 </body>
 
 

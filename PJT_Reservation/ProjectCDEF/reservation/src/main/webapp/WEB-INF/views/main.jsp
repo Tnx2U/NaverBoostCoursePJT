@@ -114,7 +114,7 @@
 
 	<script type="rv-template" id="itemList">
         <li class="item">
-            <a href="detail.html?id={displayInfoId}" class="item_book">
+            <a href="detail.html?displayInfoId={displayInfoId}" class="item_book">
                 <div class="item_preview">
                     <img alt="{productDescription}" class="img_thumb" src="static/{productImageUrl}">
                     <span class="img_border"></span>
@@ -126,12 +126,12 @@
             </a>
         </li>
     </script>
-    <script type="text/javascript" src="static/js/properties.js"></script>
-    <script type="text/javascript" src="static/js/ajaxhandler.js"></script>
-    <script type="text/javascript" src="static/js/eventhandler.js"></script>
-    <script type="text/javascript" src="static/js/renderer.js"></script>
-    <script type="text/javascript" src="static/js/template.js"></script>
-	<script type="text/javascript" src="static/js/mainpage.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/properties.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/ajaxhandler.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/eventhandler.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/renderer.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/template.js"></script>
+	<script type="text/javascript" src="static/js/mainpage/mainpage.js"></script>
 </body>
 
 </html>
