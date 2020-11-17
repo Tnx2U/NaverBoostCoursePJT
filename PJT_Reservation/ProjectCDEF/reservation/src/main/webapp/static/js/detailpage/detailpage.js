@@ -31,7 +31,7 @@ function handleGetAjax(renderFunction, target, params) {
 function renderProductDetail(response){
     renderStoreDetail(response.displayInfo);
     renderEvent(response.displayInfo);
-    renderComment(response.comments);
+    renderComment(response.comments, response.averageScore);
     console.log(response);
 }
 
@@ -53,11 +53,17 @@ function renderEvent(displayInfo){
     eventElement.innerHTML += htmlResult;
 }
 
-function renderComment(comments){
+function getValueWidth(score){
+    score *= 20; 
+    return score.toFixed(1);
+}
+
+function renderComment(comments, averageScore){
     //데이터 전처리
     const modifyComments = {
         comments : comments,
-        graphValueWidth : 
+        averageScore : averageScore.toFixed(1),
+        graphValueWidth : getValueWidth(averageScore),
     }
 
     // comment부분만 사용할 수 있도록 수정, average 속성 추가, width를 위한 폭 값 추가
@@ -67,12 +73,12 @@ function renderComment(comments){
 
     let commentGradeTemplate = document.querySelector("#template_grade_area").innerText;
     let bindCommentGradeTemplate = Handlebars.compile(commentGradeTemplate);
-    let commentGradeHtmlResult = bindCommentGradeTemplate(displayInfo);
+    let commentGradeHtmlResult = bindCommentGradeTemplate(modifyComments);
     reviewElement.innerHTML += commentGradeHtmlResult;
 
     let commentListTemplate = document.querySelector("#template_list_short_review").innerText;
     let bindCommentListTemplate = Handlebars.compile(commentListTemplate);
-    let commentListHtmlResult = bindCommentListTemplate(displayInfo);
+    let commentListHtmlResult = bindCommentListTemplate(modifyComments);
     reviewElement.innerHTML += commentListHtmlResult;
 }
 

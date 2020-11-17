@@ -23,4 +23,9 @@ public class ReservationController {
 	public String detailPage() {
 		return "detail";
 	}
+	
+	@GetMapping(path="/review")
+	public String reviewPage() {
+		return "review";
+	}
 }
