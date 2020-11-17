@@ -61,7 +61,8 @@ function getValueWidth(score){
 function renderComment(comments, averageScore){
     //데이터 전처리
     const modifyComments = {
-        comments : comments,
+        comments : comments.slice(0,3),
+        commentsLength : comments.length,
         averageScore : averageScore.toFixed(1),
         graphValueWidth : getValueWidth(averageScore),
     }

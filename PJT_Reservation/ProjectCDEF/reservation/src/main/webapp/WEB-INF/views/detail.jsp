@@ -274,7 +274,7 @@
 				style="width: {{graphValueWidth}}%;"></em>
 			</span> <strong class="text_value"> <span>{{averageScore}}</span> <em
 				class="total">5.0</em>
-			</strong> <span class="join_count"><em class="green">{{c}}</em>{{comments.length}}건 등록</span>
+			</strong> <span class="join_count"><em class="green">{{c}}</em>{{commentsLength}}건 등록</span>
 		</div>
 	</script>
 	<script type="template" id="template_list_short_review">
@@ -298,7 +298,7 @@
 					</div>
 					<div class="info_area">
 						<div class="review_info">
-							<span class="grade">{{score}}</span> <span class="name">{{reservationName}}</span>
+							<span class="grade">{{score}}.0</span> <span class="name">{{reservationName}}</span>
 							<span class="date">{{reservationDate}} 방문</span>
 						</div>
 					</div>
