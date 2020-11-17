@@ -64,7 +64,10 @@ public class ProductApiController {
 		for (Comment comment : commentList) {
 			averageScore += comment.getScore();
 		}
-		averageScore /= commentList.size();
+		
+		if(averageScore != 0) {
+			averageScore /= commentList.size();
+		}
 		
 		map.put("averageScore", averageScore);
 		map.put("comments", commentList);
