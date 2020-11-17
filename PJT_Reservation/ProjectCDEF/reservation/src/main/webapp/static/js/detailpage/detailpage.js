@@ -31,7 +31,28 @@ function handleGetAjax(renderFunction, target, params) {
 function setEventhandler(){
     handleClickInfoTab();
     //펼쳐보기 추가
+    handleClickDetailMoreOpen();
+    handleClickDetailMoreClose();
+}
 
+function handleClickDetailMoreOpen(){
+    const bkMoreOpenElement = document.querySelector(".bk_more._open");
+
+    bkMoreOpenElement.addEventListener('click', function(){
+        document.querySelector(".bk_more._open").style.display = "none";
+        document.querySelector(".bk_more._close").style.display = "block";
+        document.querySelector(".store_details").classList.remove("close3");
+    })
+}
+
+function handleClickDetailMoreClose(){
+    const bkMoreCloseElement = document.querySelector(".bk_more._close");
+
+    bkMoreCloseElement.addEventListener('click', function(){
+        document.querySelector(".bk_more._close").style.display = "none";
+        document.querySelector(".bk_more._open").style.display = "block";
+        document.querySelector(".store_details").classList.add("close3");
+    })
 }
 
 function handleClickInfoTab(){
@@ -104,7 +125,9 @@ function renderProductDetail(response){
     renderStoreDetail(response.displayInfo);
     renderEvent(response.displayInfo);
     renderComment(response.comments, response.averageScore);
-    console.log(response);
+
+    //렌더가 완료된 이후 이벤트 핸들러 세팅
+    setEventhandler();
 }
 
 function renderStoreDetail(displayInfo){
@@ -161,5 +184,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //displayDetail 정보 로딩
     handleGetAjax(renderProductDetail, `products/${params.displayInfoId}`);
-    setEventhandler();
 })
