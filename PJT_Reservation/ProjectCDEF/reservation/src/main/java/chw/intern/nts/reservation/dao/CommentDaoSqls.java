@@ -17,7 +17,7 @@ public class CommentDaoSqls {
 			+ " ON c.reservation_info_id = ri.id "
 			+ " ORDER BY c.product_id, ri.id";
 	
-	public static final String SELECT_ALL_BY_COMMENT_ID = "SELECT fi.content_type,"
+	public static final String SELECT_COMMENT_IMAGES_ALL_BY_COMMENT_ID = "SELECT fi.content_type,"
 			+ " fi.create_date,"
 			+ " fi.delete_flag,"
 			+ " fi.id file_id,"

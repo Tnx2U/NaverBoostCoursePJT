@@ -31,7 +31,7 @@ function handleGetAjax(renderFunction, target, params) {
 function renderProductDetail(response){
     renderStoreDetail(response.displayInfo);
     renderEvent(response.displayInfo);
-    renderComment(response);
+    renderComment(response.comments);
     console.log(response);
 }
 
@@ -53,7 +53,16 @@ function renderEvent(displayInfo){
     eventElement.innerHTML += htmlResult;
 }
 
-function renderComment(displayInfo){
+function renderComment(comments){
+    //데이터 전처리
+    const modifyComments = {
+        comments : comments,
+        graphValueWidth : 
+    }
+
+    // comment부분만 사용할 수 있도록 수정, average 속성 추가, width를 위한 폭 값 추가
+    // 3개만 나오도록 설정
+
     let reviewElement = document.querySelector(".short_review_area");
 
     let commentGradeTemplate = document.querySelector("#template_grade_area").innerText;

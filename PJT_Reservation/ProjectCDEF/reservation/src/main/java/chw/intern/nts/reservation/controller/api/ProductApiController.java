@@ -47,28 +47,24 @@ public class ProductApiController {
 	@GetMapping("/{displayInfoId}")
 	public Map<String, Object> productDetailInfo(
 			@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId) {
+		
 		Map<String, Object> map = new HashMap<>();
-		//필요한 준비
 		Integer productId = productService.getProductIdByDisplayInfoId(displayInfoId);
 		
-		// averageScore 단일 double
-		double averageScore = 0;
-		
-		// comments 객체 리스트
 		List<Comment> commentList = commentService.getCommentsByDisplayInfoId(displayInfoId);
-				
-		// displayInfo 단일 객체
 		// 네이밍 컨벤션 질문 (displayInfo, displayInfoResponse)
 		DisplayInfo displayInfo = productService.getDisplayInfoById(displayInfoId);
-				
-		// displayInfoImage 단일 객체
 		DisplayInfoImage displayInfoImage = productService.getDisplayInfoImageByDisplayInfoId(displayInfoId);
-		
-		// productImages 객체 리스트
 		List<ProductImage> productImageList = productService.getProductImagesByProductId(productId);
-		
-		// productsPrices 객체 리스트
 		List<ProductPrice> productPriceList = productService.getProductPricesByProductId(productId);
+		
+		//TODO 추후 서비스 레이어로 이동하면서 분리예정. 
+		//stream이나 람다를 사용해 의도가 드러나면서도 좀 더 깔끔하게 할 수 없는지 공부
+		double averageScore = 0;
+		for (Comment comment : commentList) {
+			averageScore += comment.getScore();
+		}
+		averageScore /= commentList.size();
 		
 		map.put("averageScore", averageScore);
 		map.put("comments", commentList);

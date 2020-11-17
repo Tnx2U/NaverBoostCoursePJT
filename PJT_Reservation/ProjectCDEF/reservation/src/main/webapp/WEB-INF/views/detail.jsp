@@ -333,7 +333,7 @@
 		<div class="grade_area">
 			<!-- [D] 별점 graph_value는 퍼센트 환산하여 width 값을 넣어줌 -->
 			<span class="graph_mask"> <em class="graph_value"
-				style="width: 84%;"></em>
+				style="width: {{graphValueWidth}}%;"></em>
 			</span> <strong class="text_value"> <span>{{averageScore}}</span> <em
 				class="total">5.0</em>
 			</strong> <span class="join_count"><em class="green">{{c}}</em>{{comments.length}}건 등록</span>
@@ -349,7 +349,7 @@
 							{{#each commentImages}}
 								<a href="#" class="thumb" title="이미지 크게 보기">
 									<img width="90" height="90" class="img_vertical_top"
-										src="static/img/{{fileName}}"
+										src="static/{{saveFileName}}"
 										alt="리뷰이미지">
 								</a>
 							{{/each}}
