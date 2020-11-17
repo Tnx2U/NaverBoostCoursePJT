@@ -63,13 +63,10 @@ function handleClickInfoTab(){
     
         if(event.target.tagName === 'SPAN'){
             clickedTabElement = event.target.parentNode.parentNode;
-            console.log(event.target);
         }else if(event.target.tagName === 'A'){
             clickedTabElement = event.target.parentNode;
-            console.log(event.target);
         }else if(event.target.tagName === 'LI'){
             clickedTabElement = event.target;
-            console.log(event.target);
         }
         
         //예외처리
@@ -99,37 +96,23 @@ function handleClickInfoTab(){
             document.querySelector(".detail_area_wrap").classList.add("hide");
         }
     })
-
-
-    // eventTabElement.addEventListener('click', function(event) {
-    //     let selectCategoryId = -1;
-    //     let params;
-    //     if (event.target.tagName === 'SPAN') {
-    //         selectCategoryId = event.target.parentNode.parentNode.getAttribute("data-category");
-    //     } else if (event.target.tagName === 'A') {
-    //         selectCategoryId = event.target.parentNode.getAttribute("data-category");
-    //     } else if (event.target.tagName === 'LI') {
-    //         selectCategoryId = event.target.getAttribute("data-category");
-    //     }
-
-    //     globalCategoryId = selectCategoryId;
-    //     params = {
-    //         "categoryId": (selectCategoryId != null) ? selectCategoryId : "",
-    //         "start": 0,
-    //     }
 }
 
 
 // ------------ 렌더 함수 영역 ----------------
 function renderProductDetail(response){
+    console.log("response : ", response);
     renderStoreDetail(response.displayInfo);
     renderEvent(response.displayInfo);
     renderComment(response.comments, response.averageScore);
+    renderDetailArea(response.displayInfo);
+    renderDetailLocation(response);
 
     //렌더가 완료된 이후 이벤트 핸들러 세팅
     setEventhandler();
 }
 
+// 상단 상세설명 렌더
 function renderStoreDetail(displayInfo){
     let storeDetailTemplate = document.querySelector("#template_store_detail").innerText;
     let bindStoreDetailTemplate = Handlebars.compile(storeDetailTemplate);
@@ -139,6 +122,7 @@ function renderStoreDetail(displayInfo){
     storeDetailElement.innerHTML += htmlResult;
 }
 
+// 이벤트 렌더
 function renderEvent(displayInfo){
     let eventTemplate = document.querySelector("#template_event").innerText;
     let bindEventTemplate = Handlebars.compile(eventTemplate);
@@ -153,17 +137,14 @@ function getValueWidth(score){
     return score.toFixed(1);
 }
 
+// 한줄평 렌더
 function renderComment(comments, averageScore){
-    //데이터 전처리
     const modifyComments = {
         comments : comments.slice(0,3),
         commentsLength : comments.length,
         averageScore : averageScore.toFixed(1),
         graphValueWidth : getValueWidth(averageScore),
     }
-
-    // comment부분만 사용할 수 있도록 수정, average 속성 추가, width를 위한 폭 값 추가
-    // 3개만 나오도록 설정
 
     let reviewElement = document.querySelector(".short_review_area");
 
@@ -178,9 +159,29 @@ function renderComment(comments, averageScore){
     reviewElement.innerHTML += commentListHtmlResult;
 }
 
+// 상세정보 탭 렌더
+function renderDetailArea(displayInfo){
+    let detailAreaTemplate = document.querySelector("#template_detail_area").innerText;
+    let bindDetailAreaTemplate = Handlebars.compile(detailAreaTemplate);
+    let htmlResult = bindDetailAreaTemplate(displayInfo);
+    
+    let detailAreaElement = document.querySelector(".detail_area_wrap");
+    detailAreaElement.innerHTML += htmlResult;
+}
+
+// 오시는길 탭 렌더
+function renderDetailLocation(response){
+    let detailLocationTemplate = document.querySelector("#template_detail_location").innerText;
+    let bindDetailLocationTemplate = Handlebars.compile(detailLocationTemplate);
+    let htmlResult = bindDetailLocationTemplate(response);
+    
+    let detailLocationElement = document.querySelector(".detail_location");
+    detailLocationElement.innerHTML += htmlResult;
+}
+
+// ------------ 초기 실행 영역 ---------------
 document.addEventListener("DOMContentLoaded", function() {
     const params = getUrlParams();
-    console.log(params);
 
     //displayDetail 정보 로딩
     handleGetAjax(renderProductDetail, `products/${params.displayInfoId}`);
