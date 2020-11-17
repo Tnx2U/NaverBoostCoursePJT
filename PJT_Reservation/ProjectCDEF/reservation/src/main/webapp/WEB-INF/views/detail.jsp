@@ -153,11 +153,11 @@
 				<div class="section_info_tab">
 					<!-- [D] tab 선택 시 anchor에 active 추가 -->
 					<ul class="info_tab_lst">
-						<li class="item active _detail"><a href="#"
-							class="anchor active"> <span>상세정보</span>
+						<li class="item active _detail"><a class="anchor active">
+								<span>상세정보</span>
 						</a></li>
-						<li class="item _path"><a href="#" class="anchor"> <span>오시는길</span>
-						</a></li>
+						<li class="item _path"><a class="anchor"><span>오시는길</span></a>
+						</li>
 					</ul>
 					<!-- [D] 상세정보 외 다른 탭 선택 시 detail_area_wrap에 hide 추가 -->
 					<div class="detail_area_wrap">
@@ -307,6 +307,9 @@
 			{{/each}}
 		</ul>
 	</script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+		crossorigin="anonymous"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
 	<script type="module" src="static/js/detailpage/detailpage.js"></script>

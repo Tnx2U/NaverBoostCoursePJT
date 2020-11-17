@@ -1,6 +1,7 @@
 import { SERVER_IP, TARGET_PORT } from '/reservation/static/js/share/properties.js';
 import { getUrlParams } from '/reservation/static/js/share/util.js';
 
+// 이벤트 처리 함수 영역
 function handleGetAjax(renderFunction, target, params) {
     let xhRequest = new XMLHttpRequest();
     const baseUrl = `http://${SERVER_IP}:${TARGET_PORT}/reservation/api/${target}`;
@@ -26,6 +27,77 @@ function handleGetAjax(renderFunction, target, params) {
     xhRequest.open('GET', baseUrl + paramUrl);
     xhRequest.send();
 }
+
+function setEventhandler(){
+    handleClickInfoTab();
+    //펼쳐보기 추가
+
+}
+
+function handleClickInfoTab(){
+    const infoTabListElement = document.querySelector(".info_tab_lst");
+
+    infoTabListElement.addEventListener('click', function(event){
+        let clickedTabElement = null;
+    
+        if(event.target.tagName === 'SPAN'){
+            clickedTabElement = event.target.parentNode.parentNode;
+            console.log(event.target);
+        }else if(event.target.tagName === 'A'){
+            clickedTabElement = event.target.parentNode;
+            console.log(event.target);
+        }else if(event.target.tagName === 'LI'){
+            clickedTabElement = event.target;
+            console.log(event.target);
+        }
+        
+        //예외처리
+        if(clickedTabElement == null){
+            window.alert("탭 선택 이벤트에서 문제가 발생했습니다. Console을 확인해 주세요.");
+            console.log(`Event Error Occured in handleClickInfoTab(). eventTarget is ${event.target}`);
+            return;
+        }
+        
+        //본인 및 하위 a태그 앵커 설정
+        // 전체 삭제
+        let infoTabLiElements = document.querySelectorAll(".info_tab_lst > li");
+        infoTabLiElements.forEach((infoTabLi) => {
+            infoTabLi.classList.remove("active");
+            infoTabLi.querySelector("a").classList.remove("active");
+        })
+        // 선택된 태그만 active 추가
+        clickedTabElement.classList.add("active");
+        clickedTabElement.querySelector("a").classList.add("active");
+
+        //선택된 탭의 detail_area_wrap, detail_location을 판단해 적절히 hide 클래스 추가,제거
+        if(clickedTabElement.classList.contains("_detail")){
+            document.querySelector(".detail_area_wrap").classList.remove("hide");
+            document.querySelector(".detail_location").classList.add("hide");
+        }else if(clickedTabElement.classList.contains("_path")){
+            document.querySelector(".detail_location").classList.remove("hide");
+            document.querySelector(".detail_area_wrap").classList.add("hide");
+        }
+    })
+
+
+    // eventTabElement.addEventListener('click', function(event) {
+    //     let selectCategoryId = -1;
+    //     let params;
+    //     if (event.target.tagName === 'SPAN') {
+    //         selectCategoryId = event.target.parentNode.parentNode.getAttribute("data-category");
+    //     } else if (event.target.tagName === 'A') {
+    //         selectCategoryId = event.target.parentNode.getAttribute("data-category");
+    //     } else if (event.target.tagName === 'LI') {
+    //         selectCategoryId = event.target.getAttribute("data-category");
+    //     }
+
+    //     globalCategoryId = selectCategoryId;
+    //     params = {
+    //         "categoryId": (selectCategoryId != null) ? selectCategoryId : "",
+    //         "start": 0,
+    //     }
+}
+
 
 // ------------ 렌더 함수 영역 ----------------
 function renderProductDetail(response){
@@ -89,4 +161,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //displayDetail 정보 로딩
     handleGetAjax(renderProductDetail, `products/${params.displayInfoId}`);
+    setEventhandler();
 })
