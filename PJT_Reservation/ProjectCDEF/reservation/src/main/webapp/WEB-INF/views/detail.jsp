@@ -49,74 +49,8 @@
 							class="viewReservation" title="예약확인">예약확인</span>
 						</a>
 					</header>
-					<div class="pagination">
-						<div class="bg_pagination"></div>
-						<div class="figure_pagination">
-							<span class="num">1</span> <span class="num off">/ <span>2</span></span>
-						</div>
-					</div>
-					<div class="group_visual">
-						<div>
-							<div class="container_visual" style="width: 414px;">
-								<ul class="visual_img detail_swipe">
-									<li class="item" style="width: 414px;"><img alt=""
-										class="img_thumb" src=""> <span class="img_bg"></span>
-										<div class="visual_txt">
-											<div class="visual_txt_inn">
-												<h2 class="visual_txt_tit">
-													<span></span>
-												</h2>
-												<p class="visual_txt_dsc"></p>
-											</div>
-										</div></li>
-									<li class="item" style="width: 414px;"><img alt=""
-										class="img_thumb" src=""> <span class="img_bg"></span>
-										<div class="visual_txt">
-											<div class="visual_txt_inn">
-												<h2 class="visual_txt_tit">
-													<span></span>
-												</h2>
-												<p class="visual_txt_dsc"></p>
-											</div>
-										</div></li>
-									<li class="item" style="width: 414px;"><img alt=""
-										class="img_thumb" src=""> <span class="img_bg"></span>
-										<div class="visual_txt">
-											<div class="visual_txt_inn">
-												<h2 class="visual_txt_tit">
-													<span></span>
-												</h2>
-												<p class="visual_txt_dsc"></p>
-											</div>
-										</div></li>
-									<li class="item" style="width: 414px;"><img alt=""
-										class="img_thumb" src=""> <span class="img_bg"></span>
-										<div class="visual_txt">
-											<div class="visual_txt_inn">
-												<h2 class="visual_txt_tit">
-													<span></span>
-												</h2>
-												<p class="visual_txt_dsc"></p>
-											</div>
-										</div></li>
-								</ul>
-							</div>
-							<div class="prev">
-								<div class="prev_inn">
-									<a href="#" class="btn_prev" title="이전"> <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
-										<i class="spr_book2 ico_arr6_lt off"></i>
-									</a>
-								</div>
-							</div>
-							<div class="nxt">
-								<div class="nxt_inn">
-									<a href="#" class="btn_nxt" title="다음"> <i
-										class="spr_book2 ico_arr6_rt"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div class="pagination"></div>
+					<div class="group_visual"></div>
 					<div class="group_btn_goto" style="display: none;">
 						<a class="btn_goto_home" title="홈페이지" href="#" target="siteUrl">
 							<i class="fn fn-home1"></i>
@@ -257,7 +191,7 @@
 				<h3 class="blind">상세정보</h3>
 				<ul class="detail_info_group">
 					<li class="detail_info_lst"><strong class="in_tit">[소개]</strong>
-						<p class="in_dsc">{{productDescription}}</p></li>
+						<p class="in_dsc">{{productContent}}</p></li>
 					<li class="detail_info_lst"><strong class="in_tit">[공지사항]</strong>
 						<ul class="in_img_group">
 							<li class="in_img_lst"><img alt="" class="img_thumb"
@@ -281,7 +215,7 @@
 				<span class="img_border"></span> <span class="btn_map"><i
 					class="spr_book2 ico_mapview"></i></span>
 			</a>
-			<h3 class="store_name">{{displayInfo.placeName}}</h3>
+			<h3 class="store_name">{{displayInfo.productDescription}}</h3>
 			<div class="store_info">
 				<div class="store_addr_wrap">
 					<span class="fn fn-pin2"></span>
@@ -312,6 +246,51 @@
 			</div>
 		</div>
 	</script>
+	<script type="template" id="template_pagination">
+        {{#if productImagesLength}}
+		<div class="bg_pagination"></div>
+		<div class="figure_pagination">
+			<span class="num">1</span>
+			<span class="num off">/<span>{{productImagesLength}}</span></span>
+		</div>
+        {{/if}}
+    </script>
+    <script type="template" id="template_group_visual">
+        <div>
+			<div class="container_visual" style="width: 414px;">
+				<ul class="visual_img detail_swipe">
+					{{#each productImages}}
+					<li class="item" style="width: 414px;">
+						<img alt="{{fileName}}" class="img_thumb" src="static/{{saveFileName}}">
+						<span class="img_bg">img_bg</span>
+						<div class="visual_txt">
+							<div class="visual_txt_inn">
+								<h2 class="visual_txt_tit">
+									<span>{{productDescription}}</span>
+								</h2>
+								<p class="visual_txt_dsc"></p>
+							</div>
+						</div>
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+			<div class="prev">
+				<div class="prev_inn">
+					<a href="#" class="btn_prev" title="이전"> <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
+						<i class="spr_book2 ico_arr6_lt off"></i>
+					</a>
+				</div>
+			</div>
+			<div class="nxt">
+				<div class="nxt_inn">
+					<a href="#" class="btn_nxt" title="다음">
+						<i class="spr_book2 ico_arr6_rt"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+    </script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 		crossorigin="anonymous"></script>

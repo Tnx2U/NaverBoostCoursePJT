@@ -107,6 +107,8 @@ function renderProductDetail(response){
     renderComment(response.comments, response.averageScore);
     renderDetailArea(response.displayInfo);
     renderDetailLocation(response);
+    renderPagenation(response.productImages.length);
+    renderVisualImage(response.productImages, response.displayInfo.productDescription);
 
     //렌더가 완료된 이후 이벤트 핸들러 세팅
     setEventhandler();
@@ -177,6 +179,36 @@ function renderDetailLocation(response){
     
     let detailLocationElement = document.querySelector(".detail_location");
     detailLocationElement.innerHTML += htmlResult;
+}
+
+function renderPagenation(productImagesLength){
+    const productImagesInfo = {
+        productImagesLength : (productImagesLength >= 2) ? productImagesLength : null,
+    }
+
+    let pagenationTemplate = document.querySelector("#template_pagination").innerText;
+    let bindPagenationTemplate = Handlebars.compile(pagenationTemplate);
+    let htmlResult = bindPagenationTemplate(productImagesInfo);
+    
+    let pagenationElement = document.querySelector(".pagination");
+    pagenationElement.innerHTML += htmlResult;
+}
+
+function renderVisualImage(productImages, productDescription){
+    const productImagesInfo = {
+        productImages : productImages.map((element) =>{
+            element.productDescription = productDescription;
+            return element;
+            }),
+        productDescription : productDescription,
+   }
+
+    let visualImageTemplate = document.querySelector("#template_group_visual").innerText;
+    let bindVisualImageTemplate = Handlebars.compile(visualImageTemplate);
+    let htmlResult = bindVisualImageTemplate(productImagesInfo);
+    
+    let visualImageElement = document.querySelector(".group_visual");
+    visualImageElement.innerHTML += htmlResult;
 }
 
 // ------------ 초기 실행 영역 ---------------
