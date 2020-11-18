@@ -188,9 +188,20 @@ function renderProductDetail(response){
     renderDetailLocation(response);
     renderPagenation(response.productImages.length);
     renderVisualImage(response.productImages, response.displayInfo.productDescription);
+    renderMoreComment(response.displayInfo);
 
     //렌더가 완료된 이후 이벤트 핸들러 세팅
     setEventhandler();
+}
+
+function renderMoreComment(displayInfo){
+    let moreCommentTemplate = document.querySelector("#template_more_comment").innerText;
+    let bindMoreCommentTemplate = Handlebars.compile(moreCommentTemplate);
+    let htmlResult = bindMoreCommentTemplate(displayInfo);
+    
+    let reviewListElement = document.querySelector(".section_review_list");
+    reviewListElement.innerHTML += htmlResult;
+    
 }
 
 // 상단 상세설명 렌더

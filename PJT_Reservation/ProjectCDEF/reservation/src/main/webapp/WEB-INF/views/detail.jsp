@@ -80,9 +80,6 @@
 								이용자가 남긴 평가입니다.</span>
 						</p>
 					</div>
-					<a class="btn_review_more" href="./review.html"> <span>예매자
-							한줄평 더보기</span> <i class="fn fn-forward1"></i>
-					</a>
 				</div>
 				<div class="section_info_tab">
 					<!-- [D] tab 선택 시 anchor에 active 추가 -->
@@ -292,6 +289,11 @@
 			</div>
             {{/if}}
 		</div>
+    </script>
+    <script type="template" id="template_more_comment">
+        <a class="btn_review_more" href="./review/{{productId}}"> <span>예매자
+			한줄평 더보기</span> <i class="fn fn-forward1"></i>
+        </a>
     </script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
