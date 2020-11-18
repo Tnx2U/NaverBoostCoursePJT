@@ -54,7 +54,7 @@ public class ProductDaoSqls {
 			+ " pi.type"
 			+ " FROM (SELECT * FROM product WHERE id = :productId) p"
 			+ " JOIN product_image pi"
-			+ " ON p.id = pi.product_id"
+			+ " ON p.id = pi.product_id AND pi.type != 'th'"
 			+ " JOIN file_info fi"
 			+ " ON pi.file_id = fi.id"
 			+ " ORDER BY p.id, fi.id";
