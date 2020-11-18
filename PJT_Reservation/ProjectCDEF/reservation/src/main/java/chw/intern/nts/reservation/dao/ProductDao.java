@@ -55,6 +55,7 @@ public class ProductDao {
 
 	public int selectCountByCategoryId(Integer categoryId) {
 		Map<String, Integer> params = Collections.singletonMap("categoryId", categoryId);
+		
 		return jdbcTemplate.queryForObject(SELECT_COUNT_BY_CATEGORY_ID, params, Integer.class);
 	}
 

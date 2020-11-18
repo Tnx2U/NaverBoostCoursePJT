@@ -23,7 +23,7 @@ public class CommentServiceImpl implements CommentService {
 		List<Comment> commentList = Collections.emptyList();
 		try {
 			commentList = commentDao.selectAllByDisplayInfoId(displayInfoId);
-			for(Comment comment : commentList) {
+			for (Comment comment : commentList) {
 				Integer commentId = comment.getCommentId();
 				List<CommentImage> commentImages = commentDao.selectAllByCommentId(commentId);
 				comment.setCommentImages(commentImages);
@@ -34,5 +34,21 @@ public class CommentServiceImpl implements CommentService {
 		}
 
 		return commentList;
+	}
+
+	@Override
+	public double getAverageScore(List<Comment> commentList) {
+		double averageScore = 0;
+		// TODO stream이나 람다를 사용해 의도가 드러나면서도 좀 더 깔끔하게 할 수 없는지 공부
+		for (Comment comment : commentList) {
+			averageScore += comment.getScore();
+		}
+		if (averageScore != 0) {
+			averageScore /= commentList.size();
+		}
+
+		averageScore = Math.round(averageScore*10)/10.0;
+		
+		return averageScore;
 	}
 }

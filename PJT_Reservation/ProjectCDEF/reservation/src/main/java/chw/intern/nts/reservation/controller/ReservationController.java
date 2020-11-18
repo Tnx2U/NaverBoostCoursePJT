@@ -31,19 +31,10 @@ public class ReservationController {
 	@GetMapping(path = "/review/{displayInfoId}")
 	public String reviewPage(@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId,
 			HttpServletRequest request) {
-		// 데이터 전처리
+		final int MAGNIFIC_FOR_STAR_TO_PERCENT = 20;
 		List<Comment> commentList = commentService.getCommentsByDisplayInfoId(displayInfoId);
-
-		double averageScore = 0;
-		double graphValueWidth = 0;
-		for (Comment comment : commentList) {
-			averageScore += comment.getScore();
-		}
-
-		if (averageScore != 0) {
-			averageScore = Math.round(averageScore / commentList.size() * 10) / 10.0;
-			graphValueWidth = averageScore * 20;
-		}
+		double averageScore = commentService.getAverageScore(commentList);
+		double graphValueWidth = averageScore * MAGNIFIC_FOR_STAR_TO_PERCENT;
 
 		request.setAttribute("commentList", commentList);
 		request.setAttribute("averageScore", averageScore);

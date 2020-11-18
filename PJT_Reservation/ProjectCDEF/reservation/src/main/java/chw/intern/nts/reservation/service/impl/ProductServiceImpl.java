@@ -22,6 +22,7 @@ import chw.intern.nts.reservation.dto.DisplayInfoResponse;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.dto.ProductImage;
 import chw.intern.nts.reservation.dto.ProductPrice;
+import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ProductService;
 
 @Service
@@ -36,6 +37,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	CommentDao commentDao;
+	
+	@Autowired
+	CommentService commentService;
 
 	@Transactional(readOnly = true)
 	@Override
@@ -104,13 +108,7 @@ public class ProductServiceImpl implements ProductService {
 				commentImages = commentDao.selectAllByCommentId(commentId);
 				comment.setCommentImages(commentImages);
 			}
-			// TODO stream이나 람다를 사용해 의도가 드러나면서도 좀 더 깔끔하게 할 수 없는지 공부
-			for (Comment comment : commentList) {
-				averageScore += comment.getScore();
-			}
-			if (averageScore != 0) {
-				averageScore /= commentList.size();
-			}
+			averageScore = commentService.getAverageScore(commentList);
 
 			// 리턴 객체에 의존성 주입
 			displayInfoResponse.setAverageScore(averageScore);
@@ -121,7 +119,6 @@ public class ProductServiceImpl implements ProductService {
 			displayInfoResponse.setProductPrices(ProductPriceList);
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
-			e.printStackTrace();
 			System.err.println(errorMsg + e.getLocalizedMessage());
 		}
 
