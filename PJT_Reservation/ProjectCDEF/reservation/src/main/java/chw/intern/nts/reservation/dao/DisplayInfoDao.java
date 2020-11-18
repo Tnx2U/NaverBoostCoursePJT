@@ -41,7 +41,7 @@ public class DisplayInfoDao {
 
 	public DisplayInfoImage selectDisplayInfoImageByDisplayInfoId(Integer displayInfoId) {
 		Map<String, Integer> params = Collections.singletonMap("displayInfoId", displayInfoId);
-		
+
 		return jdbcTemplate.queryForObject(SELECT_DISPLAY_INFO_IMAGE_BY_DISPLAY_INFO_ID, params, displayInfoImageRowMapper);
 	}
 }

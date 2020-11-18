@@ -30,6 +30,7 @@ public class CommentServiceImpl implements CommentService {
 			}
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
+			//log4j, logger.err 하면 자동으로 stacktrace걸어준다고 한다.
 			System.err.println(errorMsg + e.getLocalizedMessage());
 		}
 

@@ -4,7 +4,8 @@ import { getUrlParams } from '/reservation/static/js/share/util.js';
 // 이벤트 처리 함수 영역
 function handleGetAjax(renderFunction, target, params) {
     let xhRequest = new XMLHttpRequest();
-    const baseUrl = `http://${SERVER_IP}:${TARGET_PORT}/reservation/api/${target}`;
+    //const baseUrl = `http://${SERVER_IP}:${TARGET_PORT}/reservation/api/${target}`;
+    const baseUrl = `api/${target}`;
     let paramUrl = "";
 
     if (params != null) {
