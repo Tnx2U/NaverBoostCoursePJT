@@ -30,9 +30,9 @@ function handleGetAjax(renderFunction, target, params) {
 
 function setEventhandler(){
     handleClickInfoTab();
-    //펼쳐보기 추가
     handleClickDetailMoreOpen();
     handleClickDetailMoreClose();
+    handleClickImageButton();
 }
 
 function handleClickDetailMoreOpen(){
@@ -96,6 +96,84 @@ function handleClickInfoTab(){
             document.querySelector(".detail_area_wrap").classList.add("hide");
         }
     })
+}
+
+function handleClickImageButton(){
+    if(document.querySelector("div.prev") === null){
+        return;
+    }
+
+    const containerElement = document.querySelector("div.container_visual");
+    const ulElement = document.querySelector("ul.visual_img");
+    const liElements = document.querySelectorAll(".visual_img > li");
+    const imageLength = liElements.length;
+    const pagenationElement = document.querySelector("span.num.off > span");
+    const imageWidth = 414;
+    const slideSpeed = 300;
+    const imagePrevElement = document.querySelector("div.prev");
+    const imageNextElement = document.querySelector("div.nxt");
+    let initialIdx = 0;
+    let currentIdx = initialIdx;
+
+    ulElement.style.width = imageWidth*(imageLength + 2) + "px";
+
+    // 트릭을 위해 첫번째와 마지막 슬라이드 deepCopy
+    let firstImageClone = ulElement.firstElementChild.cloneNode(true);
+    let lastImageClone = ulElement.lastElementChild.cloneNode(true);
+
+    // 복제한 슬라이드를 기존 슬라이드 리스트의 앞뒤에 추가
+    ulElement.appendChild(firstImageClone);
+    ulElement.insertBefore(lastImageClone, ulElement.firstElementChild);
+
+    //사전 스타일 설정 및 초기화
+    console.log((imageWidth * (initialIdx)));
+    ulElement.style.transform = "translate3d(-" + (imageWidth * (initialIdx + 1)) + "px, 0px, 0px)";
+
+    let currentImageElement = liElements[currentIdx];
+    currentImageElement.classList.add('image_active');
+
+    imageNextElement.addEventListener("click", function(){
+        //이미지 좌측으로 이동
+        if(currentIdx <= imageLength - 1){
+            ulElement.style.transition = slideSpeed + "ms";
+            ulElement.style.transform = "translate3d(-" + (imageWidth * (currentIdx + 2)) + "px, 0px, 0px)";
+        }
+
+        if(currentIdx === imageLength - 1){
+            setTimeout(function(){
+                ulElement.style.transition = "0ms";
+                ulElement.style.transform = "translate3d(-" + imageWidth + "px, 0px, 0px)";
+            }, slideSpeed);
+            currentIdx = -1;
+        }
+
+        currentImageElement.classList.remove('image_active');
+        currentImageElement = liElements[++currentIdx];
+        currentImageElement.classList.add('image_active');
+        //페이지네이션 수정 
+        
+    });
+
+    imagePrevElement.addEventListener("click", function(){
+        //이미지 좌측으로 이동
+        if(currentIdx >= 0){
+            ulElement.style.transition = slideSpeed + "ms";
+            ulElement.style.transform = "translate3d(-" + (imageWidth * currentIdx) + "px, 0px, 0px)";
+        }
+
+        if(currentIdx === 0){
+            setTimeout(function(){
+                ulElement.style.transition = "0ms";
+                ulElement.style.transform = "translate3d(-" + (imageWidth*imageLength)+ "px, 0px, 0px)";
+            }, slideSpeed);
+            currentIdx = imageLength;
+        }
+
+        currentImageElement.classList.remove('image_active');
+        currentImageElement = liElements[--currentIdx];
+        currentImageElement.classList.add('image_active');
+        //페이지네이션 수정  
+    });
 }
 
 
@@ -181,6 +259,7 @@ function renderDetailLocation(response){
     detailLocationElement.innerHTML += htmlResult;
 }
 
+//페이지네이션 렌더
 function renderPagenation(productImagesLength){
     //이미지가 2장 이상이더라도 2장까지만 표시하라는 명세서 항목반영
     const productImagesInfo = {
@@ -203,6 +282,7 @@ function renderVisualImage(productImages, productDescription){
                 return element;
             }).slice(0,2),
         productDescription : productDescription,
+        hasExtraImage : (productImages.length <= 1) ? false : true,
    }
 
     let visualImageTemplate = document.querySelector("#template_group_visual").innerText;

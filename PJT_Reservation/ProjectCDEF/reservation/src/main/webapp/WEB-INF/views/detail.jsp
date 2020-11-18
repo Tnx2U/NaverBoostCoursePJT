@@ -275,6 +275,7 @@
 					{{/each}}
 				</ul>
 			</div>
+            {{#if hasExtraImage}}
 			<div class="prev">
 				<div class="prev_inn">
 					<a href="#" class="btn_prev" title="이전"> <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
@@ -289,6 +290,7 @@
 					</a>
 				</div>
 			</div>
+            {{/if}}
 		</div>
     </script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
