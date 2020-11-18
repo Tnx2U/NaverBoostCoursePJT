@@ -11,10 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import chw.intern.nts.reservation.dao.CommentDao;
 import chw.intern.nts.reservation.dao.DisplayInfoDao;
 import chw.intern.nts.reservation.dao.ProductDao;
+import chw.intern.nts.reservation.dto.Comment;
+import chw.intern.nts.reservation.dto.CommentImage;
 import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.DisplayInfoImage;
+import chw.intern.nts.reservation.dto.DisplayInfoResponse;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.dto.ProductImage;
 import chw.intern.nts.reservation.dto.ProductPrice;
@@ -30,7 +34,9 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	DisplayInfoDao displayInfoDao;
 
-	// readonly는 디비마다 메시지를 받아서 다르게 처리
+	@Autowired
+	CommentDao commentDao;
+
 	@Transactional(readOnly = true)
 	@Override
 	public List<Product> getProductsByCategoryId(Integer categoryId, Integer start, Integer limit) {
@@ -70,73 +76,55 @@ public class ProductServiceImpl implements ProductService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public int getProductIdByDisplayInfoId(Integer displayInfoId) {
+	public DisplayInfoResponse getDisplayInfoResponseByDisplayInfoId(Integer displayInfoId) {
+		// 리턴객체 초기화
+		// TODO autowired를 사용하거나 다른 맵퍼로 할당할 수 없는지 조사
+		DisplayInfoResponse displayInfoResponse = DisplayInfoResponse.getInstance();
+
+		// 리턴객체 의존성 객체 초기화
 		int productId = -1;
-		try {
-			productId = displayInfoDao.selectProductIdById(displayInfoId);
-		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
-			System.err.println(errorMsg + e.getLocalizedMessage());
-		}
-		return productId;
-	}
-
-	@Transactional(readOnly = true)
-	@Override
-	public DisplayInfo getDisplayInfoById(Integer displayInfoId) {
+		double averageScore = 0;
 		DisplayInfo displayInfo = null;
-
-		try {
-			displayInfo = displayInfoDao.selectById(displayInfoId);
-		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
-			System.err.println(errorMsg + e.getLocalizedMessage());
-		}
-
-		return displayInfo;
-	}
-
-	@Transactional(readOnly = true)
-	@Override
-	public DisplayInfoImage getDisplayInfoImageByDisplayInfoId(Integer displayInfoId) {
 		DisplayInfoImage displayInfoImage = null;
-		
+		List<ProductImage> productImageList = Collections.emptyList();
+		List<ProductPrice> ProductPriceList = Collections.emptyList();
+		List<Comment> commentList = Collections.emptyList();
+		List<CommentImage> commentImages = Collections.emptyList();
+
 		try {
+			// dao 호출 및 변수 바인딩
+			productId = displayInfoDao.selectProductIdById(displayInfoId);
+			displayInfo = displayInfoDao.selectById(displayInfoId);
 			displayInfoImage = displayInfoDao.selectDisplayInfoImageByDisplayInfoId(displayInfoId);
+			productImageList = productDao.selectProductImagesById(productId);
+			ProductPriceList = productDao.selectProductPricesByProductId(productId);
+			commentList = commentDao.selectAllByDisplayInfoId(displayInfoId);
+			for (Comment comment : commentList) {
+				Integer commentId = comment.getCommentId();
+				commentImages = commentDao.selectAllByCommentId(commentId);
+				comment.setCommentImages(commentImages);
+			}
+			// TODO stream이나 람다를 사용해 의도가 드러나면서도 좀 더 깔끔하게 할 수 없는지 공부
+			for (Comment comment : commentList) {
+				averageScore += comment.getScore();
+			}
+			if (averageScore != 0) {
+				averageScore /= commentList.size();
+			}
+
+			// 리턴 객체에 의존성 주입
+			displayInfoResponse.setAverageScore(averageScore);
+			displayInfoResponse.setComments(commentList);
+			displayInfoResponse.setDisplayInfo(displayInfo);
+			displayInfoResponse.setDisplayInfoImage(displayInfoImage);
+			displayInfoResponse.setProductImages(productImageList);
+			displayInfoResponse.setProductPrices(ProductPriceList);
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
+			e.printStackTrace();
 			System.err.println(errorMsg + e.getLocalizedMessage());
 		}
 
-		return displayInfoImage;
-	}
-
-	@Transactional(readOnly = true)
-	@Override
-	public List<ProductImage> getProductImagesByProductId(Integer productId) {
-		List<ProductImage> productImageList = Collections.emptyList();
-		
-		try {
-			productImageList = productDao.selectProductImagesById(productId);
-		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {productId : %d}", productId);
-			System.err.println(errorMsg + e.getLocalizedMessage());
-		}
-
-		return productImageList;
-	}
-
-	@Override
-	public List<ProductPrice> getProductPricesByProductId(Integer productId) {
-		List<ProductPrice> ProductPriceList = Collections.emptyList();
-		
-		try {
-			ProductPriceList = productDao.selectProductPricesByProductId(productId);
-		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {productId : %d}", productId);
-			System.err.println(errorMsg + e.getLocalizedMessage());
-		}
-
-		return ProductPriceList;
+		return displayInfoResponse;
 	}
 }

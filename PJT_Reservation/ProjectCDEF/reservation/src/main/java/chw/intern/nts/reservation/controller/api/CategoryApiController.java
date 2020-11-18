@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +24,9 @@ public class CategoryApiController {
 	@GetMapping
 	public Map<String, Object> categoryList() {
 		List<Category> CategoryResponse = categoryService.getAllCategoriesWithCount();
-		Map<String, Object> map = new HashMap<>();
-		map.put("items", CategoryResponse);
+		Map<String, Object> responseMap = new HashMap<>();
+		responseMap.put("items", CategoryResponse);
 
-		return map;
+		return responseMap;
 	}
 }
