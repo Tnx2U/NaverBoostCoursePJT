@@ -166,7 +166,7 @@
 										alt="리뷰이미지">
 								</a>
 							{{/each}}
-							<span class="img_count" style="display: none;">{{commentImages.length}}</span>
+							<span class="img_count">{{commentImages.length}}</span>
 						</div>
 						<h4 class="resoc_name"></h4>
 						<p class="review">{{comment}}</p>
