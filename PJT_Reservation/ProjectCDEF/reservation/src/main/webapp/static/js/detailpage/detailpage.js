@@ -182,8 +182,9 @@ function renderDetailLocation(response){
 }
 
 function renderPagenation(productImagesLength){
+    //이미지가 2장 이상이더라도 2장까지만 표시하라는 명세서 항목반영
     const productImagesInfo = {
-        productImagesLength : (productImagesLength >= 2) ? productImagesLength : null,
+        productImagesLength : (productImagesLength >= 2) ? 2 : null,
     }
 
     let pagenationTemplate = document.querySelector("#template_pagination").innerText;
@@ -195,11 +196,12 @@ function renderPagenation(productImagesLength){
 }
 
 function renderVisualImage(productImages, productDescription){
+    //이미지가 2장 이상이더라도 2장까지만 표시하라는 명세서 항목반영
     const productImagesInfo = {
-        productImages : productImages.map((element) =>{
-            element.productDescription = productDescription;
-            return element;
-            }),
+        productImages : productImages.map((element, index) =>{
+                element.productDescription = productDescription;
+                return element;
+            }).slice(0,2),
         productDescription : productDescription,
    }
 
