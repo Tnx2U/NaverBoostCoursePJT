@@ -1,5 +1,6 @@
 package chw.intern.nts.reservation.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Comment> getCommentsByDisplayInfoId(Integer displayInfoId) {
-		List<Comment> commentList = null;
+		List<Comment> commentList = Collections.emptyList();
 		try {
 			commentList = commentDao.selectAllByDisplayInfoId(displayInfoId);
 			for(Comment comment : commentList) {

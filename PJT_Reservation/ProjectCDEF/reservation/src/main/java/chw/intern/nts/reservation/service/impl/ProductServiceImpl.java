@@ -1,5 +1,6 @@
 package chw.intern.nts.reservation.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.management.RuntimeErrorException;
@@ -33,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Product> getProductsByCategoryId(Integer categoryId, Integer start, Integer limit) {
-		List<Product> productList = null;
+		List<Product> productList = Collections.emptyList();
 		try {
 			if (categoryId == null) {
 				productList = productDao.selectAllWithOffset(start, limit);
@@ -113,7 +114,7 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<ProductImage> getProductImagesByProductId(Integer productId) {
-		List<ProductImage> productImageList = null;
+		List<ProductImage> productImageList = Collections.emptyList();
 		
 		try {
 			productImageList = productDao.selectProductImagesById(productId);
@@ -127,7 +128,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductPrice> getProductPricesByProductId(Integer productId) {
-		List<ProductPrice> ProductPriceList = null;
+		List<ProductPrice> ProductPriceList = Collections.emptyList();
 		
 		try {
 			ProductPriceList = productDao.selectProductPricesByProductId(productId);
