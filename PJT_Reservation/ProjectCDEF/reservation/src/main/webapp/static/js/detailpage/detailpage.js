@@ -107,7 +107,7 @@ function handleClickImageButton(){
     const ulElement = document.querySelector("ul.visual_img");
     const liElements = document.querySelectorAll(".visual_img > li");
     const imageLength = liElements.length;
-    const pagenationElement = document.querySelector("span.num.off > span");
+    const pagenationElement = document.querySelector("span.num");
     const imageWidth = 414;
     const slideSpeed = 300;
     const imagePrevElement = document.querySelector("div.prev");
@@ -151,7 +151,7 @@ function handleClickImageButton(){
         currentImageElement = liElements[++currentIdx];
         currentImageElement.classList.add('image_active');
         //페이지네이션 수정 
-        
+        pagenationElement.innerText = currentIdx+1;
     });
 
     imagePrevElement.addEventListener("click", function(){
@@ -172,7 +172,8 @@ function handleClickImageButton(){
         currentImageElement.classList.remove('image_active');
         currentImageElement = liElements[--currentIdx];
         currentImageElement.classList.add('image_active');
-        //페이지네이션 수정  
+        //페이지네이션 수정
+        pagenationElement.innerText = currentIdx+1;
     });
 }
 
