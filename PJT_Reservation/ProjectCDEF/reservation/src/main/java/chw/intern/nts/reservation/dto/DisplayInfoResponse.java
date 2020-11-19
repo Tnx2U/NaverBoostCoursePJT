@@ -3,14 +3,6 @@ package chw.intern.nts.reservation.dto;
 import java.util.List;
 
 public class DisplayInfoResponse {
-	private static class Singleton {
-		private static final DisplayInfoResponse instance = new DisplayInfoResponse();
-	}
-
-	public static DisplayInfoResponse getInstance() {
-		return Singleton.instance;
-	}
-
 	private double averageScore;
 	private List<Comment> comments;
 	private DisplayInfo displayInfo;

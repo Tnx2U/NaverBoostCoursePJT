@@ -82,8 +82,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public DisplayInfoResponse getDisplayInfoResponseByDisplayInfoId(Integer displayInfoId) {
 		// 리턴객체 초기화
-		// TODO autowired를 사용하거나 다른 맵퍼로 할당할 수 없는지 조사
-		DisplayInfoResponse displayInfoResponse = DisplayInfoResponse.getInstance();
+		DisplayInfoResponse displayInfoResponse = new DisplayInfoResponse();
 
 		// 리턴객체 의존성 객체 초기화
 		int productId = -1;

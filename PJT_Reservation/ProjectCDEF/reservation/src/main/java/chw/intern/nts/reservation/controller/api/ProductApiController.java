@@ -33,10 +33,10 @@ public class ProductApiController {
 	public Map<String, Object> productList(@RequestParam(name = "categoryId", required = false) Integer categoryId,
 			@RequestParam(name = "start", defaultValue = "0") int start,
 			@RequestParam(name = "limit", required = false, defaultValue = "4") int limit) {
-		List<Product> ProductResponse = productService.getProductsByCategoryId(categoryId, start, limit);
+		List<Product> productResponse = productService.getProductsByCategoryId(categoryId, start, limit);
 		int totalCount = productService.getProductsCount(categoryId);
 		Map<String, Object> responseMap = new HashMap<>();
-		responseMap.put("items", ProductResponse);
+		responseMap.put("items", productResponse);
 		responseMap.put("totalCount", totalCount);
 
 		return responseMap;

@@ -15,6 +15,7 @@ import chw.intern.nts.reservation.service.CommentService;
 
 @Controller
 public class ReservationController {
+	static final int MAGNIFIC_FOR_STAR_TO_PERCENT = 20;
 	@Autowired
 	CommentService commentService;
 
@@ -31,7 +32,7 @@ public class ReservationController {
 	@GetMapping(path = "/review/{displayInfoId}")
 	public String reviewPage(@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId,
 			HttpServletRequest request) {
-		final int MAGNIFIC_FOR_STAR_TO_PERCENT = 20;
+		
 		List<Comment> commentList = commentService.getCommentsByDisplayInfoId(displayInfoId);
 		double averageScore = commentService.getAverageScore(commentList);
 		double graphValueWidth = averageScore * MAGNIFIC_FOR_STAR_TO_PERCENT;
