@@ -1,5 +1,5 @@
 import { SERVER_IP, TARGET_PORT } from '/reservation/static/js/share/properties.js';
-import { getUrlParams } from '/reservation/static/js/share/util.js';
+import { getParamsByUrl, getParamUrlByParams } from '/reservation/static/js/share/util.js';
 
 // 이벤트 처리 함수 영역
 function handleGetAjax(renderFunction, target, params) {
@@ -8,13 +8,7 @@ function handleGetAjax(renderFunction, target, params) {
     const baseUrl = `api/${target}`;
     let paramUrl = "";
 
-    if (params != null) {
-        paramUrl += "?";
-        for (key in params) {
-            paramUrl += `${key}=${params[key]}&`;
-            // js에서 맨 뒤의 params문법 삭제해주는 라이브러리? 기능 공부
-        }
-    }
+    paramUrl = getParamUrlByParams(params);
 
     xhRequest.onreadystatechange = function() {
         if (xhRequest.readyState === xhRequest.DONE) {
@@ -308,7 +302,7 @@ function renderVisualImage(productImages, productDescription){
 
 // ------------ 초기 실행 영역 ---------------
 document.addEventListener("DOMContentLoaded", function() {
-    const params = getUrlParams();
+    const params = getParamsByUrl();
 
     //displayDetail 정보 로딩
     handleGetAjax(renderProductDetail, `products/${params.displayInfoId}`);
