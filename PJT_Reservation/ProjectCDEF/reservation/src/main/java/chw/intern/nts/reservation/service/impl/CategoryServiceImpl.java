@@ -16,7 +16,7 @@ import chw.intern.nts.reservation.service.CategoryService;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
-	
+
 	@Autowired
 	CategoryDao categoryDao;
 
@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
 			return categoryList;
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {} ");
-			LOGGER.error(errorMsg+e.getLocalizedMessage());
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
 		return categoryList;
 	}

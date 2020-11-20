@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -77,8 +77,9 @@
 												</div>
 												<div class="info_area">
 													<div class="review_info">
-														<span class="grade">${comment.score}.0</span> <span
-															class="name">${comment.reservationName }</span> <span
+														<span class="grade"> <fmt:formatNumber
+																value="${comment.score}" type="pattern" pattern="0.0" />
+														</span> <span class="name">${comment.reservationName }</span> <span
 															class="date">${comment.reservationDate } 방문</span>
 													</div>
 												</div>

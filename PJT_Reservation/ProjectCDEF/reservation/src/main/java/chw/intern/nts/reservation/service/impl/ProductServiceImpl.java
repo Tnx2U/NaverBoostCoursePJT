@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	CommentDao commentDao;
-	
+
 	@Autowired
 	CommentService commentService;
 
@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {categoryId : %d, start : %d, limit: %d} ",
 					categoryId, start, limit);
-			LOGGER.error(errorMsg+e.getLocalizedMessage());
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
 
 		return productList;
@@ -69,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {categoryId : %d} ", categoryId);
-			LOGGER.error(errorMsg+e.getLocalizedMessage());
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
 
 		return totalCount;
@@ -109,7 +109,7 @@ public class ProductServiceImpl implements ProductService {
 			displayInfoResponse.setProductPrices(ProductPriceList);
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId);
-			LOGGER.error(errorMsg+e.getLocalizedMessage());
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
 		return displayInfoResponse;
 	}
