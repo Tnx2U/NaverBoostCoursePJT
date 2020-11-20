@@ -20,8 +20,8 @@
 <body>
 	<%
 		final int MAGNIFIC_FOR_STAR_TO_PERCENT = 20;
-	    double graphValueWidth = (double) request.getAttribute("averageScore") * MAGNIFIC_FOR_STAR_TO_PERCENT;
-	    request.setAttribute("graphValueWidth", graphValueWidth);
+	double graphValueWidth = (double) request.getAttribute("averageScore") * MAGNIFIC_FOR_STAR_TO_PERCENT;
+	request.setAttribute("graphValueWidth", graphValueWidth);
 	%>
 
 	<div id="container">
