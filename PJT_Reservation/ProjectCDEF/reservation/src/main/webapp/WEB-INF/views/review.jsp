@@ -18,6 +18,12 @@
 </head>
 
 <body>
+	<%
+		final int MAGNIFIC_FOR_STAR_TO_PERCENT = 20;
+	    double graphValueWidth = (double) request.getAttribute("averageScore") * MAGNIFIC_FOR_STAR_TO_PERCENT;
+	    request.setAttribute("graphValueWidth", graphValueWidth);
+	%>
+
 	<div id="container">
 		<!-- [D] 예약하기로 들어오면 header에 fade 클래스 추가로 숨김 -->
 		<div class="header fade">

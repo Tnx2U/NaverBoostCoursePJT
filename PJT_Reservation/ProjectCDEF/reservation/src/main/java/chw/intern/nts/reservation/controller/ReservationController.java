@@ -39,7 +39,7 @@ public class ReservationController {
 
 		request.setAttribute("commentList", commentList);
 		request.setAttribute("averageScore", averageScore);
-		request.setAttribute("graphValueWidth", graphValueWidth);
+		//request.setAttribute("graphValueWidth", graphValueWidth);
 
 		return "review";
 	}
