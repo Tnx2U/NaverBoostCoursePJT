@@ -29,6 +29,9 @@ public class CommentDao {
 
 	public List<Comment> selectAllByDisplayInfoId(Integer displayInfoId) {
 		Map<String, Integer> param = Collections.singletonMap("displayInfoId", displayInfoId);
+		
+		param = null;
+		
 		return jdbcTemplate.query(SELECT_ALL_BY_DISPLAY_INFO_ID, param, commentRowMapper);
 	}
 

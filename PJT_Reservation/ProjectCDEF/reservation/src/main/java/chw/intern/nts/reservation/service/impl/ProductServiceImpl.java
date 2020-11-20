@@ -3,13 +3,11 @@ package chw.intern.nts.reservation.service.impl;
 import java.util.Collections;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
-import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import chw.intern.nts.reservation.dao.CommentDao;
 import chw.intern.nts.reservation.dao.DisplayInfoDao;
@@ -27,7 +25,7 @@ import chw.intern.nts.reservation.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	private static final Logger logger = Logger.getLogger(ProductServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
 	@Autowired
 	ProductDao productDao;
@@ -54,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {categoryId : %d, start : %d, limit: %d}",
 					categoryId, start, limit);
-			System.err.println(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(errorMsg+e.getLocalizedMessage());
 		}
 
 		return productList;
@@ -72,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {categoryId : %d}", categoryId);
-			System.err.println(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(errorMsg+e.getLocalizedMessage());
 		}
 
 		return totalCount;
@@ -117,10 +115,9 @@ public class ProductServiceImpl implements ProductService {
 			displayInfoResponse.setProductImages(productImageList);
 			displayInfoResponse.setProductPrices(ProductPriceList);
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
-			System.err.println(errorMsg + e.getLocalizedMessage());
+			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId);
+			LOGGER.error(errorMsg+e.getLocalizedMessage());
 		}
-
 		return displayInfoResponse;
 	}
 }

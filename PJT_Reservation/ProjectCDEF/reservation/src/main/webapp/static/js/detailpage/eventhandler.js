@@ -79,7 +79,6 @@ function handleClickImageButton() {
         return;
     }
 
-    const containerElement = document.querySelector("div.container_visual");
     const ulElement = document.querySelector("ul.visual_img");
     const liElements = document.querySelectorAll(".visual_img > li");
     const imageLength = liElements.length;
