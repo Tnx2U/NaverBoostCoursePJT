@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import chw.intern.nts.reservation.dao.PromotionDao;
-import chw.intern.nts.reservation.dto.Category;
 import chw.intern.nts.reservation.dto.Promotion;
 import chw.intern.nts.reservation.service.PromotionService;
 
@@ -29,7 +28,7 @@ public class PromotionServiceImpl implements PromotionService {
 		try {
 			promotionList = promotionDao.selectAllWithImgUrl();
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {}");
+			String errorMsg = String.format("Error Occured with params : {} ");
 			LOGGER.error(errorMsg+e.getLocalizedMessage());
 		}
 		return promotionList;

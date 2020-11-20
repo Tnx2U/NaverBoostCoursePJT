@@ -30,13 +30,12 @@ public class CommentDao {
 	public List<Comment> selectAllByDisplayInfoId(Integer displayInfoId) {
 		Map<String, Integer> param = Collections.singletonMap("displayInfoId", displayInfoId);
 		
-		param = null;
-		
 		return jdbcTemplate.query(SELECT_ALL_BY_DISPLAY_INFO_ID, param, commentRowMapper);
 	}
 
 	public List<CommentImage> selectAllByCommentId(Integer commentId) {
 		Map<String, Integer> param = Collections.singletonMap("commentId", commentId);
+		
 		return jdbcTemplate.query(SELECT_COMMENT_IMAGES_ALL_BY_COMMENT_ID, param, commentImageRowMapper);
 	}
 }

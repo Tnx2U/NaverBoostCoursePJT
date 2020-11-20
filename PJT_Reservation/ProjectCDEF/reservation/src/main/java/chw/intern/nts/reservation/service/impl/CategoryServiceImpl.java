@@ -29,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
 			categoryList = categoryDao.selectAllWithCount();
 			return categoryList;
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {}");
+			String errorMsg = String.format("Error Occured with params : {} ");
 			LOGGER.error(errorMsg+e.getLocalizedMessage());
 		}
 		return categoryList;

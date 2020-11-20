@@ -13,7 +13,6 @@ import chw.intern.nts.reservation.dao.CommentDao;
 import chw.intern.nts.reservation.dao.DisplayInfoDao;
 import chw.intern.nts.reservation.dao.ProductDao;
 import chw.intern.nts.reservation.dto.Comment;
-import chw.intern.nts.reservation.dto.CommentImage;
 import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.DisplayInfoImage;
 import chw.intern.nts.reservation.dto.DisplayInfoResponse;
@@ -50,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
 				productList = productDao.selectByCategoryIdWithOffset(categoryId, start, limit);
 			}
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {categoryId : %d, start : %d, limit: %d}",
+			String errorMsg = String.format("Error Occured with params : {categoryId : %d, start : %d, limit: %d} ",
 					categoryId, start, limit);
 			LOGGER.error(errorMsg+e.getLocalizedMessage());
 		}
@@ -69,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
 				totalCount = productDao.selectCountByCategoryId(categoryId);
 			}
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {categoryId : %d}", categoryId);
+			String errorMsg = String.format("Error Occured with params : {categoryId : %d} ", categoryId);
 			LOGGER.error(errorMsg+e.getLocalizedMessage());
 		}
 
@@ -90,7 +89,6 @@ public class ProductServiceImpl implements ProductService {
 		List<ProductImage> productImageList = Collections.emptyList();
 		List<ProductPrice> ProductPriceList = Collections.emptyList();
 		List<Comment> commentList = Collections.emptyList();
-		List<CommentImage> commentImages = Collections.emptyList();
 
 		try {
 			// dao 호출 및 변수 바인딩
@@ -99,12 +97,7 @@ public class ProductServiceImpl implements ProductService {
 			displayInfoImage = displayInfoDao.selectDisplayInfoImageByDisplayInfoId(displayInfoId);
 			productImageList = productDao.selectProductImagesById(productId);
 			ProductPriceList = productDao.selectProductPricesByProductId(productId);
-			commentList = commentDao.selectAllByDisplayInfoId(displayInfoId);
-			for (Comment comment : commentList) {
-				Integer commentId = comment.getCommentId();
-				commentImages = commentDao.selectAllByCommentId(commentId);
-				comment.setCommentImages(commentImages);
-			}
+			commentList = commentService.getCommentsByDisplayInfoId(displayInfoId);
 			averageScore = commentService.getAverageScore(commentList);
 
 			// 리턴 객체에 의존성 주입
