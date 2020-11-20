@@ -1,5 +1,6 @@
 package chw.intern.nts.reservation.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.management.RuntimeErrorException;
@@ -10,8 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import chw.intern.nts.reservation.dao.CommentDao;
+import chw.intern.nts.reservation.dao.DisplayInfoDao;
 import chw.intern.nts.reservation.dao.ProductDao;
+import chw.intern.nts.reservation.dto.Comment;
+import chw.intern.nts.reservation.dto.CommentImage;
+import chw.intern.nts.reservation.dto.DisplayInfo;
+import chw.intern.nts.reservation.dto.DisplayInfoImage;
+import chw.intern.nts.reservation.dto.DisplayInfoResponse;
 import chw.intern.nts.reservation.dto.Product;
+import chw.intern.nts.reservation.dto.ProductImage;
+import chw.intern.nts.reservation.dto.ProductPrice;
+import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ProductService;
 
 @Service
@@ -21,11 +32,19 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductDao productDao;
 
-	// readonly는 디비마다 메시지를 받아서 다르게 처리
+	@Autowired
+	DisplayInfoDao displayInfoDao;
+
+	@Autowired
+	CommentDao commentDao;
+	
+	@Autowired
+	CommentService commentService;
+
 	@Transactional(readOnly = true)
 	@Override
-	public List<Product> getProductsByCategoryId(Integer categoryId, int start, int limit) {
-		List<Product> productList = null;
+	public List<Product> getProductsByCategoryId(Integer categoryId, Integer start, Integer limit) {
+		List<Product> productList = Collections.emptyList();
 		try {
 			if (categoryId == null) {
 				productList = productDao.selectAllWithOffset(start, limit);
@@ -57,5 +76,51 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		return totalCount;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public DisplayInfoResponse getDisplayInfoResponseByDisplayInfoId(Integer displayInfoId) {
+		// 리턴객체 초기화
+		DisplayInfoResponse displayInfoResponse = new DisplayInfoResponse();
+
+		// 리턴객체 의존성 객체 초기화
+		int productId = -1;
+		double averageScore = 0;
+		DisplayInfo displayInfo = null;
+		DisplayInfoImage displayInfoImage = null;
+		List<ProductImage> productImageList = Collections.emptyList();
+		List<ProductPrice> ProductPriceList = Collections.emptyList();
+		List<Comment> commentList = Collections.emptyList();
+		List<CommentImage> commentImages = Collections.emptyList();
+
+		try {
+			// dao 호출 및 변수 바인딩
+			productId = displayInfoDao.selectProductIdById(displayInfoId);
+			displayInfo = displayInfoDao.selectById(displayInfoId);
+			displayInfoImage = displayInfoDao.selectDisplayInfoImageByDisplayInfoId(displayInfoId);
+			productImageList = productDao.selectProductImagesById(productId);
+			ProductPriceList = productDao.selectProductPricesByProductId(productId);
+			commentList = commentDao.selectAllByDisplayInfoId(displayInfoId);
+			for (Comment comment : commentList) {
+				Integer commentId = comment.getCommentId();
+				commentImages = commentDao.selectAllByCommentId(commentId);
+				comment.setCommentImages(commentImages);
+			}
+			averageScore = commentService.getAverageScore(commentList);
+
+			// 리턴 객체에 의존성 주입
+			displayInfoResponse.setAverageScore(averageScore);
+			displayInfoResponse.setComments(commentList);
+			displayInfoResponse.setDisplayInfo(displayInfo);
+			displayInfoResponse.setDisplayInfoImage(displayInfoImage);
+			displayInfoResponse.setProductImages(productImageList);
+			displayInfoResponse.setProductPrices(ProductPriceList);
+		} catch (Exception e) {
+			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
+			System.err.println(errorMsg + e.getLocalizedMessage());
+		}
+
+		return displayInfoResponse;
 	}
 }

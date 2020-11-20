@@ -1,6 +1,7 @@
 package reservation;
 
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,8 +13,8 @@ import chw.intern.nts.reservation.dto.*;
 
 public class DaoTest {
 	public static void main(String[] args) {
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-		CategoryDao categorydao = ac.getBean(CategoryDao.class);
+//		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+//		CategoryDao categorydao = ac.getBean(CategoryDao.class);
 		
 //		List<Category> list = categorydao.selectAll();
 		

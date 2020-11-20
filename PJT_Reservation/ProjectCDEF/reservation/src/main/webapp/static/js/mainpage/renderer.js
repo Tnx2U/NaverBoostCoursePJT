@@ -19,11 +19,12 @@ function renderProductList(response) {
     let htmlTemplate = document.querySelector("#itemList").innerHTML;
     
     document.querySelector(".event_lst_txt > .pink").innerText = `${totalCount}개`;
-
+    
     productList.forEach((product, index) => {
         let childNumber = index % 2 + 1;
         targetElement = document.querySelector(`.lst_event_box:nth-child(${childNumber})`);
         targetElement.innerHTML += htmlTemplate.replace("{productId}", product.productId)
+            .replace("{displayInfoId}", product.displayInfoId)
             .replaceAll("{productDescription}", product.productDescription)
             .replace("{placeName}", product.placeName)
             .replace("{productContent}", product.productContent)

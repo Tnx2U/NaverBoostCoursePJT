@@ -5,14 +5,14 @@
 <html lang="ko">
 
 <head>
-<meta charset="utf-8">
-<meta name="description"
-	content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
-<meta name="viewport"
-	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-<title>네이버 예약</title>
-<link href="static/css/reservation.css" rel="stylesheet">
-<link href="static/css/style.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="description"
+		content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+	<title>네이버 예약</title>
+	<link href="static/css/reservation.css" rel="stylesheet">
+	<link href="static/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -114,7 +114,7 @@
 
 	<script type="rv-template" id="itemList">
         <li class="item">
-            <a href="detail.html?id={productId}" class="item_book">
+            <a href="detail.html?displayInfoId={displayInfoId}" class="item_book">
                 <div class="item_preview">
                     <img alt="{productDescription}" class="img_thumb" src="static/{productImageUrl}">
                     <span class="img_border"></span>
@@ -126,12 +126,12 @@
             </a>
         </li>
     </script>
-    <script type="text/javascript" src="static/js/properties.js"></script>
-    <script type="text/javascript" src="static/js/ajaxhandler.js"></script>
-    <script type="text/javascript" src="static/js/eventhandler.js"></script>
-    <script type="text/javascript" src="static/js/renderer.js"></script>
-    <script type="text/javascript" src="static/js/template.js"></script>
-	<script type="text/javascript" src="static/js/mainpage.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/properties.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/ajaxhandler.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/eventhandler.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/renderer.js"></script>
+    <script type="text/javascript" src="static/js/mainpage/template.js"></script>
+	<script type="text/javascript" src="static/js/mainpage/mainpage.js"></script>
 </body>
 
 </html>
