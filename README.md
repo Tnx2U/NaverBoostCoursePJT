@@ -7,7 +7,15 @@
 
 
 
-### 🐦 컨벤션(갱신 중)
+### 🐼 위키
+
+- 프로젝트별 강의 공부, 일일 일지, 코드리뷰 피드백 등이 있는 문서입니다.
+
+- [링크](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/wikis/home)
+
+
+
+### 🐦 컨벤션
 
 - 기본적으로 네이버 컨벤션 따르기
 
@@ -40,3 +48,5 @@
 1. [PJT01](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/PJT1_dev/PJT_01/PJT01_README.md)
 2. [PJT02](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/PJT2_dev/PJT_02/PJT02_README.md)
 3. [PJT03](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT03_README.md)
+4. [PJT04](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT04_README.md)
+

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -17,6 +18,12 @@
 </head>
 
 <body>
+	<%
+		final int MAGNIFIC_FOR_STAR_TO_PERCENT = 20;
+	double graphValueWidth = (double) request.getAttribute("averageScore") * MAGNIFIC_FOR_STAR_TO_PERCENT;
+	request.setAttribute("graphValueWidth", graphValueWidth);
+	%>
+
 	<div id="container">
 		<!-- [D] 예약하기로 들어오면 header에 fade 클래스 추가로 숨김 -->
 		<div class="header fade">
@@ -76,8 +83,9 @@
 												</div>
 												<div class="info_area">
 													<div class="review_info">
-														<span class="grade">${comment.score}.0</span> <span
-															class="name">${comment.reservationName }</span> <span
+														<span class="grade"> <fmt:formatNumber
+																value="${comment.score}" type="pattern" pattern="0.0" />
+														</span> <span class="name">${comment.reservationName }</span> <span
 															class="date">${comment.reservationDate } 방문</span>
 													</div>
 												</div>

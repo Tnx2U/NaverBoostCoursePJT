@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- status 속성으로 로그 수준(내부 동작이 어떻게 될지)을 결정 -->
+<Configuration status="INFO">
+	<Appenders>
+		<!-- 출력 대상 -->
+		<Console name="console" target="SYSTEM_OUT">
+			<!-- 패턴 -->
+			<PatternLayout
+				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+		</Console>
+	</Appenders>
+	<!-- 각 로거에 대한 설정 정의 -->
+	<Loggers>
+		<Root level="debug" additivity="false">
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>

@@ -3,6 +3,8 @@ package chw.intern.nts.reservation.service.impl;
 import java.util.Collections;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,8 @@ import chw.intern.nts.reservation.service.CommentService;
 
 @Service
 public class CommentServiceImpl implements CommentService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
+
 	@Autowired
 	CommentDao commentDao;
 
@@ -24,17 +28,25 @@ public class CommentServiceImpl implements CommentService {
 		try {
 			commentList = commentDao.selectAllByDisplayInfoId(displayInfoId);
 			for (Comment comment : commentList) {
+				comment.setScore(convertDigit(comment.getScore()));
 				Integer commentId = comment.getCommentId();
 				List<CommentImage> commentImages = commentDao.selectAllByCommentId(commentId);
 				comment.setCommentImages(commentImages);
 			}
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
-			//log4j, logger.err 하면 자동으로 stacktrace걸어준다고 한다.
-			System.err.println(errorMsg + e.getLocalizedMessage());
+			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId);
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
 
 		return commentList;
+	}
+
+	private double convertDigit(double number) {
+		double convertedNumber = number;
+
+		convertedNumber = Math.round(convertedNumber * 10.0) / 10;
+
+		return convertedNumber;
 	}
 
 	@Override
@@ -48,8 +60,8 @@ public class CommentServiceImpl implements CommentService {
 			averageScore /= commentList.size();
 		}
 
-		averageScore = Math.round(averageScore*10)/10.0;
-		
+		averageScore = Math.round(averageScore * 10) / 10.0;
+
 		return averageScore;
 	}
 }

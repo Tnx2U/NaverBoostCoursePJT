@@ -3,19 +3,16 @@ package chw.intern.nts.reservation.service.impl;
 import java.util.Collections;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
-import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import chw.intern.nts.reservation.dao.CommentDao;
 import chw.intern.nts.reservation.dao.DisplayInfoDao;
 import chw.intern.nts.reservation.dao.ProductDao;
 import chw.intern.nts.reservation.dto.Comment;
-import chw.intern.nts.reservation.dto.CommentImage;
 import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.DisplayInfoImage;
 import chw.intern.nts.reservation.dto.DisplayInfoResponse;
@@ -27,7 +24,7 @@ import chw.intern.nts.reservation.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	private static final Logger logger = Logger.getLogger(ProductServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
 	@Autowired
 	ProductDao productDao;
@@ -37,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	CommentDao commentDao;
-	
+
 	@Autowired
 	CommentService commentService;
 
@@ -52,9 +49,9 @@ public class ProductServiceImpl implements ProductService {
 				productList = productDao.selectByCategoryIdWithOffset(categoryId, start, limit);
 			}
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {categoryId : %d, start : %d, limit: %d}",
+			String errorMsg = String.format("Error Occured with params : {categoryId : %d, start : %d, limit: %d} ",
 					categoryId, start, limit);
-			System.err.println(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
 
 		return productList;
@@ -71,8 +68,8 @@ public class ProductServiceImpl implements ProductService {
 				totalCount = productDao.selectCountByCategoryId(categoryId);
 			}
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {categoryId : %d}", categoryId);
-			System.err.println(errorMsg + e.getLocalizedMessage());
+			String errorMsg = String.format("Error Occured with params : {categoryId : %d} ", categoryId);
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
 
 		return totalCount;
@@ -92,7 +89,6 @@ public class ProductServiceImpl implements ProductService {
 		List<ProductImage> productImageList = Collections.emptyList();
 		List<ProductPrice> ProductPriceList = Collections.emptyList();
 		List<Comment> commentList = Collections.emptyList();
-		List<CommentImage> commentImages = Collections.emptyList();
 
 		try {
 			// dao 호출 및 변수 바인딩
@@ -101,12 +97,7 @@ public class ProductServiceImpl implements ProductService {
 			displayInfoImage = displayInfoDao.selectDisplayInfoImageByDisplayInfoId(displayInfoId);
 			productImageList = productDao.selectProductImagesById(productId);
 			ProductPriceList = productDao.selectProductPricesByProductId(productId);
-			commentList = commentDao.selectAllByDisplayInfoId(displayInfoId);
-			for (Comment comment : commentList) {
-				Integer commentId = comment.getCommentId();
-				commentImages = commentDao.selectAllByCommentId(commentId);
-				comment.setCommentImages(commentImages);
-			}
+			commentList = commentService.getCommentsByDisplayInfoId(displayInfoId);
 			averageScore = commentService.getAverageScore(commentList);
 
 			// 리턴 객체에 의존성 주입
@@ -117,10 +108,9 @@ public class ProductServiceImpl implements ProductService {
 			displayInfoResponse.setProductImages(productImageList);
 			displayInfoResponse.setProductPrices(ProductPriceList);
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d}", displayInfoId);
-			System.err.println(errorMsg + e.getLocalizedMessage());
+			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId);
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
-
 		return displayInfoResponse;
 	}
 }
