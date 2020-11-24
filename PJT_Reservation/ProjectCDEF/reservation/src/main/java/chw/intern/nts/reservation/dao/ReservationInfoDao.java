@@ -1,8 +1,5 @@
 package chw.intern.nts.reservation.dao;
 
-import static chw.intern.nts.reservation.dao.ProductDaoSqls.SELECT_PRODUCT_IMAGES_BY_ID;
-import static chw.intern.nts.reservation.dao.PromotionDaoSqls.SELECT_ALL_WITH_IMG_URL;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;

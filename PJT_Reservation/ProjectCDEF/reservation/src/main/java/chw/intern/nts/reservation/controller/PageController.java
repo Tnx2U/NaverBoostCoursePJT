@@ -14,22 +14,22 @@ import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.service.CommentService;
 
 @Controller
-public class ReservationController {
+public class PageController {
 	@Autowired
 	CommentService commentService;
 
 	@GetMapping(path = "/main")
-	public String mainPage(ModelMap model) {
+	public String getMainPage(ModelMap model) {
 		return "main";
 	}
 
 	@GetMapping(path = "/detail")
-	public String detailPage() {
+	public String getDetailPage() {
 		return "detail";
 	}
 
 	@GetMapping(path = "/review/{displayInfoId}")
-	public String reviewPage(@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId,
+	public String getReviewPage(@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId,
 			HttpServletRequest request) {
 		
 		List<Comment> commentList = commentService.getCommentsByDisplayInfoId(displayInfoId);

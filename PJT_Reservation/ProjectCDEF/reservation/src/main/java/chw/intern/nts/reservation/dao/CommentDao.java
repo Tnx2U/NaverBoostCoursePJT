@@ -15,7 +15,6 @@ import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.CommentImage;
 
 import static chw.intern.nts.reservation.dao.CommentDaoSqls.*;
-import static chw.intern.nts.reservation.dao.ProductDaoSqls.SELECT_COUNT_BY_CATEGORY_ID;
 
 @Repository
 public class CommentDao {

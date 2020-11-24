@@ -21,7 +21,7 @@ public class CategoryApiController {
 	CategoryService categoryService;
 
 	@GetMapping
-	public Map<String, Object> categoryList() {
+	public Map<String, Object> getCategories() {
 		List<Category> CategoryResponse = categoryService.getAllCategoriesWithCount();
 		Map<String, Object> responseMap = new HashMap<>();
 		responseMap.put("items", CategoryResponse);

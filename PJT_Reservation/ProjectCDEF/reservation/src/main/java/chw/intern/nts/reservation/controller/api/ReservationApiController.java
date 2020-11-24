@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.dto.ReservationInfo;
 import chw.intern.nts.reservation.service.ReservationService;
 
@@ -23,7 +22,7 @@ public class ReservationApiController {
 	ReservationService reservationService;
 	
 	@GetMapping
-	public Map<String, Object> reservationList(@RequestParam(name = "reservationEmail ", required = true) String reservationEmail){
+	public Map<String, Object> getReservations(@RequestParam(name = "reservationEmail", required = true) String reservationEmail){
 		Map<String, Object> responseMap = new HashMap<>();
 		
 		List<ReservationInfo> reservationInfoList = reservationService.getReservationsByEmail(reservationEmail);
