@@ -113,4 +113,19 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return displayInfoResponse;
 	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public DisplayInfo getDisplayInfoById(Integer displayInfoId) {
+		DisplayInfo displayInfo = null;
+
+		try {
+			displayInfo = displayInfoDao.selectById(displayInfoId);
+		} catch (Exception e) {
+			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId);
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
+		}
+
+		return displayInfo;
+	}
 }

@@ -55,14 +55,14 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new LogInterceptor());
-	}
-
-	@Override
-	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-		System.out.println("아규먼트 리졸버 등록..");
-		argumentResolvers.add(new HeaderMapArgumentResolver());
-	}
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry) {
+//		registry.addInterceptor(new LogInterceptor());
+//	}
+//
+//	@Override
+//	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+//		System.out.println("아규먼트 리졸버 등록..");
+//		argumentResolvers.add(new HeaderMapArgumentResolver());
+//	}
 }
