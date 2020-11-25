@@ -2,6 +2,9 @@ package chw.intern.nts.reservation.dto;
 
 import java.util.List;
 
+import chw.intern.nts.reservation.entity.ReservationInfo;
+import chw.intern.nts.reservation.entity.ReservationInfoPrice;
+
 public class ReservationParam {
 	private Integer displayInfoId;
 	private Integer productId;

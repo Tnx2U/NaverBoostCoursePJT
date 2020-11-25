@@ -1,5 +1,7 @@
 package chw.intern.nts.reservation.dao;
 
+import static chw.intern.nts.reservation.dao.sql.PromotionDaoSqls.*;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +13,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import chw.intern.nts.reservation.dto.Promotion;
-import static chw.intern.nts.reservation.dao.PromotionDaoSqls.*;
 
 @Repository
 public class PromotionDao {

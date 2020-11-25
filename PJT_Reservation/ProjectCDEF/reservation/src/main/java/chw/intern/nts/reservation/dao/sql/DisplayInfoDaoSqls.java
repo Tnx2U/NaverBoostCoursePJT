@@ -1,4 +1,4 @@
-package chw.intern.nts.reservation.dao;
+package chw.intern.nts.reservation.dao.sql;
 
 public class DisplayInfoDaoSqls {
 	public static final String SELECT_PRODUCT_ID_BY_ID = "SELECT product_id"

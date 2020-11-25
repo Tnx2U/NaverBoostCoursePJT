@@ -1,6 +1,9 @@
-package chw.intern.nts.reservation.dto;
+package chw.intern.nts.reservation.entity;
 
 import java.sql.Date;
+
+import chw.intern.nts.reservation.dto.DisplayInfo;
+import chw.intern.nts.reservation.dto.ReservationParam;
 
 public class ReservationInfo {
 	private int cancelFlag;

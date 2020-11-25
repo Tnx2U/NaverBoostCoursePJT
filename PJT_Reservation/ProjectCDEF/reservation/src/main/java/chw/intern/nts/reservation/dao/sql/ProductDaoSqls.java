@@ -1,4 +1,4 @@
-package chw.intern.nts.reservation.dao;
+package chw.intern.nts.reservation.dao.sql;
 
 public class ProductDaoSqls {
 	public static final String SELECT_ALL_COUNT = "SELECT COUNT(product.id) FROM product"

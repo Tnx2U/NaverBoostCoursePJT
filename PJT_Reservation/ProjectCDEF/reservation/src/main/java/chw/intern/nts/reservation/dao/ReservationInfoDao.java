@@ -1,5 +1,7 @@
 package chw.intern.nts.reservation.dao;
 
+import static chw.intern.nts.reservation.dao.sql.ReservationInfoDaoSqls.*;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -14,10 +16,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import chw.intern.nts.reservation.dto.ReservationInfoPrice;
-import chw.intern.nts.reservation.dto.ReservationInfo;
-
-import static chw.intern.nts.reservation.dao.ReservationInfoDaoSqls.*;
+import chw.intern.nts.reservation.entity.ReservationInfo;
+import chw.intern.nts.reservation.entity.ReservationInfoPrice;
 
 @Repository
 public class ReservationInfoDao {

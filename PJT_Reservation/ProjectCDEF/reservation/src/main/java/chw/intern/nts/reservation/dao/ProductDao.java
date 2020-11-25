@@ -1,5 +1,7 @@
 package chw.intern.nts.reservation.dao;
 
+import static chw.intern.nts.reservation.dao.sql.ProductDaoSqls.*;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -15,8 +17,6 @@ import org.springframework.stereotype.Repository;
 import chw.intern.nts.reservation.dto.Product;
 import chw.intern.nts.reservation.dto.ProductImage;
 import chw.intern.nts.reservation.dto.ProductPrice;
-
-import static chw.intern.nts.reservation.dao.ProductDaoSqls.*;
 
 @Repository
 public class ProductDao {

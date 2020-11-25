@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import chw.intern.nts.reservation.dao.ReservationInfoDao;
-import chw.intern.nts.reservation.dto.ReservationInfoPrice;
-import chw.intern.nts.reservation.dto.ReservationInfo;
 import chw.intern.nts.reservation.dto.ReservationParam;
+import chw.intern.nts.reservation.entity.ReservationInfo;
+import chw.intern.nts.reservation.entity.ReservationInfoPrice;
 import chw.intern.nts.reservation.service.ProductService;
 import chw.intern.nts.reservation.service.ReservationService;
 

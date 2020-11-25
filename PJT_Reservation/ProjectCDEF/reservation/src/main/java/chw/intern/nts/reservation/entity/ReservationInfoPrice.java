@@ -1,4 +1,4 @@
-package chw.intern.nts.reservation.dto;
+package chw.intern.nts.reservation.entity;
 
 public class ReservationInfoPrice {
 	private Integer reservationInfoPriceId;

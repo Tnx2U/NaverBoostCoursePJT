@@ -8,7 +8,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import chw.intern.nts.reservation.dto.Category;
-import static chw.intern.nts.reservation.dao.CategoryDaoSqls.*;
+
+import static chw.intern.nts.reservation.dao.sql.CategoryDaoSqls.*;
 
 import java.util.Collections;
 import java.util.List;

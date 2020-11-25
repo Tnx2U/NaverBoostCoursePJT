@@ -1,4 +1,4 @@
-package chw.intern.nts.reservation.dao;
+package chw.intern.nts.reservation.dao.sql;
 
 public class PromotionDaoSqls {
 	public static final String SELECT_ALL_WITH_IMG_URL = "SELECT p.id id,"

@@ -1,5 +1,7 @@
 package chw.intern.nts.reservation.dao;
 
+import static chw.intern.nts.reservation.dao.sql.CommentDaoSqls.*;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +15,6 @@ import org.springframework.stereotype.Repository;
 
 import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.CommentImage;
-
-import static chw.intern.nts.reservation.dao.CommentDaoSqls.*;
 
 @Repository
 public class CommentDao {

@@ -1,4 +1,4 @@
-package chw.intern.nts.reservation.dao;
+package chw.intern.nts.reservation.dao.sql;
 
 public class ReservationInfoDaoSqls {
 	public static final String SELECT_ALL_BY_EMAIL = "SELECT ri.cancel_flag cancelYn,"
