@@ -1,18 +1,44 @@
 package chw.intern.nts.reservation.dto;
 
+import java.sql.Date;
+
 public class ReservationInfo {
+	private int cancelFlag;
 	private boolean cancelYn;
-	private String createDate;
 	private DisplayInfo displayInfo;
 	private Integer displayInfoId;
-	private String modifyDate;
 	private Integer productId;
-	private String reservationDate;
+	private Date reservationDate;
+	private Date createDate;
+	private Date modifyDate;
 	private String reservationEmail;
 	private Integer reservationInfoId;
 	private String reservationName;
-	private String reservationTelephone;
+	private String reservationTel;
 	private Integer totalPrice;
+
+	public static ReservationInfo from(ReservationParam param) {
+		ReservationInfo reservationInfo = new ReservationInfo();
+		reservationInfo.setCancelFlag(param.isCancelYn() ? 1 : 0);
+		reservationInfo.setProductId(param.getProductId());
+		reservationInfo.setDisplayInfoId(param.getDisplayInfoId());
+		reservationInfo.setReservationName(param.getReservationName());
+		reservationInfo.setReservationTel(param.getReservationTelephone());
+		reservationInfo.setReservationEmail(param.getReservationEmail());
+		reservationInfo.setReservationDate(Date.valueOf(param.getReservationYearMonthDay().replace(".", "-")));
+		reservationInfo.setCreateDate(new Date(System.currentTimeMillis()));
+		reservationInfo.setModifyDate(new Date(System.currentTimeMillis()));
+		
+		return reservationInfo;
+	}
+
+	public int getCancelFlag() {
+		return cancelFlag;
+	}
+
+	public void setCancelFlag(int cancelFlag) {
+		this.cancelFlag = cancelFlag;
+	}
 
 	public boolean isCancelYn() {
 		return cancelYn;
@@ -22,11 +48,11 @@ public class ReservationInfo {
 		this.cancelYn = cancelYn;
 	}
 
-	public String getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 
@@ -46,11 +72,11 @@ public class ReservationInfo {
 		this.displayInfoId = displayInfoId;
 	}
 
-	public String getModifyDate() {
+	public Date getModifyDate() {
 		return modifyDate;
 	}
 
-	public void setModifyDate(String modifyDate) {
+	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
 
@@ -62,11 +88,11 @@ public class ReservationInfo {
 		this.productId = productId;
 	}
 
-	public String getReservationDate() {
+	public Date getReservationDate() {
 		return reservationDate;
 	}
 
-	public void setReservationDate(String reservationDate) {
+	public void setReservationDate(Date reservationDate) {
 		this.reservationDate = reservationDate;
 	}
 
@@ -94,12 +120,12 @@ public class ReservationInfo {
 		this.reservationName = reservationName;
 	}
 
-	public String getReservationTelephone() {
-		return reservationTelephone;
+	public String getReservationTel() {
+		return reservationTel;
 	}
 
-	public void setReservationTelephone(String reservationTelephone) {
-		this.reservationTelephone = reservationTelephone;
+	public void setReservationTel(String reservationTel) {
+		this.reservationTel = reservationTel;
 	}
 
 	public Integer getTotalPrice() {

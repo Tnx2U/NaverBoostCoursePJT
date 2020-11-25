@@ -9,7 +9,7 @@ public class ReservationParam {
 	private String reservationName;
 	private String reservationTelephone;
 	private String reservationYearMonthDay;
-	private List<PriceParam> prices;
+	private List<ReservationInfoPrice> prices;
 
 	private Integer reservationInfoId;
 	private boolean cancelYn;
@@ -65,11 +65,11 @@ public class ReservationParam {
 		this.reservationYearMonthDay = reservationYearMonthDay;
 	}
 
-	public List<PriceParam> getPrices() {
+	public List<ReservationInfoPrice> getPrices() {
 		return prices;
 	}
 
-	public void setPrices(List<PriceParam> prices) {
+	public void setPrices(List<ReservationInfoPrice> prices) {
 		this.prices = prices;
 	}
 

@@ -1,10 +1,12 @@
 package chw.intern.nts.reservation.dto;
 
-public class PriceParam {
+public class ReservationInfoPrice {
 	private Integer reservationInfoPriceId;
 	private Integer reservationInfoId;
 	private Integer productPriceId;
 	private Integer count;
+	
+	private Integer id;
 
 	public Integer getReservationInfoPriceId() {
 		return reservationInfoPriceId;
@@ -12,6 +14,7 @@ public class PriceParam {
 
 	public void setReservationInfoPriceId(Integer reservationInfoPriceId) {
 		this.reservationInfoPriceId = reservationInfoPriceId;
+		this.id = reservationInfoPriceId;
 	}
 
 	public Integer getReservationInfoId() {
@@ -37,10 +40,18 @@ public class PriceParam {
 	public void setCount(Integer count) {
 		this.count = count;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId() {
+		this.id = this.reservationInfoPriceId;
+	}
 
 	@Override
 	public String toString() {
-		return "Price [reservationInfoPriceId=" + reservationInfoPriceId + ", reservationInfoId="
+		return "Price [id=" + id + ", reservationInfoPriceId=" + reservationInfoPriceId + ", reservationInfoId="
 				+ reservationInfoId + ", productPriceId=" + productPriceId + ", count=" + count + "]";
 	}
 }

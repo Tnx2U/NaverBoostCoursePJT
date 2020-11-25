@@ -10,7 +10,7 @@ public class ReservationInfoDaoSqls {
 			+ " ri.reservation_email,"
 			+ " ri.id reservation_info_id,"
 			+ " ri.reservation_name,"
-			+ " ri.reservation_tel reservation_telephone,"
+			+ " ri.reservation_tel,"
 			+ " 	(SELECT SUM(rip.count * pp.price) FROM reservation_info_price rip"
 			+ " 	 JOIN product_price pp"
 			+ " 	 ON rip.product_price_id = pp.id"

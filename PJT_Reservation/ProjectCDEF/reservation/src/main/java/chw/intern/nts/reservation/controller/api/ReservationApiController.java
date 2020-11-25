@@ -40,7 +40,7 @@ public class ReservationApiController {
 		Map<String, Object> responseMap = new HashMap<>();
 		
 		System.out.println(reservationParam);
-//		ReservationParam responseReservation = reservationService.postReservation(reservationParam);
+		ReservationParam responseReservation = reservationService.postReservation(reservationParam);
 		
 		return responseMap;
 	}
