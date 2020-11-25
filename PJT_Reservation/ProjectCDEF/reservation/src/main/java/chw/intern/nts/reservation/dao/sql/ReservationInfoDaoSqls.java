@@ -27,7 +27,7 @@ public class ReservationInfoDaoSqls {
 			+ " reservation_email,"
 			+ " reservation_name,"
 			+ " reservation_tel,"
-			+ " cancel_flag cancel_yn,"
+			+ " cancel_flag,"
 			+ " create_date, modify_date"
 			+ " FROM reservation_info"
 			+ " WHERE id = :reservationInfoId";
@@ -38,4 +38,8 @@ public class ReservationInfoDaoSqls {
 			+ " count"
 			+ " FROM reservation_info_price"
 			+ " WHERE reservation_info_id = :reservationInfoPriceId";
+	
+	public static final String SELECT_UPDATE_CANCEL_FLAG_BY_RESERVATION_INFO_ID = "UPDATE reservation_info"
+			+ " SET cancel_flag = 1"
+			+ " WHERE id = :reservationInfoId";
 }

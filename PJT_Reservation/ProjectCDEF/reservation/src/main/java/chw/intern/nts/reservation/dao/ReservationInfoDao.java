@@ -66,4 +66,11 @@ public class ReservationInfoDao {
 
 		return jdbcTemplate.query(SELECT_RESERVATION_INFO_PRICE_BY_RESERVATION_ID, params, reservationInfoPriceRowMapper);
 	}
+
+	public int updateCancelFlagByReservationInfoId(Integer reservationInfoId) {
+		//simpleInsert처럼 update편하게 해주는거 없나?
+		Map<String, Integer> params = Collections.singletonMap("reservationInfoId", reservationInfoId);
+		
+		return jdbcTemplate.update(SELECT_UPDATE_CANCEL_FLAG_BY_RESERVATION_INFO_ID, params);
+	}
 }

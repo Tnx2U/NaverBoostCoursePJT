@@ -68,13 +68,51 @@ public class ReservationServiceImpl implements ReservationService {
 				}
 			}
 
-			ReservationInfo insertedReservationInfo =  reservationInfoDao.selectReservationInfoById(insertedReservationInfoId);
-			responseReservationParam = ReservationParam.from(insertedReservationInfo);
-			List<ReservationInfoPrice> insertedPriceList = reservationInfoDao.selectReservationInfoPriceByReservationId(insertedReservationInfoId);
-			responseReservationParam.setPrices(insertedPriceList);
-			
+			responseReservationParam = getReservationsInfoWithPricesById(insertedReservationInfoId);
+
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {reservationParam : %s} ", reservationParam);
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
+		}
+
+		return responseReservationParam;
+	}
+
+	@Transactional(readOnly = false)
+	@Override
+	public ReservationParam putCancelFlag(Integer reservationInfoId) {
+		ReservationParam responseReservationParam = null;
+		int updatedRow = -1;
+
+		try {
+			updatedRow = reservationInfoDao.updateCancelFlagByReservationInfoId(reservationInfoId);
+
+			if (updatedRow == 0) {
+				throw new Exception("ReservationInfoDao.updateCancelFlagByReservationInfoId has no return value ");
+			}
+
+			responseReservationParam = getReservationsInfoWithPricesById(reservationInfoId);
+		} catch (Exception e) {
+			String errorMsg = String.format("Error Occured with params : {reservationInfoId : %d} ", reservationInfoId);
+			LOGGER.error(errorMsg + e.getLocalizedMessage());
+		}
+
+		return responseReservationParam;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public ReservationParam getReservationsInfoWithPricesById(Integer reservationInfoId) {
+		ReservationParam responseReservationParam = null;
+
+		try {
+			ReservationInfo updatedReservationInfo = reservationInfoDao.selectReservationInfoById(reservationInfoId);
+			responseReservationParam = ReservationParam.from(updatedReservationInfo);
+			List<ReservationInfoPrice> priceList = reservationInfoDao
+					.selectReservationInfoPriceByReservationId(reservationInfoId);
+			responseReservationParam.setPrices(priceList);
+		} catch (Exception e) {
+			String errorMsg = String.format("Error Occured with params : {reservationInfoId : %d} ", reservationInfoId);
 			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
 

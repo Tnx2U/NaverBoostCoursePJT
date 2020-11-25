@@ -8,4 +8,6 @@ import chw.intern.nts.reservation.entity.ReservationInfo;
 public interface ReservationService {
 	List<ReservationInfo> getReservationsByEmail(String reservationEmail);
 	ReservationParam postReservation(ReservationParam reservationParam);
+	ReservationParam getReservationsInfoWithPricesById(Integer reservationInfoId);
+	ReservationParam putCancelFlag(Integer reservationInfoId);
 }

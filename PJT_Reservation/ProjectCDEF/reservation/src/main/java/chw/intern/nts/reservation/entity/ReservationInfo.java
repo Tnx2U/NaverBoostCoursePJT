@@ -41,6 +41,7 @@ public class ReservationInfo {
 
 	public void setCancelFlag(int cancelFlag) {
 		this.cancelFlag = cancelFlag;
+		this.cancelYn = cancelFlag == 0 ? false : true;
 	}
 
 	public boolean isCancelYn() {
