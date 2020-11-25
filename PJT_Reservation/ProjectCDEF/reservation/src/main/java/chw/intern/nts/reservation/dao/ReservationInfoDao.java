@@ -24,18 +24,23 @@ public class ReservationInfoDao {
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	private SimpleJdbcInsert insertReservationInfoAction;
 	private SimpleJdbcInsert insertPriceAction;
-	private RowMapper<ReservationInfo> rowMapper = BeanPropertyRowMapper.newInstance(ReservationInfo.class);
+	private RowMapper<ReservationInfo> reservationInfoRowMapper = BeanPropertyRowMapper
+			.newInstance(ReservationInfo.class);
+	private RowMapper<ReservationInfoPrice> reservationInfoPriceRowMapper = BeanPropertyRowMapper
+			.newInstance(ReservationInfoPrice.class);
 
 	public ReservationInfoDao(DataSource dataSource) {
 		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-		this.insertReservationInfoAction = new SimpleJdbcInsert(dataSource).withTableName("reservation_info").usingGeneratedKeyColumns("id");
-		this.insertPriceAction = new SimpleJdbcInsert(dataSource).withTableName("reservation_info_price").usingGeneratedKeyColumns("id");
+		this.insertReservationInfoAction = new SimpleJdbcInsert(dataSource).withTableName("reservation_info")
+				.usingGeneratedKeyColumns("id");
+		this.insertPriceAction = new SimpleJdbcInsert(dataSource).withTableName("reservation_info_price")
+				.usingGeneratedKeyColumns("id");
 	}
 
 	public List<ReservationInfo> selectAllByEmail(String reservationEmail) {
 		Map<String, String> params = Collections.singletonMap("reservationEmail", reservationEmail);
 
-		return jdbcTemplate.query(SELECT_ALL_BY_EMAIL, params, rowMapper);
+		return jdbcTemplate.query(SELECT_ALL_BY_EMAIL, params, reservationInfoRowMapper);
 	}
 
 	public int insertReservationInfo(ReservationInfo reservationInfo) {
@@ -48,5 +53,17 @@ public class ReservationInfoDao {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(reservationInfoPrice);
 
 		return insertPriceAction.executeAndReturnKey(params).intValue();
+	}
+
+	public ReservationInfo selectReservationInfoById(int reservationInfoId) {
+		Map<String, Integer> params = Collections.singletonMap("reservationInfoId", reservationInfoId);
+
+		return jdbcTemplate.queryForObject(SELECT_RESERVATION_INFO_BY_ID, params, reservationInfoRowMapper);
+	}
+
+	public List<ReservationInfoPrice> selectReservationInfoPriceByReservationId(int reservationInfoPriceId) {
+		Map<String, Integer> params = Collections.singletonMap("reservationInfoPriceId", reservationInfoPriceId);
+
+		return jdbcTemplate.query(SELECT_RESERVATION_INFO_PRICE_BY_RESERVATION_ID, params, reservationInfoPriceRowMapper);
 	}
 }

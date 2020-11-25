@@ -48,42 +48,36 @@ public class ReservationServiceImpl implements ReservationService {
 	@Transactional(readOnly = false)
 	@Override
 	public ReservationParam postReservation(ReservationParam reservationParam) {
-		// 입력받은 객체를 수정하여 리턴 or 입력은 입력대로 하고, 다시 쿼리 날려서 객체 받아옴
-
-		ReservationParam responseReservation = null;
+		ReservationParam responseReservationParam = null;
 		int insertedReservationInfoId = -1;
 		int insertedReservationInfoPriceId = -1;
-
 		// 정적 팩토리 메서드 사용
 		ReservationInfo reservationInfo = ReservationInfo.from(reservationParam);
 
 		try {
-			// reservation객체 전처리
-
-			// reservation info 삽입
 			insertedReservationInfoId = reservationInfoDao.insertReservationInfo(reservationInfo);
-//			if (insertedReservationInfoId == -1) {
-//				// 예외처리
-//				throw new Exception("ReservationInfoDao.insertReservationInfoPrice has no return value ");
-//			}
+			if (insertedReservationInfoId == -1) {
+				throw new Exception("ReservationInfoDao.insertReservationInfoPrice has no return value ");
+			}
 
-			// 반복돌며 reservation info price 삽입
 			for (ReservationInfoPrice price : reservationParam.getPrices()) {
 				price.setReservationInfoId(insertedReservationInfoId);
 				insertedReservationInfoPriceId = reservationInfoDao.insertReservationInfoPrice(price);
-//				if (insertedReservationInfoPriceId == -1) {
-//					// 예외처리
-//					throw new Exception("ReservationInfoDao.insertReservationInfo has no return value ");
-//				}
+				if (insertedReservationInfoPriceId == -1) {
+					throw new Exception("ReservationInfoDao.insertReservationInfo has no return value ");
+				}
 			}
 
-			// insert된 결과를 다시 select하여 사용자 입력값 리턴
-
+			ReservationInfo insertedReservationInfo =  reservationInfoDao.selectReservationInfoById(insertedReservationInfoId);
+			responseReservationParam = ReservationParam.from(insertedReservationInfo);
+			List<ReservationInfoPrice> insertedPriceList = reservationInfoDao.selectReservationInfoPriceByReservationId(insertedReservationInfoId);
+			responseReservationParam.setPrices(insertedPriceList);
+			
 		} catch (Exception e) {
 			String errorMsg = String.format("Error Occured with params : {reservationParam : %s} ", reservationParam);
 			LOGGER.error(errorMsg + e.getLocalizedMessage());
 		}
 
-		return responseReservation;
+		return responseReservationParam;
 	}
 }

@@ -23,25 +23,23 @@ import chw.intern.nts.reservation.service.ReservationService;
 public class ReservationApiController {
 	@Autowired
 	ReservationService reservationService;
-	
+
 	@GetMapping
-	public Map<String, Object> getReservations(@RequestParam(name = "reservationEmail", required = true) String reservationEmail){
+	public Map<String, Object> getReservations(
+			@RequestParam(name = "reservationEmail", required = true) String reservationEmail) {
 		Map<String, Object> responseMap = new HashMap<>();
-		
+
 		List<ReservationInfo> reservationInfoList = reservationService.getReservationsByEmail(reservationEmail);
 		responseMap.put("reservations", reservationInfoList);
 		responseMap.put("size", reservationInfoList.size());
-		
+
 		return responseMap;
 	}
-	
+
 	@PostMapping
-	public Map<String, Object> postReservation(@RequestBody ReservationParam reservationParam){
-		Map<String, Object> responseMap = new HashMap<>();
-		
-		System.out.println(reservationParam);
+	public ReservationParam postReservation(@RequestBody ReservationParam reservationParam) {
 		ReservationParam responseReservation = reservationService.postReservation(reservationParam);
-		
-		return responseMap;
+
+		return responseReservation;
 	}
 }
