@@ -40,4 +40,12 @@ public class PageController {
 
 		return "review";
 	}
+	
+	@GetMapping(path = "/reserve/{displayInfoId}")
+	public String getReservePage(@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId,
+			HttpServletRequest request) {
+		
+		
+		return "reserve";
+	}
 }

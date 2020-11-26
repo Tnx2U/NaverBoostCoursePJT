@@ -70,7 +70,7 @@
 				<div class="section_store_details"></div>
 				<div class="section_event"></div>
 				<div class="section_btn">
-					<button type="button" class="bk_btn">
+					<button type="button" class="bk_btn" id="button_reservate">
 						<i class="fn fn-nbooking-calender2"></i> <span>예매하기</span>
 					</button>
 				</div>
