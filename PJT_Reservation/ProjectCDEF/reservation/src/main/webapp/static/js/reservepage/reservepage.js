@@ -3,6 +3,7 @@ import { getParamsByUrl } from "../share/util.js";
 import { handleGetAjax } from '../share/ajaxhandler.js';
 import GroupVisual from './component/groupvisual.js';
 import StoreDetail from "./component/storedetail.js";
+import BookingTicket from "./component/bookingticket.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const params = getParamsByUrl();
@@ -20,4 +21,5 @@ function renderComponents(){
     const ctWrapElement = document.querySelector(".ct_wrap");
     ctWrapElement.appendChild(new GroupVisual().getRenderedElement());
     ctWrapElement.appendChild(new StoreDetail().getRenderedElement());
+    ctWrapElement.appendChild(new BookingTicket().getRenderedElement());
 }

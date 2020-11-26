@@ -28,4 +28,10 @@ export default class DataController {
 
         return storeDetailData;
     }
+
+    static getbookingTicketData(){
+        const bookingTicketDatas = this.displayInfoResponse.productPrices;
+        
+        return bookingTicketDatas;
+    }
 }
