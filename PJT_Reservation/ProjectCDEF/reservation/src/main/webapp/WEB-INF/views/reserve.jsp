@@ -41,40 +41,7 @@
 						<span class="title"></span>
 					</h2>
 				</div>
-				<!-- <div class="group_visual">
-					<div class="container_visual" style="width: 414px;">
-						<ul class="visual_img">
-							<li class="item" style="width: 414px;"><img alt=""
-								class="img_thumb"
-								src="https://ssl.phinf.net/naverbooking/20170217_264/1487312141947lTddT_JPEG/%B3%D7%C0%CC%B9%F6.jpg?type=ff1242_816">
-								<span class="img_bg"></span>
-								<div class="preview_txt">
-									<h2 class="preview_txt_tit"></h2>
-									<em class="preview_txt_dsc">₩12,000 ~ </em><em
-										class="preview_txt_dsc">2017.2.17.(금)~2017.4.18.(화), 잔여티켓
-										2769매</em>
-								</div></li>
-						</ul>
-					</div>
-				</div> -->
-				<div class="section_store_details">
-					<div class="store_details">
-						<h3 class="in_tit"></h3>
-						<p class="dsc">
-							장소 : <br> 기간 : 2017.2.17.(금)~2017.4.18.(화)
-						</p>
-						<h3 class="in_tit">관람시간</h3>
-						<p class="dsc">
-							화, 목, 금 일요일 10:00am~06:00pm(입장마감 05:30pm)<br> ‘문화가 있는 날’ 매월
-							마지막 주 수요일은 오후 8시까지 연장
-						</p>
-						<h3 class="in_tit">요금</h3>
-						<p class="dsc">
-							성인(만 19~64세) 5,000원 / 청소년(만 13~18세) 4,000원<br> 어린이(만 4~12세)
-							3,000원 / 20인 이상 단체 20% 할인<br> 국가유공자, 장애인, 65세 이상 4,000원
-						</p>
-					</div>
-				</div>
+				<!---->
 				<div class="section_booking_ticket">
 					<div class="ticket_body">
 						<div class="qty">
@@ -278,26 +245,6 @@
 			<span class="copyright">© NAVER Corp.</span>
 		</div>
 	</footer>
-
-	<script type="template" id="template_group_visual">
-		<div class="group_visual">
-			<div class="container_visual" style="width: 414px;">
-				<ul class="visual_img">
-					<li class="item" style="width: 414px;"><img alt="{{fileName}}"
-						class="img_thumb"
-						src="static/{{saveFileName}}">
-						<span class="img_bg"></span>
-						<div class="preview_txt">
-							<h2 class="preview_txt_tit"></h2>
-							<em class="preview_txt_dsc">₩12,000 ~ </em><em
-								class="preview_txt_dsc">2017.2.17.(금)~2017.4.18.(화), 잔여티켓
-								2769매</em>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div> 
-    </script>
 	<script type="module" src="static/js/reservepage/reservepage.js"></script>
 </body>
 </html>

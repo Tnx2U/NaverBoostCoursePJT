@@ -18,4 +18,14 @@ export default class DataController {
 
         return groupVisualData;
     }
+
+    static getStoreDetailData() {
+        const storeDetailData = {
+            openingHours: this.displayInfoResponse.displayInfo.openingHours,
+            productPrices: this.displayInfoResponse.productPrices,
+            placeName : this.displayInfoResponse.displayInfo.placeName
+        }
+
+        return storeDetailData;
+    }
 }

@@ -2,6 +2,7 @@ import DataController from "./datacontroller.js";
 import { getParamsByUrl } from "../share/util.js";
 import { handleGetAjax } from '../share/ajaxhandler.js';
 import GroupVisual from './component/groupvisual.js';
+import StoreDetail from "./component/storedetail.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const params = getParamsByUrl();
@@ -18,4 +19,5 @@ function initializePage(displayInfoResponse){
 function renderComponents(){
     const ctWrapElement = document.querySelector(".ct_wrap");
     ctWrapElement.appendChild(new GroupVisual().getRenderedElement());
+    ctWrapElement.appendChild(new StoreDetail().getRenderedElement());
 }
