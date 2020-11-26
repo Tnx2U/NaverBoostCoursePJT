@@ -1,4 +1,4 @@
-import { getParamsByUrl } from "../share/util.js";
+import { getParamsByUrl, getParamUrlByParams } from "../share/util.js";
 
 // 초기 이벤트 함수 할당
 function setEventhandler() {
@@ -12,10 +12,11 @@ function setEventhandler() {
 // 예약하기 버튼 클릭 이벤트
 function handleClickReservateButton(){
     const reservateButtonElement = document.querySelector("#button_reservate");
-    const params = getParamsByUrl();
+    const paramsUrl = getParamUrlByParams(getParamsByUrl());
+    console.log("paramsUrl : ",paramsUrl);
 
     reservateButtonElement.addEventListener('click', function(){
-        location.href = `./reserve/${params.displayInfoId}`
+        location.href = `./reserve${paramsUrl}`
     })
 }
 

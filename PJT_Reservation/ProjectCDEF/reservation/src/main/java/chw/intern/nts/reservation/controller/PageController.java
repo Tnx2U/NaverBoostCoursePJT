@@ -9,14 +9,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import chw.intern.nts.reservation.dto.Comment;
+import chw.intern.nts.reservation.dto.DisplayInfoResponse;
 import chw.intern.nts.reservation.service.CommentService;
+import chw.intern.nts.reservation.service.ProductService;
 
 @Controller
 public class PageController {
 	@Autowired
 	CommentService commentService;
+	
+	@Autowired
+	ProductService productService;
 
 	@GetMapping(path = "/main")
 	public String getMainPage(ModelMap model) {
@@ -41,10 +47,12 @@ public class PageController {
 		return "review";
 	}
 	
-	@GetMapping(path = "/reserve/{displayInfoId}")
-	public String getReservePage(@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId,
+	@GetMapping(path = "/reserve")
+	public String getReservePage(@RequestParam(name = "displayInfoId", required = true) Integer displayInfoId,
 			HttpServletRequest request) {
 		
+//		DisplayInfoResponse displayInfoResponse = productService.getDisplayInfoResponseByDisplayInfoId(displayInfoId);
+//		request.setAttribute("displayInfoResponse", displayInfoResponse);
 		
 		return "reserve";
 	}

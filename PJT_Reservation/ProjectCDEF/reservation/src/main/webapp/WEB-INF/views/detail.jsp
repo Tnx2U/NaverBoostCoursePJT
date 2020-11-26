@@ -303,6 +303,4 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
 	<script type="module" src="static/js/detailpage/detailpage.js"></script>
 </body>
-
-
 </html>
