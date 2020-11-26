@@ -6,7 +6,7 @@ import GroupVisual from './component/groupvisual.js';
 document.addEventListener("DOMContentLoaded", function () {
     const params = getParamsByUrl();
 
-    //displayDetail 정보 로딩
+    //displayDetail 정보를 DataController에 주입
     handleGetAjax(initializePage, `products/${params.displayInfoId}`);
 })
 
@@ -17,5 +17,5 @@ function initializePage(displayInfoResponse){
 
 function renderComponents(){
     const ctWrapElement = document.querySelector(".ct_wrap");
-    ctWrapElement.appendChild(new GroupVisual().getElement());
+    ctWrapElement.appendChild(new GroupVisual().getRenderedElement());
 }

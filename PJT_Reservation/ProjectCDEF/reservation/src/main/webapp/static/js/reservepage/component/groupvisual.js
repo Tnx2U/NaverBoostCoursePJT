@@ -7,7 +7,7 @@ export default class GroupVisual {
     }
 
     // 어차피 클래스별 1개만 존재하므로 네이밍 컨벤션에서 대상 삭제
-    getElement() {
+    getRenderedElement() {
         let groupVisulElement = document.createElement("div");
         groupVisulElement.classList.add("group_visual");
         groupVisulElement.innerHTML = this.getHtmlSrc();
@@ -25,9 +25,9 @@ export default class GroupVisual {
                     <span class="img_bg"></span>
                     <div class="preview_txt">
                         <h2 class="preview_txt_tit"></h2>
-                        <em class="preview_txt_dsc">₩12,000 ~ </em><em
-                            class="preview_txt_dsc">2017.2.17.(금)~2017.4.18.(화), 잔여티켓
-                            2769매</em>
+                        <em class="preview_txt_dsc">₩${this.data.startPrice} ~ </em><em
+                            class="preview_txt_dsc">${this.data.displayDate}, 잔여티켓
+                            ${this.data.randomRemain}매</em>
                     </div>
                 </li>
             </ul>
