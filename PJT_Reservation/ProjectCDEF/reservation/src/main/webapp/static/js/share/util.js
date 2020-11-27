@@ -21,4 +21,11 @@ function getParamUrlByParams(params) {
     return paramUrl;
 }
 
-export { getParamsByUrl, getParamUrlByParams };
+function convertPriceToNumber(element){
+    let result = element.innerText;
+    result = result.replace(/,|원/g,'');
+
+    return parseInt(result);
+}
+
+export { getParamsByUrl, getParamUrlByParams, convertPriceToNumber };
