@@ -1,5 +1,4 @@
 import DataController from '../controller/datacontroller.js';
-import EventController from '../controller/eventcontroller.js';
 
 
 export default class BookingTicket {
