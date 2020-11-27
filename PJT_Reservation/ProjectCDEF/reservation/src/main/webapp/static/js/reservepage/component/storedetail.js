@@ -1,4 +1,4 @@
-import DataController from '../datacontroller.js';
+import DataController from '../controller/datacontroller.js';
 
 
 export default class StoreDetail {
@@ -17,22 +17,21 @@ export default class StoreDetail {
 
     getHtmlSrc() {
         return `
-            <div class="section_store_details">
-                <div class="store_details">
-                    <h3 class="in_tit">장소</h3>
-                    <p class="dsc">
-                        ${this.data.placeName}
-                    </p>
-                    <h3 class="in_tit">관람시간</h3>
-                    <p class="dsc">
-                        ${this.data.openingHours.replace(/(- [ㄱ-ㅎ|ㅏ-ㅣ|가-힣])/g, '<br>$1')}
-                    </p>
-                    <h3 class="in_tit">요금</h3>
-                    <p class="dsc">
-                    ` + this.getPriceHtmlSrc(this.data.productPrices) + `
-                    </p>
-                </div>
-            </div>`;
+            <div class="store_details">
+                <h3 class="in_tit">장소</h3>
+                <p class="dsc">
+                    ${this.data.placeName}
+                </p>
+                <h3 class="in_tit">관람시간</h3>
+                <p class="dsc">
+                    ${this.data.openingHours.replace(/(- [ㄱ-ㅎ|ㅏ-ㅣ|가-힣])/g, '<br>$1')}
+                </p>
+                <h3 class="in_tit">요금</h3>
+                <p class="dsc">
+                ` + this.getPriceHtmlSrc(this.data.productPrices) + `
+                </p>
+            </div>
+                `;
     }
 
     getPriceHtmlSrc(productPrices){

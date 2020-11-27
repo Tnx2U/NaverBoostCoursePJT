@@ -1,4 +1,5 @@
-import DataController from '../datacontroller.js';
+import DataController from '../controller/datacontroller.js';
+import EventController from '../controller/eventcontroller.js';
 
 
 export default class BookingTicket {
@@ -31,11 +32,11 @@ export default class BookingTicket {
                     <div class="count_control">
                         <!-- [D] 수량이 최소 값이 일때 ico_minus3, count_control_input에 disabled 각각 추가, 수량이 최대 값일 때는 ico_plus3에 disabled 추가 -->
                         <div class="clearfix">
-                            <a href="#" class="btn_plus_minus spr_book2 ico_minus3 disabled" title="빼기"> </a> 
+                            <a class="btn_plus_minus spr_book2 ico_minus3 disabled" title="빼기"> </a> 
                             <input type="tel"
                                 class="count_control_input disabled" value="0" readonly
                                 title="수량"> 
-                            <a href="#" class="btn_plus_minus spr_book2 ico_plus3" title="더하기"> </a>
+                            <a class="btn_plus_minus spr_book2 ico_plus3" title="더하기"> </a>
                         </div>
                         <!-- [D] 금액이 0 이상이면 individual_price에 on_color 추가 -->
                         <div class="individual_price">
