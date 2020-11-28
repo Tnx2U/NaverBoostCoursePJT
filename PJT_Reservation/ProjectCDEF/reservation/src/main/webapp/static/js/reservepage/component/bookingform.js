@@ -55,7 +55,7 @@ export default class BookingForm {
                         <label class="label" for="message">예매내용</label>
                         <div class="inline_control">
                             <p class="inline_txt selected">
-                                ${this.data.reservateDate}, 총 <span id="totalCount">${this.data.totalCount}</span>매
+                                <span id="reservateDate">${this.data.reservateDate}</span>, 총 <span id="totalCount">${this.data.totalCount}</span>매
                             </p>
                         </div>
                     </div>

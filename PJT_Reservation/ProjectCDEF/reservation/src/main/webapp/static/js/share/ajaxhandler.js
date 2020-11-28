@@ -13,7 +13,9 @@ function handleGetAjax(renderFunction, target, params) {
     xhRequest.onreadystatechange = function () {
         if (xhRequest.readyState === xhRequest.DONE) {
             if (xhRequest.status === 200 || xhRequest.status === 201) {
-                renderFunction(JSON.parse(xhRequest.response));
+                if(renderFunction != null){
+                    renderFunction(JSON.parse(xhRequest.response));
+                }
             } else {
                 console.error(xhRequest.status, xhRequest.responseText);
             }
@@ -23,4 +25,23 @@ function handleGetAjax(renderFunction, target, params) {
     xhRequest.send();
 }
 
-export { handleGetAjax }
+function handlePostAjax(callbackFunc, target, params){
+    let xhRequest = new XMLHttpRequest();
+    const baseUrl = `api/${target}`;
+
+    xhRequest.onreadystatechange = function () {
+        if (xhRequest.readyState === xhRequest.DONE) {
+            if (xhRequest.status === 200 || xhRequest.status === 201) {
+                callbackFunc(xhRequest);
+            } else {
+                console.error(xhRequest.status, xhRequest.responseText);
+                callbackFunc(xhRequest);
+            }
+        }
+    };
+    xhRequest.open('POST', baseUrl);
+    xhRequest.setRequestHeader('Content-Type', 'application/json');
+    xhRequest.send(JSON.stringify(params));
+}
+
+export { handleGetAjax, handlePostAjax }

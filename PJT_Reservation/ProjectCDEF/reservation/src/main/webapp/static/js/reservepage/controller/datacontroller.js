@@ -47,9 +47,12 @@ export default class DataController {
     }
 
     static getBookingFormData() {
+        const maxDay = [-1,31,29,31,30,31,30,31,31,30,31,30,31];
+
         let nowDate = new Date();
         let date = nowDate.getDate() + Math.floor(Math.random() * 5);
         date = (date < 2) ? date + 2 : date;
+        date = (date > maxDay[nowDate.getMonth()]) ? nowDate.getMonth() : date;
         const bookingFormData = {
             reservateDate: `${nowDate.getFullYear()}/${nowDate.getMonth() + 1}/${date}`,
             totalCount: 0
@@ -60,6 +63,14 @@ export default class DataController {
 
     static getTitle() {
         return this.displayInfoResponse.displayInfo.productDescription;
+    }
+
+    static getReservationParam(){
+        return this.reservationParam;
+    }
+
+    static getAgreeAll(){
+        return this.agreeAll;
     }
 
     static setReservationEmail(email) {
