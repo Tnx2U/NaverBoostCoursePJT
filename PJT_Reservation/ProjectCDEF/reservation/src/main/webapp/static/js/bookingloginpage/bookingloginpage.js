@@ -1,20 +1,20 @@
 import { getParamUrlByParams } from '../share/util.js';
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     setInitialEventListener();
 })
 
 
-function setInitialEventListener(){
+function setInitialEventListener() {
     handleClickSubmit();
 }
 
 
-function handleClickSubmit(){
+function handleClickSubmit() {
     const submitElement = document.querySelector("#form1 button.login_btn");
     const emailInput = document.querySelector("#resrv_id");
 
-    submitElement.addEventListener('click', function(event){
+    submitElement.addEventListener('click', function (event) {
         event.preventDefault();
         const emailChecker = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         let inputValue = emailInput.value;
@@ -23,10 +23,10 @@ function handleClickSubmit(){
             emailInput.focus();
         } else {
             const param = {
-                reservationEmail : inputValue
+                reservationEmail: inputValue
             }
             const paramsUrl = getParamUrlByParams(param);
-            location.href = `./reserve${paramsUrl}`;
+            location.href = `./myreservation${paramsUrl}`;
         }
     })
 }

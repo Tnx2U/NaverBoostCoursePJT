@@ -3,6 +3,7 @@ package chw.intern.nts.reservation.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,5 +59,14 @@ public class PageController {
 	public String getBookingLoginPage() {
 		
 		return "bookinglogin";
+	}
+	
+	@GetMapping(path = "/myreservation")
+	public String getMyReservationPage(@RequestParam(name = "reservationEmail", required = true) String reservationEmail,
+			HttpSession session) {
+
+		session.setAttribute("reservationEmail", reservationEmail);
+		
+		return "myreservation";
 	}
 }
