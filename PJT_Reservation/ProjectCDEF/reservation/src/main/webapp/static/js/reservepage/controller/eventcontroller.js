@@ -8,7 +8,9 @@ export default class EventController {
     }
 
     static setBookingFormEvent(){
-
+        this.handleValidCheck();
+        this.handlePolicyAgree();
+        this.handleSubmit();
     }
 
     // ------------- 이벤트 헨들러 함수 영역 -------------
@@ -81,7 +83,18 @@ export default class EventController {
                     clickedTicketElement.querySelector(".individual_price").classList.remove("on_color");
                 }
             }
-
         })
+    }
+
+    static handleValidCheck(){
+
+    }
+
+    static handlePolicyAgree(){
+
+    }
+
+    static handleSubmit(){
+        
     }
 }

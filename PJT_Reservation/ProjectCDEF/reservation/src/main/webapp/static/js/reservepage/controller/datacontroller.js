@@ -46,4 +46,8 @@ export default class DataController {
 
         return bookingFormData;
     }
+
+    static getTitle(){
+        return this.displayInfoResponse.displayInfo.productDescription;
+    }
 }

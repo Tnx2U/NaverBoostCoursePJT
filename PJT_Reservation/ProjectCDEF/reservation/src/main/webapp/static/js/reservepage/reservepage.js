@@ -22,6 +22,8 @@ function initializePage(displayInfoResponse){
 
 function renderComponents(){
     const ctWrapElement = document.querySelector(".ct_wrap");
+
+    document.querySelector(".top_title .title").innerText = DataController.getTitle();
     ctWrapElement.appendChild(new GroupVisual().getRenderedElement());
     ctWrapElement.appendChild(new StoreDetail().getRenderedElement());
     ctWrapElement.appendChild(new BookingTicket().getRenderedElement());
