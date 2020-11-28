@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-@charset "UTF-8"; 
+@charset "UTF-8";
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak,
 	.x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
@@ -179,5 +179,6 @@ ng\:form {
 		</div>
 	</div>
 	</translater-modal> </app>
+	<script type="module" src="static/js/bookingloginpage/bookingloginpage.js"></script>
 </body>
 </html>
