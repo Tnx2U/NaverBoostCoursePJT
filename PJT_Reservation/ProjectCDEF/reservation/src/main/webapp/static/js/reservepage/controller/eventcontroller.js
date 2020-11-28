@@ -1,4 +1,5 @@
 import { convertPriceToNumber } from '../../share/util.js';
+import DataController from '../controller/datacontroller.js';
 
 export default class EventController {
 
@@ -30,8 +31,6 @@ export default class EventController {
                     isAddButton = true;
                 }
             }
-
-            console.log(clickedTicketElement, isAddButton)
 
             if(clickedTicketElement == null){
                 return;
@@ -87,7 +86,42 @@ export default class EventController {
     }
 
     static handleValidCheck(){
+        let nameInput = document.querySelector(".form_horizontal #name");
+        let telInput = document.querySelector(".form_horizontal #tel");
+        let emailInput = document.querySelector(".form_horizontal #email");
+        
+        nameInput.addEventListener('focusout', function(){
+            const nameChecker = /^[가-힣a-zA-Z]+$/;
+            let inputValue = nameInput.value;
+            if(!nameChecker.test(inputValue) && inputValue != ""){
+                alert("이름 형식이 틀렸어요.");
+                nameInput.focus();
+            }else{
+                DataController.setReservationName = inputValue;
+            }
+        });
 
+        telInput.addEventListener('focusout', function(){
+            const telChecker = /^\d{3}-\d{3,4}-\d{4}$/;
+            let inputValue = telInput.value;
+            if(!telChecker.test(inputValue) && inputValue != ""){
+                alert("전화번호 형식이 틀렸어요.");
+                telInput.focus();
+            }else{
+                DataController.setReservationTelephone = inputValue;
+            }
+        });
+
+        emailInput.addEventListener('focusout', function(){
+            const emailChecker = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+            let inputValue = emailInput.value;
+            if(!emailChecker.test(inputValue) && inputValue != ""){
+                alert("이메일 형식이 틀렸어요.");
+                emailInput.focus();
+            }else{
+                DataController.setReservationName = inputValue;
+            }
+        });
     }
 
     static handlePolicyAgree(){

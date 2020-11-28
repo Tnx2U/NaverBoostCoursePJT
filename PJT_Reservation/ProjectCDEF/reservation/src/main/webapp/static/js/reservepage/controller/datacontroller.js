@@ -1,9 +1,19 @@
 export default class DataController {
     static displayInfoResponse = null;
+    static reservationParam = {};
 
     static initializeData(displayInfoResponse) {
         console.log(displayInfoResponse);
         this.displayInfoResponse = displayInfoResponse;
+        this.reservationParam = {
+            displayInfoId: displayInfoResponse.displayInfo.displayInfoId,
+            productId: displayInfoResponse.displayInfo.productId,
+            reservationEmail: "",
+            reservationName: "",
+            reservationTelephone: "",
+            reservationYearMonthDay: "",
+            prices: []
+        };
     };
 
     static getGroupVisualData() {
@@ -40,14 +50,61 @@ export default class DataController {
         let date = nowDate.getDate() + Math.floor(Math.random() * 5);
         date = (date < 2) ? date + 2 : date;
         const bookingFormData = {
-            reservateDate: `${nowDate.getFullYear()}/${nowDate.getMonth()+1}/${date}`,
+            reservateDate: `${nowDate.getFullYear()}/${nowDate.getMonth() + 1}/${date}`,
             totalCount: 0
         }
 
         return bookingFormData;
     }
 
-    static getTitle(){
+    static getTitle() {
         return this.displayInfoResponse.displayInfo.productDescription;
+    }
+
+    static setReservationEmail(email) {
+        this.reservationParam.reservationEmail = email;
+    }
+
+    static setReservationName(name) {
+        this.reservationParam.reservationName = name;
+    }
+
+    static setReservationTelephone(tel) {
+        this.reservationParam.reservationTelephone = tel;
+    }
+
+    static setReservationYearMonthDay(yearMonthDay) {
+        this.reservationParam.reservationYearMonthDay = yearMonthDay;
+    }
+
+    static setPrices(isPlus, productPriceId) {
+        if (isPlus) {
+            let contains = false;
+            this.reservationParam.prices.forEach((element) => {
+                if (element.productPriceId == productPriceId) {
+                    element.count += 1;
+                    contains = true;
+                }
+            })
+            if (!contains) {
+                this.reservationParam.prices.push({
+                    count: 1,
+                    productPriceId: productPriceId
+                })
+            }
+        } else {
+            let deleteIdx = -1;
+            this.reservationParam.prices.forEach((element, idx) => {
+                if (element.productPriceId == productPriceId) {
+                    element.count -= 1;
+                    if (element.count == 0) {
+                        deleteIdx = idx;
+                    }
+                }
+            })
+            if (deleteIdx != -1) {
+                this.reservationParam.prices.splice(deleteIdx, deleteIdx);
+            }
+        }
     }
 }
