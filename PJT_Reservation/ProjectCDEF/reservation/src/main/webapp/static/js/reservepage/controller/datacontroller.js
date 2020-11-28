@@ -1,3 +1,4 @@
+
 export default class DataController {
     static displayInfoResponse = null;
     static reservationParam = {};

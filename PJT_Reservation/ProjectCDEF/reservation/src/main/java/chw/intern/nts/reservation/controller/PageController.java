@@ -51,9 +51,12 @@ public class PageController {
 	public String getReservePage(@RequestParam(name = "displayInfoId", required = true) Integer displayInfoId,
 			HttpServletRequest request) {
 		
-//		DisplayInfoResponse displayInfoResponse = productService.getDisplayInfoResponseByDisplayInfoId(displayInfoId);
-//		request.setAttribute("displayInfoResponse", displayInfoResponse);
-		
 		return "reserve";
+	}
+	
+	@GetMapping(path = "/bookinglogin")
+	public String getBookingLoginPage() {
+		
+		return "bookinglogin";
 	}
 }
