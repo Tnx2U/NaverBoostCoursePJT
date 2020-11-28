@@ -1,6 +1,7 @@
 export default class DataController {
     static displayInfoResponse = null;
     static reservationParam = {};
+    static agreeAll = false;
 
     static initializeData(displayInfoResponse) {
         console.log(displayInfoResponse);
@@ -103,8 +104,12 @@ export default class DataController {
                 }
             })
             if (deleteIdx != -1) {
-                this.reservationParam.prices.splice(deleteIdx, deleteIdx);
+                this.reservationParam.prices.splice(deleteIdx, 1);
             }
         }
+    }
+
+    static toggleAgreeAll(){
+        this.agreeAll = !this.agreeAll;
     }
 }

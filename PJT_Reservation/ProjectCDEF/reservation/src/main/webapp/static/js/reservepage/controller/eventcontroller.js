@@ -58,6 +58,9 @@ export default class EventController {
                     clickedTicketElement.querySelector(".individual_price").classList.add("on_color");
                 }
 
+                //데이터 컨트롤러의 데이터 수정
+                DataController.setPrices(true, clickedTicketElement.id.replace(/qty_/g,''));
+
             }else{
                 //0이면 예외처리
                 if(clickedTicketElement.querySelector(".count_control_input").value == "0"){
@@ -81,6 +84,9 @@ export default class EventController {
                     clickedTicketElement.querySelector(".count_control_input").classList.add("disabled");
                     clickedTicketElement.querySelector(".individual_price").classList.remove("on_color");
                 }
+
+                //데이터 컨트롤러의 데이터 수정
+                DataController.setPrices(false, clickedTicketElement.id.replace(/qty_/g,''));
             }
         })
     }
@@ -125,7 +131,25 @@ export default class EventController {
     }
 
     static handlePolicyAgree(){
+        const agreeAllElement = document.querySelector("input.chk_agree");
+        const agreementElements = document.querySelectorAll(".agreement");
 
+        agreeAllElement.addEventListener('click', function(){
+            document.querySelector(".bk_btn_wrap").classList.toggle("disable");
+
+            DataController.toggleAgreeAll();
+        })
+
+        agreementElements.forEach((element) => {
+            if(element.classList.contains("all")){
+                return;
+            }
+
+            element.addEventListener('click', function(event){
+                event.preventDefault();
+                element.classList.toggle("open");
+            })
+        })
     }
 
     static handleSubmit(){
