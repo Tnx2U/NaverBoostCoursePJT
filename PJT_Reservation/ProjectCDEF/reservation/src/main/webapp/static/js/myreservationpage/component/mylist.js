@@ -100,7 +100,7 @@ export default class MyList {
         }
 
         return `
-        <article class="card_item" id="card_${data.reservationInfoId}>
+        <article class="card_item" id="card_${data.reservationInfoId}">
             <a href="#" class="link_booking_details">
                 <div class="card_body">
                     <div class="left"></div>
