@@ -10,6 +10,6 @@ export default class EventController {
     // ------------- 이벤트 헨들러 함수 영역 -------------
 
     static handleClickCancelButton(){
-        
+        console.log("handleClickCancelButton() is active");
     }
 }
