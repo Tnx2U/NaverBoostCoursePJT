@@ -1,6 +1,9 @@
 import { handleGetAjax } from '../share/ajaxhandler.js';
 import { getParamsByUrl } from '../share/util.js';
-import { DataController } from './controller/datacontroller.js';
+import DataController from './controller/datacontroller.js';
+// import EmptyErr from './component/emptyerr.js';
+import MySummary from './component/mysummary.js';
+import MyList from './component/mylist.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     const params = getParamsByUrl();
@@ -18,7 +21,7 @@ function renderComponents(){
     const ctElement = document.querySelector(".section_my");
 
     if(DataController.getIsEmpty()){
-        ctElement.appendChild(new EmptyErr().getRenderedElement());
+        // ctElement.appendChild(new EmptyErr().getRenderedElement());
     }else{
         ctElement.appendChild(new MySummary().getRenderedElement());
         ctElement.appendChild(new MyList().getRenderedElement());

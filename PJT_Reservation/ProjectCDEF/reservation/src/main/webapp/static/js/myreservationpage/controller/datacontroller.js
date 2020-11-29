@@ -1,16 +1,16 @@
 
 export default class DataController {
-    static reservationResponse = null;
+    static reservations = null;
     static cancelReserves = null;
     static confirmReserves = null;
     static usedReserves = null;
     static isEmpty = true;
 
     static initializeData(reservationResponse) {
-        this.reservationResponse = reservationResponse;
-        console.log(this.reservationResponse);
+        this.reservations = reservationResponse.reservations;
+        console.log(this.reservations);
 
-        if(this.reservationResponse.length() == 0){
+        if(this.reservations.length == 0){
             return;
         }
         
@@ -18,7 +18,9 @@ export default class DataController {
 
         const nowDate = new Date();
         // 예약확정
-        this.confirmReserves = this.reservationResponse.filter((element) => {
+        console.log(this.reservations[1]);
+
+        this.confirmReserves = this.reservations.filter((element) => {
             if(!element.cancelYn){
                 const dateInfo = element.reservationDate.split("-");
                 let reserveDate = new Date();
@@ -33,7 +35,7 @@ export default class DataController {
         })
 
         // 이용 완료
-        this.usedReserves = this.reservationResponse.filter((element) => {
+        this.usedReserves = this.reservations.filter((element) => {
             if(!element.cancelYn){
                 const dateInfo = element.reservationDate.split("-");
                 let reserveDate = new Date();
@@ -48,8 +50,51 @@ export default class DataController {
         })
 
         // 예약 취소
-        this.cancelReserves = this.reservationResponse.filter((element) => {
+        this.cancelReserves = this.reservations.filter((element) => {
             return element.cancelYn;
         })
-    };
+    }
+
+
+    static getIsEmpty(){
+        return this.isEmpty;
+    }
+
+
+    static getMylistData(){
+        return;
+    }
+
+    static getMySummaryData(){
+        const mySummayData = {
+            totalCount : this.reservations.length,
+            confirmCount : this.confirmReserves.length,
+            usedCount : this.usedReserves.length,
+            cancelCount : this.cancelReserves.length
+        }
+
+        return mySummayData;
+    }
+
+    static getMyListData(){
+        const mylistData = {
+            confirmReserves : this.confirmReserves,
+            usedReserves : this.usedReserves,
+            cancelReserves : this.cancelReserves
+        }
+
+        return mylistData;
+    }
+
+    // static getCancelReservesData(){
+    //     return this.cancelReserves;
+    // }
+
+    // static getConfirmReserves(){
+    //     return this.confirmReserves;
+    // }
+
+    // static getUsedReserves(){
+    //     return this.usedReserves;
+    // }
 }
