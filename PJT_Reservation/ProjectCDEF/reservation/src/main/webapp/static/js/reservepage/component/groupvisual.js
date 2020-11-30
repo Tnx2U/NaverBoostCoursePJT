@@ -1,4 +1,4 @@
-import DataController from '../controller/datacontroller.js';
+import DataController from '../controller/dataController.js';
 
 
 export default class GroupVisual {

@@ -51,12 +51,12 @@
 						<c:choose>
 							<c:when test="${sessionScope.reservationEmail != null}">
 								<a
-									href="./myreservation?reservationEmail=${sessionScope.reservationEmail}"
+									href="./myReservation?reservationEmail=${sessionScope.reservationEmail}"
 									class="btn_my"> <span class="viewReservation" title="예약확인">${sessionScope.reservationEmail}</span>
 								</a>
 							</c:when>
 							<c:when test="${sessionScope.reservationEmail == null}">
-								<a href="./bookinglogin" class="btn_my"> <span
+								<a href="./bookingLogin" class="btn_my"> <span
 									class="viewReservation" title="예약확인">예약확인</span>
 								</a>
 							</c:when>
@@ -310,6 +310,6 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
-	<script type="module" src="static/js/detailpage/detailpage.js"></script>
+	<script type="module" src="static/js/detailPage/detailPage.js"></script>
 </body>
 </html>

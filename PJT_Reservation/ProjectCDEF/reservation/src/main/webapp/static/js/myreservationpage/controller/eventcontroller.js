@@ -1,5 +1,5 @@
-import DataController from '../controller/datacontroller.js';
-import { handlePutAjax } from '../../share/ajaxhandler.js';
+import DataController from './dataController.js';
+import { handlePutAjax } from '../../share/ajaxHandler.js';
 
 export default class EventController {
 

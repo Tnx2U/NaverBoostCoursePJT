@@ -1,11 +1,11 @@
-import DataController from "./controller/datacontroller.js";
-import EventController from "./controller/eventcontroller.js";
+import DataController from "./controller/dataController.js";
+import EventController from "./controller/eventController.js";
 import { getParamsByUrl } from "../share/util.js";
-import { handleGetAjax } from '../share/ajaxhandler.js';
-import GroupVisual from './component/groupvisual.js';
-import StoreDetail from "./component/storedetail.js";
-import BookingTicket from "./component/bookingticket.js";
-import BookingForm from "./component/bookingform.js";
+import { handleGetAjax } from '../share/ajaxHandler.js';
+import GroupVisual from './component/groupVisual.js';
+import StoreDetail from "./component/storeDetail.js";
+import BookingTicket from "./component/bookingTicket.js";
+import BookingForm from "./component/bookingForm.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const params = getParamsByUrl();

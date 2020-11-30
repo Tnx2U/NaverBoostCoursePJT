@@ -60,6 +60,6 @@
 			<span class="copyright">© NAVER Corp.</span>
 		</div>
 	</footer>
-	<script type="module" src="static/js/reservepage/reservepage.js"></script>
+	<script type="module" src="static/js/reservePage/reservePage.js"></script>
 </body>
 </html>

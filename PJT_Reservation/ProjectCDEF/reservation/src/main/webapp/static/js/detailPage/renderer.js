@@ -1,4 +1,4 @@
-import { setEventhandler } from './eventhandler.js';
+import { setEventhandler } from './eventHandler.js';
 
 function renderProductDetail(response) {
     console.log("response : ", response);

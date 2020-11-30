@@ -26,7 +26,7 @@ function handleClickSubmit() {
                 reservationEmail: inputValue
             }
             const paramsUrl = getParamUrlByParams(param);
-            location.href = `./myreservation${paramsUrl}`;
+            location.href = `./myReservation${paramsUrl}`;
         }
     })
 }
