@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import chw.intern.nts.reservation.dto.Category;
 import chw.intern.nts.reservation.dto.Promotion;
 import chw.intern.nts.reservation.service.PromotionService;
 
@@ -22,7 +21,7 @@ public class PromotionApiController {
 	PromotionService promotionService;
 
 	@GetMapping
-	public Map<String, Object> promotionList() {
+	public Map<String, Object> getPromotions() {
 		List<Promotion> promotionResponse = promotionService.getAllPromotionWithImgUrl();
 		Map<String, Object> responseMap = new HashMap<>();
 		responseMap.put("items", promotionResponse);

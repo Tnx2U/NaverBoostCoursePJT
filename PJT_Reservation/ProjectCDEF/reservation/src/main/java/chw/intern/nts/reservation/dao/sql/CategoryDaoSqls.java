@@ -1,4 +1,4 @@
-package chw.intern.nts.reservation.dao;
+package chw.intern.nts.reservation.dao.sql;
 
 public class CategoryDaoSqls {
 	public static final String SELECT_BY_ID = "SELECT id, name FROM category WHERE id = :id";

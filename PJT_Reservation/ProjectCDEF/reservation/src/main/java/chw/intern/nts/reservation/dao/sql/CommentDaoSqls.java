@@ -1,4 +1,4 @@
-package chw.intern.nts.reservation.dao;
+package chw.intern.nts.reservation.dao.sql;
 
 public class CommentDaoSqls {
 	public static final String SELECT_ALL_BY_DISPLAY_INFO_ID = "SELECT c.comment,"

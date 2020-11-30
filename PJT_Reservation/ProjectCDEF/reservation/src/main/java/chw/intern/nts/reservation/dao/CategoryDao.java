@@ -2,18 +2,17 @@ package chw.intern.nts.reservation.dao;
 
 import javax.sql.DataSource;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import chw.intern.nts.reservation.dto.Category;
-import static chw.intern.nts.reservation.dao.CategoryDaoSqls.*;
+
+import static chw.intern.nts.reservation.dao.sql.CategoryDaoSqls.*;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class CategoryDao {

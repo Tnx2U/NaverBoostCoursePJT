@@ -49,9 +49,8 @@ public class ProductServiceImpl implements ProductService {
 				productList = productDao.selectByCategoryIdWithOffset(categoryId, start, limit);
 			}
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {categoryId : %d, start : %d, limit: %d} ",
-					categoryId, start, limit);
-			LOGGER.error(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(String.format("Error Occured with params : {categoryId : %d, start : %d, limit: %d} ",
+					categoryId, start, limit) + e.getLocalizedMessage());
 		}
 
 		return productList;
@@ -68,8 +67,8 @@ public class ProductServiceImpl implements ProductService {
 				totalCount = productDao.selectCountByCategoryId(categoryId);
 			}
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {categoryId : %d} ", categoryId);
-			LOGGER.error(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(String.format("Error Occured with params : {categoryId : %d} ", categoryId)
+					+ e.getLocalizedMessage());
 		}
 
 		return totalCount;
@@ -108,9 +107,24 @@ public class ProductServiceImpl implements ProductService {
 			displayInfoResponse.setProductImages(productImageList);
 			displayInfoResponse.setProductPrices(ProductPriceList);
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId);
-			LOGGER.error(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId)
+					+ e.getLocalizedMessage());
 		}
 		return displayInfoResponse;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public DisplayInfo getDisplayInfoById(Integer displayInfoId) {
+		DisplayInfo displayInfo = null;
+
+		try {
+			displayInfo = displayInfoDao.selectById(displayInfoId);
+		} catch (Exception e) {
+			LOGGER.error(String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId)
+					+ e.getLocalizedMessage());
+		}
+
+		return displayInfo;
 	}
 }

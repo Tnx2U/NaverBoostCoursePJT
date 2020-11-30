@@ -15,6 +15,7 @@ function renderProductDetail(response) {
     setEventhandler();
 }
 
+// 한줄평 더보기 렌더
 function renderMoreComment(displayInfo) {
     let moreCommentTemplate = document.querySelector("#template_more_comment").innerText;
     let bindMoreCommentTemplate = Handlebars.compile(moreCommentTemplate);

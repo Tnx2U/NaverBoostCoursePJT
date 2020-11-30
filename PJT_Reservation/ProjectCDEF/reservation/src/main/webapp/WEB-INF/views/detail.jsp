@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -27,9 +27,9 @@
 		<div class="header fade">
 			<header class="header_tit">
 				<h1 class="logo">
-					<a href="./mainpage.html" class="lnk_logo" title="네이버"> <span
+					<a href="./main" class="lnk_logo" title="네이버"> <span
 						class="spr_bi ico_n_logo">네이버</span>
-					</a> <a href="./mainpage.html" class="lnk_logo" title="예약"> <span
+					</a> <a href="./main" class="lnk_logo" title="예약"> <span
 						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
@@ -42,15 +42,25 @@
 				<div class="section_visual">
 					<header>
 						<h1 class="logo">
-							<a href="./mainpage.html" class="lnk_logo" title="네이버"> <span
+							<a href="./main" class="lnk_logo" title="네이버"> <span
 								class="spr_bi ico_n_logo">네이버</span>
-							</a> <a href="./mainpage.html" class="lnk_logo" title="예약"> <span
+							</a> <a href="./main" class="lnk_logo" title="예약"> <span
 								class="spr_bi ico_bk_logo">예약</span>
 							</a>
 						</h1>
-						<a href="./myreservation.html" class="btn_my"> <span
-							class="viewReservation" title="예약확인">예약확인</span>
-						</a>
+						<c:choose>
+							<c:when test="${sessionScope.reservationEmail != null}">
+								<a
+									href="./myreservation?reservationEmail=${sessionScope.reservationEmail}"
+									class="btn_my"> <span class="viewReservation" title="예약확인">${sessionScope.reservationEmail}</span>
+								</a>
+							</c:when>
+							<c:when test="${sessionScope.reservationEmail == null}">
+								<a href="./bookinglogin" class="btn_my"> <span
+									class="viewReservation" title="예약확인">예약확인</span>
+								</a>
+							</c:when>
+						</c:choose>
 					</header>
 					<div class="pagination"></div>
 					<div class="group_visual"></div>
@@ -70,7 +80,7 @@
 				<div class="section_store_details"></div>
 				<div class="section_event"></div>
 				<div class="section_btn">
-					<button type="button" class="bk_btn">
+					<button type="button" class="bk_btn" id="button_reservate">
 						<i class="fn fn-nbooking-calender2"></i> <span>예매하기</span>
 					</button>
 				</div>
@@ -94,11 +104,9 @@
 						</li>
 					</ul>
 					<!-- [D] 상세정보 외 다른 탭 선택 시 detail_area_wrap에 hide 추가 -->
-					<div class="detail_area_wrap">
-					</div>
+					<div class="detail_area_wrap"></div>
 					<!-- [D] 오시는길 외 다른 탭 선택 시 detail_location에 hide 추가 -->
-					<div class="detail_location hide">
-					</div>
+					<div class="detail_location hide"></div>
 				</div>
 			</div>
 		</div>
@@ -255,7 +263,7 @@
 		</div>
         {{/if}}
     </script>
-    <script type="template" id="template_group_visual">
+	<script type="template" id="template_group_visual">
         <div>
 			<div class="container_visual" style="width: 414px;">
 				<ul class="visual_img detail_swipe">
@@ -293,16 +301,15 @@
             {{/if}}
 		</div>
     </script>
-    <script type="template" id="template_more_comment">
+	<script type="template" id="template_more_comment">
         <a class="btn_review_more" href="./review/{{productId}}"> <span>예매자
 			한줄평 더보기</span> <i class="fn fn-forward1"></i>
         </a>
     </script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
 	<script type="module" src="static/js/detailpage/detailpage.js"></script>
 </body>
-
-
 </html>

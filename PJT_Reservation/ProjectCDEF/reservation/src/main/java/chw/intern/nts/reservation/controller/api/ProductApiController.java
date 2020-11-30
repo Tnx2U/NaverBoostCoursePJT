@@ -12,14 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import chw.intern.nts.reservation.dto.Comment;
-import chw.intern.nts.reservation.dto.DisplayInfo;
-import chw.intern.nts.reservation.dto.DisplayInfoImage;
 import chw.intern.nts.reservation.dto.DisplayInfoResponse;
 import chw.intern.nts.reservation.dto.Product;
-import chw.intern.nts.reservation.dto.ProductImage;
-import chw.intern.nts.reservation.dto.ProductPrice;
-import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ProductService;
 
 @CrossOrigin
@@ -30,7 +24,7 @@ public class ProductApiController {
 	ProductService productService;
 
 	@GetMapping
-	public Map<String, Object> productList(@RequestParam(name = "categoryId", required = false) Integer categoryId,
+	public Map<String, Object> getProducts(@RequestParam(name = "categoryId", required = false) Integer categoryId,
 			@RequestParam(name = "start", defaultValue = "0") int start,
 			@RequestParam(name = "limit", required = false, defaultValue = "4") int limit) {
 		List<Product> productResponse = productService.getProductsByCategoryId(categoryId, start, limit);
@@ -43,7 +37,7 @@ public class ProductApiController {
 	}
 
 	@GetMapping("/{displayInfoId}")
-	public DisplayInfoResponse productDetailInfo(
+	public DisplayInfoResponse getProductsByDisplayInfoId(
 			@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId) {
 		DisplayInfoResponse displayInfoResponse = productService.getDisplayInfoResponseByDisplayInfoId(displayInfoId);
 

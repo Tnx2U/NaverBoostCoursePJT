@@ -34,8 +34,8 @@ public class CommentServiceImpl implements CommentService {
 				comment.setCommentImages(commentImages);
 			}
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId);
-			LOGGER.error(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId)
+					+ e.getLocalizedMessage());
 		}
 
 		return commentList;

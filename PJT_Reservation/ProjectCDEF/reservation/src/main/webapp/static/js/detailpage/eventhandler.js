@@ -1,3 +1,4 @@
+import { getParamsByUrl, getParamUrlByParams } from "../share/util.js";
 
 // 초기 이벤트 함수 할당
 function setEventhandler() {
@@ -5,6 +6,18 @@ function setEventhandler() {
     handleClickDetailMoreOpen();
     handleClickDetailMoreClose();
     handleClickImageButton();
+    handleClickReservateButton();
+}
+
+// 예약하기 버튼 클릭 이벤트
+function handleClickReservateButton(){
+    const reservateButtonElement = document.querySelector("#button_reservate");
+    const paramsUrl = getParamUrlByParams(getParamsByUrl());
+    console.log("paramsUrl : ",paramsUrl);
+
+    reservateButtonElement.addEventListener('click', function(){
+        location.href = `./reserve${paramsUrl}`
+    })
 }
 
 // 상세정보 펼쳐보기 이벤트
@@ -107,7 +120,7 @@ function handleClickImageButton() {
     currentImageElement.classList.add('image_active');
 
     imageNextElement.addEventListener("click", function () {
-        //이미지 좌측으로 이동
+        //이미지 우측으로 이동
         if (currentIdx <= imageLength - 1) {
             ulElement.style.transition = slideSpeed + "ms";
             ulElement.style.transform = "translate3d(-" + (imageWidth * (currentIdx + 2)) + "px, 0px, 0px)";

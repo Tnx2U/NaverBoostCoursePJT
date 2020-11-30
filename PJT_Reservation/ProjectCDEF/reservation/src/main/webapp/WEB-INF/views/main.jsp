@@ -26,9 +26,18 @@
 						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
-				<a href="./bookinglogin.html" class="btn_my"> <span
-					class="viewReservation" title="예약확인">예약확인</span>
-				</a>
+				<c:choose>
+					<c:when test="${sessionScope.reservationEmail != null}">
+					     <a href="./myreservation?reservationEmail=${sessionScope.reservationEmail}" class="btn_my"> 
+                          <span class="viewReservation" title="예약확인">${sessionScope.reservationEmail}</span>
+                        </a>
+					</c:when>
+					<c:when test="${sessionScope.reservationEmail == null}">
+                        <a href="./bookinglogin" class="btn_my"> 
+                          <span class="viewReservation" title="예약확인">예약확인</span>
+						</a>
+					</c:when>
+				</c:choose>
 			</header>
 		</div>
 		<hr>

@@ -1,8 +1,8 @@
 package chw.intern.nts.reservation.dao;
 
+import static chw.intern.nts.reservation.dao.sql.DisplayInfoDaoSqls.*;
+
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -14,8 +14,6 @@ import org.springframework.stereotype.Repository;
 
 import chw.intern.nts.reservation.dto.DisplayInfo;
 import chw.intern.nts.reservation.dto.DisplayInfoImage;
-
-import static chw.intern.nts.reservation.dao.DisplayInfoDaoSqls.*;
 
 @Repository
 public class DisplayInfoDao {

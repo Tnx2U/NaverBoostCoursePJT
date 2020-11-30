@@ -5,14 +5,18 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import chw.intern.nts.reservation.interceptor.LogInterceptor;
+
+
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "chw.intern.nts.reservation.controller"})
+@ComponentScan(basePackages = { "chw.intern.nts.reservation.controller" })
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -47,4 +51,15 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new LogInterceptor());
+	}
+//
+//	@Override
+//	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+//		System.out.println("아규먼트 리졸버 등록..");
+//		argumentResolvers.add(new HeaderMapArgumentResolver());
+//	}
 }

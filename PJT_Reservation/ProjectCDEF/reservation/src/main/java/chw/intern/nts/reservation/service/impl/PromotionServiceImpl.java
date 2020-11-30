@@ -16,7 +16,7 @@ import chw.intern.nts.reservation.service.PromotionService;
 @Service
 public class PromotionServiceImpl implements PromotionService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
-	
+
 	@Autowired
 	PromotionDao promotionDao;
 
@@ -28,8 +28,7 @@ public class PromotionServiceImpl implements PromotionService {
 		try {
 			promotionList = promotionDao.selectAllWithImgUrl();
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {} ");
-			LOGGER.error(errorMsg+e.getLocalizedMessage());
+			LOGGER.error(String.format("Error Occured with params : {} ") + e.getLocalizedMessage());
 		}
 		return promotionList;
 	}
