@@ -27,7 +27,6 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 			LOGGER.info(String.format("User Login with %s.", reservationEmail));
 			LOGGER.info(String.format("SessionCreationTime : %d,  RecentSessionCall : %d", session.getCreationTime(),
 					session.getLastAccessedTime()));
-			session.setMaxInactiveInterval(10 * 60);
 		}
 
 		return true;

@@ -66,6 +66,7 @@ public class PageController {
 			HttpSession session) {
 
 		session.setAttribute("reservationEmail", reservationEmail);
+		session.setMaxInactiveInterval(10 * 60);
 		
 		return "myReservation";
 	}
