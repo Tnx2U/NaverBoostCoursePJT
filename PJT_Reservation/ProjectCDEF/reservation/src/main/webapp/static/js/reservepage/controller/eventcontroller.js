@@ -179,7 +179,9 @@ export default class EventController {
                 alert("연락처를 입력하지 않았습니다.");
             } else if (reservationParam.reservationEmail == "") {
                 alert("이메일을 입력하지 않았습니다.");
-            } else if (!agreeAll) {
+            } else if(reservationParam.prices.length == 0){
+                alert("선택한 티켓이 없습니다.");
+            }else if (!agreeAll) {
                 alert("약관에 동의하지 않았습니다.");
             } else {
                 const targetUrl = `reservations`

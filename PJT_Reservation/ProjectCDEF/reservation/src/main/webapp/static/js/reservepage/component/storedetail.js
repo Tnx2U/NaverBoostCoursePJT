@@ -41,7 +41,10 @@ export default class StoreDetail {
             'B' : "어린이(만 4~12세)",
             'S' : "20인 이상 단체",
             'D' : "장애인",
-            'E' : "얼리버드"
+            'E' : "얼리버드",
+            'V' : "VIP",
+            'R' : "R석",
+            'C' : "지역주민"
         }
 
         let priceHtmlSrc = ``;
