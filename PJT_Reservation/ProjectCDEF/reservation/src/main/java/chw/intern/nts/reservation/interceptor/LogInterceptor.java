@@ -11,12 +11,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class LogInterceptor extends HandlerInterceptorAdapter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogInterceptor.class);
-	// 컨트롤러가 실행된 후
-//	@Override
-//	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-//			ModelAndView modelAndView) throws Exception {
-//		System.out.println(handler.toString() + " 가 종료되었습니다.  " + modelAndView.getViewName() + "을 view로 사용합니다.");
-//	}
 
 	// 컨트롤러가 실행되기 전
 	@Override
@@ -25,12 +19,15 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String reservationEmail = (String) session.getAttribute("reservationEmail");
 
-		LOGGER.info(handler.toString() + " 를 호출했습니다.");
+		LOGGER.info(handler.toString() + " is Called.");
 
 		if (reservationEmail == null) {
-			LOGGER.info("로그인되어 있지 않습니다.");
+			LOGGER.info("There is no login Info.");
 		} else {
-			LOGGER.info(String.format("이메일 %s로 로그인되어 있습니다.", reservationEmail));
+			LOGGER.info(String.format("User Login with %s.", reservationEmail));
+			LOGGER.info(String.format("SessionCreationTime : %d,  RecentSessionCall : %d", session.getCreationTime(),
+					session.getLastAccessedTime()));
+			session.setMaxInactiveInterval(10 * 60);
 		}
 
 		return true;
