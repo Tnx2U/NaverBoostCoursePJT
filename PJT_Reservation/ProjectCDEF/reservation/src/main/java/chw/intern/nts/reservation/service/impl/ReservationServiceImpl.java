@@ -38,8 +38,8 @@ public class ReservationServiceImpl implements ReservationService {
 				reservationInfo.setDisplayInfo(productService.getDisplayInfoById(targetDisplayInfoId));
 			}
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {reservationEmail : %d} ", reservationEmail);
-			LOGGER.error(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(String.format("Error Occured with params : {reservationEmail : %d} ", reservationEmail)
+					+ e.getLocalizedMessage());
 		}
 
 		return reservationInfoList;
@@ -71,8 +71,8 @@ public class ReservationServiceImpl implements ReservationService {
 			responseReservationParam = getReservationsInfoWithPricesById(insertedReservationInfoId);
 
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {reservationParam : %s} ", reservationParam);
-			LOGGER.error(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(String.format("Error Occured with params : {reservationParam : %s} ", reservationParam)
+					+ e.getLocalizedMessage());
 		}
 
 		return responseReservationParam;
@@ -93,8 +93,8 @@ public class ReservationServiceImpl implements ReservationService {
 
 			responseReservationParam = getReservationsInfoWithPricesById(reservationInfoId);
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {reservationInfoId : %d} ", reservationInfoId);
-			LOGGER.error(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(String.format("Error Occured with params : {reservationInfoId : %d} ", reservationInfoId)
+					+ e.getLocalizedMessage());
 		}
 
 		return responseReservationParam;
@@ -112,8 +112,8 @@ public class ReservationServiceImpl implements ReservationService {
 					.selectReservationInfoPriceByReservationId(reservationInfoId);
 			responseReservationParam.setPrices(priceList);
 		} catch (Exception e) {
-			String errorMsg = String.format("Error Occured with params : {reservationInfoId : %d} ", reservationInfoId);
-			LOGGER.error(errorMsg + e.getLocalizedMessage());
+			LOGGER.error(String.format("Error Occured with params : {reservationInfoId : %d} ", reservationInfoId)
+					+ e.getLocalizedMessage());
 		}
 
 		return responseReservationParam;
