@@ -28,7 +28,7 @@ public class PromotionServiceImpl implements PromotionService {
 		try {
 			promotionList = promotionDao.selectAllWithImgUrl();
 		} catch (Exception e) {
-			LOGGER.error(String.format("Error Occured with params : {} ") + e.getLocalizedMessage());
+			LOGGER.error("Error Occured with params : \r\n{}", e.getLocalizedMessage());
 		}
 		return promotionList;
 	}
