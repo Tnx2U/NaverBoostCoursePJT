@@ -50,4 +50,5 @@
 3. [PJT03](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT03_README.md)
 4. [PJT04](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT04_README.md)
 5. [PJT05](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT05_README.md)
+6. [PJT06](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT06_README.md)
 
