@@ -1,5 +1,3 @@
-// import { SERVER_IP, TARGET_PORT } from '/reservation/static/js/ajaxhandler.js';
-
 function handleGetAjax(renderFunction, target, params) {
     let xhRequest = new XMLHttpRequest();
     const baseUrl = `api/${target}`;

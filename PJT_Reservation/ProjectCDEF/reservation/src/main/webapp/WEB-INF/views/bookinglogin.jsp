@@ -56,7 +56,7 @@ ng\:form {
 		<i class="fn fn-info1" aria-hidden="true"></i> <span
 			class="_toast_alert_text"></span>
 	</p>
-	<a href="./mainpage.html" class="top_info_close" data-tst_alt_close="0">
+	<a href="./main" class="top_info_close" data-tst_alt_close="0">
 		<i class="fn fn-close" aria-hidden="true"></i> <span class="sr_only"
 		translate="CM-CLOSE">닫기</span>
 	</a> </toast-alert> <!---->
@@ -71,7 +71,7 @@ ng\:form {
 			<!---->
 			<div>
 				<form name="confirm_form" class="ng-pristine ng-valid" id="form1"
-					action="./myreservation.html">
+					action="">
 					<h2 class="login_header_sub border_bottom">
 						<span translate="CM-NON_MEMBER_BK_CONFIRMATION">비회원 예약확인</span>
 					</h2>
@@ -179,6 +179,6 @@ ng\:form {
 		</div>
 	</div>
 	</translater-modal> </app>
-	<script type="module" src="static/js/bookingloginpage/bookingloginpage.js"></script>
+	<script type="module" src="static/js/bookingLoginPage/bookingLoginPage.js"></script>
 </body>
 </html>

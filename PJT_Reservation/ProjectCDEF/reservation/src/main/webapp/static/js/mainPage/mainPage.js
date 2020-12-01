@@ -1,5 +1,3 @@
-// import { handleGetAjax } from '/reservation/static/js/ajaxhandler.js';
-
 // -------- 전역 변수 영역 -------- 
 let globalCategoryId = null;
 let globalLoadCount = 0;

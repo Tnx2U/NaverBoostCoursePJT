@@ -86,7 +86,7 @@
 		</div>
 	</div>
 	<!--// 취소 팝업 -->
-    <script type="module" src="static/js/myreservationpage/myreservationpage.js"></script>
+    <script type="module" src="static/js/myReservationPage/myReservationPage.js"></script>
 </body>
 
 </html>

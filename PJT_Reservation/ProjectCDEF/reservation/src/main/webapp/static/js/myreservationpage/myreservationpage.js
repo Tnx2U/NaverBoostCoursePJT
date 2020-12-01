@@ -1,10 +1,10 @@
-import { handleGetAjax } from '../share/ajaxhandler.js';
+import { handleGetAjax } from '../share/ajaxHandler.js';
 import { getParamsByUrl } from '../share/util.js';
-import DataController from './controller/datacontroller.js';
-import EventController from './controller/eventcontroller.js';
-import EmptyErr from './component/emptyerr.js';
-import MySummary from './component/mysummary.js';
-import MyList from './component/mylist.js';
+import DataController from './controller/dataController.js';
+import EventController from './controller/eventController.js';
+import EmptyErr from './component/emptyErr.js';
+import MySummary from './component/mySummary.js';
+import MyList from './component/myList.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     const params = getParamsByUrl();

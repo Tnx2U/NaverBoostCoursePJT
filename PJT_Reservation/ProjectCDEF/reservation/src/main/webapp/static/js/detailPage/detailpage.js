@@ -1,6 +1,6 @@
 import { getParamsByUrl } from '../share/util.js';
 import { renderProductDetail } from './renderer.js';
-import { handleGetAjax } from '../share/ajaxhandler.js';
+import { handleGetAjax } from '../share/ajaxHandler.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     const params = getParamsByUrl();

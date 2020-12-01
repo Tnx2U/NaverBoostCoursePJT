@@ -22,18 +22,18 @@
 				<h1 class="logo">
 					<a href="https://m.naver.com/" class="lnk_logo" title="네이버"> <span
 						class="spr_bi ico_n_logo">네이버</span>
-					</a> <a href="./myreservation.html" class="lnk_logo" title="예약"> <span
+					</a> <a href="" class="lnk_logo" title="예약"> <span
 						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
 				<c:choose>
 					<c:when test="${sessionScope.reservationEmail != null}">
-					     <a href="./myreservation?reservationEmail=${sessionScope.reservationEmail}" class="btn_my"> 
+					     <a href="./myReservation?reservationEmail=${sessionScope.reservationEmail}" class="btn_my"> 
                           <span class="viewReservation" title="예약확인">${sessionScope.reservationEmail}</span>
                         </a>
 					</c:when>
 					<c:when test="${sessionScope.reservationEmail == null}">
-                        <a href="./bookinglogin" class="btn_my"> 
+                        <a href="./bookingLogin" class="btn_my"> 
                           <span class="viewReservation" title="예약확인">예약확인</span>
 						</a>
 					</c:when>
@@ -135,12 +135,12 @@
             </a>
         </li>
     </script>
-    <script type="text/javascript" src="static/js/mainpage/properties.js"></script>
-    <script type="text/javascript" src="static/js/mainpage/ajaxhandler.js"></script>
-    <script type="text/javascript" src="static/js/mainpage/eventhandler.js"></script>
-    <script type="text/javascript" src="static/js/mainpage/renderer.js"></script>
-    <script type="text/javascript" src="static/js/mainpage/template.js"></script>
-	<script type="text/javascript" src="static/js/mainpage/mainpage.js"></script>
+    <script type="text/javascript" src="static/js/mainPage/properties.js"></script>
+    <script type="text/javascript" src="static/js/mainPage/ajaxHandler.js"></script>
+    <script type="text/javascript" src="static/js/mainPage/eventHandler.js"></script>
+    <script type="text/javascript" src="static/js/mainPage/renderer.js"></script>
+    <script type="text/javascript" src="static/js/mainPage/template.js"></script>
+	<script type="text/javascript" src="static/js/mainPage/mainPage.js"></script>
 </body>
 
 </html>

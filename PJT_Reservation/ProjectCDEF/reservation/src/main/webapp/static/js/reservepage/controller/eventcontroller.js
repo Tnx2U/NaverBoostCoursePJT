@@ -1,6 +1,6 @@
 import { convertPriceToNumber } from '../../share/util.js';
-import DataController from '../controller/datacontroller.js';
-import { handlePostAjax } from '../../share/ajaxhandler.js';
+import DataController from './dataController.js';
+import { handlePostAjax } from '../../share/ajaxHandler.js';
 
 export default class EventController {
 

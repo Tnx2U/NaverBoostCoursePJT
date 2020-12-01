@@ -55,18 +55,19 @@ public class PageController {
 		return "reserve";
 	}
 	
-	@GetMapping(path = "/bookinglogin")
+	@GetMapping(path = "/bookingLogin")
 	public String getBookingLoginPage() {
 		
-		return "bookinglogin";
+		return "bookingLogin";
 	}
 	
-	@GetMapping(path = "/myreservation")
+	@GetMapping(path = "/myReservation")
 	public String getMyReservationPage(@RequestParam(name = "reservationEmail", required = true) String reservationEmail,
 			HttpSession session) {
 
 		session.setAttribute("reservationEmail", reservationEmail);
+		session.setMaxInactiveInterval(10 * 60);
 		
-		return "myreservation";
+		return "myReservation";
 	}
 }
