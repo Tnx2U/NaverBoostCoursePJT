@@ -18,7 +18,7 @@ public class ImageApiController {
 	ImageService imageService;
 
 	@GetMapping
-	public @ResponseBody byte[] getImage(@RequestParam(name = "saveFileName", required = true) String saveFileName) {
+	public byte[] getImage(@RequestParam(name = "saveFileName", required = true) String saveFileName) {
 		return imageService.getImageByFileSaveName(saveFileName);
 	}
 }

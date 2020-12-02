@@ -1,5 +1,7 @@
 package chw.intern.nts.reservation.controller.api;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.ReservationParam;
 import chw.intern.nts.reservation.entity.ReservationInfo;
+import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ReservationService;
 
 @CrossOrigin
@@ -25,6 +30,9 @@ import chw.intern.nts.reservation.service.ReservationService;
 public class ReservationApiController {
 	@Autowired
 	ReservationService reservationService;
+	
+	@Autowired
+	CommentService commentService;
 
 	@GetMapping
 	public Map<String, Object> getReservations(
@@ -43,6 +51,14 @@ public class ReservationApiController {
 		ReservationParam responseReservation = reservationService.postReservation(reservationParam);
 
 		return responseReservation;
+	}
+
+	@PostMapping(path = "/{reservationInfoId}/comments")
+	public Comment postComment(@RequestParam("file") MultipartFile file) {
+
+		Comment responseComment = commentService.postComment(file);
+
+		return responseComment;
 	}
 
 	@PutMapping("/{reservationId}")
