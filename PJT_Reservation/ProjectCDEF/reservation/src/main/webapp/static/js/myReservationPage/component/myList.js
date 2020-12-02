@@ -32,9 +32,9 @@ export default class MyList {
                         </div>
                     </div>
                     ` + this.data.confirmReserves.reduce((carHtmlSrcs, element) => {
-                        const cardHtmlsrc = getCardHtmlSrc('confirm', element)
-                        return carHtmlSrcs + cardHtmlsrc;
-                    },'') + `
+            const cardHtmlsrc = getCardHtmlSrc('confirm', element)
+            return carHtmlSrcs + cardHtmlsrc;
+        }, '') + `
                 </li>
                 <li class="card used">
                     <div class="link_booking_details">
@@ -49,9 +49,9 @@ export default class MyList {
                         </div>
                     </div>
                     ` + this.data.usedReserves.reduce((carHtmlSrcs, element) => {
-                        const cardHtmlsrc = getCardHtmlSrc('used', element)
-                        return carHtmlSrcs + cardHtmlsrc;
-                    },'') + `
+            const cardHtmlsrc = getCardHtmlSrc('used', element)
+            return carHtmlSrcs + cardHtmlsrc;
+        }, '') + `
                 </li>
                 <li class="card used cancel">
                     <div class="link_booking_details">
@@ -66,36 +66,37 @@ export default class MyList {
                         </div>
                     </div>
                     ` + this.data.cancelReserves.reduce((carHtmlSrcs, element) => {
-                        const cardHtmlsrc = getCardHtmlSrc('cancel', element)
-                        return carHtmlSrcs + cardHtmlsrc;
-                    },'') + `
+            const cardHtmlsrc = getCardHtmlSrc('cancel', element)
+            return carHtmlSrcs + cardHtmlsrc;
+        }, '') + `
                 </li>
             </ul>
         </div>
         `;
     }
 
-    getCardHtmlSrc(type, data){
+    getCardHtmlSrc(type, data) {
         let bookingCancelHtmlSrc;
 
-        if(type == "confirm"){
+        if (type == "confirm") {
             bookingCancelHtmlSrc = `
             <div class="booking_cancel">
                 <button class="btn" id="btn_${data.reservationInfoId}">
                     <span>취소</span>
                 </button>
             </div>`
-        }else if(type == "used"){
+        } else if (type == "used") {
             bookingCancelHtmlSrc = `
             <div class="booking_cancel">
-                <a href="./reviewWrite.html" id="a_${data.reservationInfoId}">
+                <a href="./reviewWrite?reservationInfoId=${data.reservationInfoId}&productId=${data.productId}"
+                    id="a_${data.reservationInfoId}">
                     <button class="btn">
                         <span>예매자 리뷰 남기기</span>
                     </button>
                 </a>
             </div>
             `
-        }else if(type == "cancel"){
+        } else if (type == "cancel") {
             bookingCancelHtmlSrc = ``;
         }
 
@@ -112,7 +113,7 @@ export default class MyList {
                                 <li class="item"><span class="item_tit">일정</span> <em
                                     class="item_dsc"> ${data.reservationDate} </em></li>
                                 <li class="item"><span class="item_tit">내역</span> <em
-                                    class="item_dsc"> ${data.displayInfo.productContent.substring(0,100)}... </em></li>
+                                    class="item_dsc"> ${data.displayInfo.productContent.substring(0, 100)}... </em></li>
                                 <li class="item"><span class="item_tit">장소</span> <em
                                     class="item_dsc"> ${data.displayInfo.placeStreet}</em></li>
                                 <li class="item"><span class="item_tit">업체</span> <em

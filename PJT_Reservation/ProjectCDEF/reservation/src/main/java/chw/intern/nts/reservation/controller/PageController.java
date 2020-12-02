@@ -69,4 +69,10 @@ public class PageController {
 
 		return "myReservation";
 	}
+	
+	@GetMapping(path = "/reviewWrite")
+	public String getMyReservationPage() {
+		
+		return "reviewWrite";
+	}
 }
