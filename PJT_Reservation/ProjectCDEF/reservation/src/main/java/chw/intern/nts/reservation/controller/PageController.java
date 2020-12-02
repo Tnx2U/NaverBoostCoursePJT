@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import chw.intern.nts.reservation.dto.Comment;
-import chw.intern.nts.reservation.dto.DisplayInfoResponse;
 import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ProductService;
 
@@ -21,7 +20,7 @@ import chw.intern.nts.reservation.service.ProductService;
 public class PageController {
 	@Autowired
 	CommentService commentService;
-	
+
 	@Autowired
 	ProductService productService;
 
@@ -38,7 +37,7 @@ public class PageController {
 	@GetMapping(path = "/review/{displayInfoId}")
 	public String getReviewPage(@PathVariable(name = "displayInfoId", required = true) Integer displayInfoId,
 			HttpServletRequest request) {
-		
+
 		List<Comment> commentList = commentService.getCommentsByDisplayInfoId(displayInfoId);
 		double averageScore = commentService.getAverageScore(commentList);
 
@@ -47,27 +46,27 @@ public class PageController {
 
 		return "review";
 	}
-	
+
 	@GetMapping(path = "/reserve")
 	public String getReservePage(@RequestParam(name = "displayInfoId", required = true) Integer displayInfoId,
 			HttpServletRequest request) {
-		
+
 		return "reserve";
 	}
-	
+
 	@GetMapping(path = "/bookingLogin")
 	public String getBookingLoginPage() {
-		
+
 		return "bookingLogin";
 	}
-	
+
 	@GetMapping(path = "/myReservation")
-	public String getMyReservationPage(@RequestParam(name = "reservationEmail", required = true) String reservationEmail,
-			HttpSession session) {
+	public String getMyReservationPage(
+			@RequestParam(name = "reservationEmail", required = true) String reservationEmail, HttpSession session) {
 
 		session.setAttribute("reservationEmail", reservationEmail);
 		session.setMaxInactiveInterval(10 * 60);
-		
+
 		return "myReservation";
 	}
 }
