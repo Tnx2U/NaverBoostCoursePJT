@@ -43,7 +43,7 @@
 			<div class="wrap_review_list">
 				<div class="review_header">
 					<div class="top_title gr">
-						<a href="./detail.html" class="btn_back" title="이전 화면으로 이동"> <i
+						<a href="javascript:history.back()" class="btn_back" title="이전 화면으로 이동"> <i
 							class="fn fn-backward1"></i>
 						</a>
 						<h2>
@@ -73,7 +73,7 @@
 														<div class="thumb_area">
 															<a href="#" class="thumb" title="이미지 크게 보기"> <img
 																width="90" height="90" class="img_vertical_top"
-																src="../static/${comment.commentImages.get(0).saveFileName}"
+																src="/reservation/api/image?saveFileName=${comment.commentImages.get(0).saveFileName}"
 																alt="리뷰이미지">
 															</a> <span class="img_count">${comment.commentImages.size()}</span>
 														</div>

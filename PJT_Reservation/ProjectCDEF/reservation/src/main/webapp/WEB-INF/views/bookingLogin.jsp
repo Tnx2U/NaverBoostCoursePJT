@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- saved from url=(0042)https://m.booking.naver.com/booked/confirm -->
 <html lang="ko" class="no-js">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,15 +26,6 @@ ng\:form {
 </style>
 <!--<base href="/">-->
 <base href=".">
-<!--[if IE]>
-      <script type="text/javascript">
-         // Fix for IE ignoring relative base tags.
-         (function () {
-             var baseTag = document.getElementsByTagName('base')[ 0 ];
-             baseTag.href = baseTag.href;
-         })();
-      </script>
-      <![endif]-->
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
@@ -64,7 +54,7 @@ ng\:form {
 		<booked-confirm>
 		<div class="booking_login">
 			<h1 class="login_header">
-				<a href="./mainpage.html" class="nbooking_logo spr_bi txt_logo">
+				<a href="./main" class="nbooking_logo spr_bi txt_logo">
 					<span translate="CM-NBOOKING">네이버 예약</span>
 				</a>
 			</h1>

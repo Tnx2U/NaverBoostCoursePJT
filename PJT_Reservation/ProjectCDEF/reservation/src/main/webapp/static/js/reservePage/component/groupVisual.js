@@ -21,7 +21,7 @@ export default class GroupVisual {
             <ul class="visual_img">
                 <li class="item" style="width: 414px;"><img alt="${this.data.fileName}"
                     class="img_thumb"
-                    src="${this.data.saveFileName}">
+                    src="api/image?saveFileName=${this.data.saveFileName}">
                     <span class="img_bg"></span>
                     <div class="preview_txt">
                         <h2 class="preview_txt_tit"></h2>

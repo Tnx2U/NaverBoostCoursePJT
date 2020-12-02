@@ -110,7 +110,7 @@
 
 
 	<script type="rv-template" id="promotionItem">
-    <li class="item" style="background-image: url('static/{productImageUrl}'); width: 414px;">
+    <li class="item" style="background-image: url('api/image?saveFileName={productImageUrl}'); width: 414px;">
         <a href="#"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
             <div class="event_txt">
                 <h4 class="event_txt_tit"></h4>
@@ -125,7 +125,7 @@
         <li class="item">
             <a href="detail.html?displayInfoId={displayInfoId}" class="item_book">
                 <div class="item_preview">
-                    <img alt="{productDescription}" class="img_thumb" src="static/{productImageUrl}">
+                    <img alt="{productDescription}" class="img_thumb" src="api/image?saveFileName={productImageUrl}">
                     <span class="img_border"></span>
                 </div>
                 <div class="event_txt">

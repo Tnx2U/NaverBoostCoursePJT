@@ -173,7 +173,7 @@
 							{{#each commentImages}}
 								<a href="#" class="thumb" title="이미지 크게 보기">
 									<img width="90" height="90" class="img_vertical_top"
-										src="static/{{saveFileName}}"
+										src="api/image?saveFileName={{saveFileName}}"
 										alt="리뷰이미지">
 								</a>
 							{{/each}}
@@ -203,12 +203,12 @@
 					<li class="detail_info_lst"><strong class="in_tit">[공지사항]</strong>
 						<ul class="in_img_group">
 							<li class="in_img_lst"><img alt="" class="img_thumb"
-								src="static/img/detail_notice.jpg">
+								src="api/image?saveFileName=img/detail_notice.jpg">
 							</li>
 						</ul></li>
 					<li class="detail_info_lst"> <strong class="in_tit">[공연정보]</strong>
 						<ul class="in_img_group">
-							<li class="in_img_lst"> <img alt="" class="img_thumb" src="static/img/detail_info.jpg"> </li>
+							<li class="in_img_lst"> <img alt="" class="img_thumb" src="api/image?saveFileName=img/detail_info.jpg"> </li>
 						</ul>
 					</li>
 				</ul>
@@ -219,7 +219,7 @@
 		<div class="box_store_info no_topline">
 			<a href="#" class="store_location" title="지도웹으로 연결"> <img
 				class="store_map img_thumb" alt="map"
-				src="static/{{displayInfoImage.saveFileName}}">
+				src="api/image?saveFileName={{displayInfoImage.saveFileName}}">
 				<span class="img_border"></span> <span class="btn_map"><i
 					class="spr_book2 ico_mapview"></i></span>
 			</a>
@@ -269,7 +269,7 @@
 				<ul class="visual_img detail_swipe">
 					{{#each productImages}}
 					<li class="item" style="width: 414px;">
-						<img alt="{{fileName}}" class="img_thumb" src="static/{{saveFileName}}">
+						<img alt="{{fileName}}" class="img_thumb" src="api/image?saveFileName={{saveFileName}}">
 						<span class="img_bg">img_bg</span>
 						<div class="visual_txt">
 							<div class="visual_txt_inn">
