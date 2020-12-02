@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: "Naver booking Icons";
-    src: url('../font/Naver-booking-Icons.woff') format('woff');
+    src: url('/reservation/api/image?saveFileName=font/Naver-booking-Icons.woff') format('woff');
     font-weight: 400;
     font-style: normal
 }
@@ -13,7 +13,7 @@
 
 @font-face {
     font-family: "Naver Icons";
-    src: url('../font/Naver-Icons.woff') format('woff');
+    src: url('/reservation/api/image?saveFileName=font/Naver-Icons.woff') format('woff');
     font-weight: 400;
     font-style: normal
 }
@@ -106,14 +106,14 @@
     font-family: NanumGothicWebR;
     font-style: normal;
     font-weight: 400;
-    src: url('../font/NanumGothicRegular.woff') format('woff')
+    src: url('/reservation/api/image?saveFileName=font/NanumGothicRegular.woff') format('woff')
 }
 
 @font-face {
     font-family: NanumGothicWebB;
     font-style: normal;
     font-weight: 400;
-    src: url('../font/NanumGothicBold.woff') format('woff')
+    src: url('/reservation/api/image?saveFileName=font/NanumGothicBold.woff') format('woff')
 }
 
 body,html {

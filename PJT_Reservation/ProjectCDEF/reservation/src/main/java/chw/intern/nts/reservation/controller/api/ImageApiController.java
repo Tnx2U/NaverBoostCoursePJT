@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import chw.intern.nts.reservation.service.ImageService;
 
+
+
 @RestController
 @RequestMapping(path = "/api/image")
 public class ImageApiController {
