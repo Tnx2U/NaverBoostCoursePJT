@@ -44,7 +44,35 @@ export default class EventController {
     }
 
     static handleWriteComment(){
+        const reviewContentsElement = document.querySelector(".review_contents");
+        const reviewInfoElement = document.querySelector(".review_write_info");
+        const reviewTextAreaElement = document.querySelector(".review_textarea");
+        const guideReviewLengthElement = document.querySelector(".guide_review > span");
 
+        reviewContentsElement.addEventListener('click', (event) =>{
+            reviewInfoElement.style.display = "none";
+            reviewTextAreaElement.focus();
+        })
+
+        reviewTextAreaElement.addEventListener('focusout', (event) => {
+            let CommentLengthChecker = /.{5,400}/;
+
+            if(reviewTextAreaElement.value == ""){
+                reviewInfoElement.style.display = "block";
+                return;
+            }
+
+            if(CommentLengthChecker.test(reviewTextAreaElement.value)){
+                DataController.setComment(reviewTextAreaElement.value);
+            }else{
+                alert("글자수가 올바르지 않습니다.");
+                reviewTextAreaElement.focus();
+            }
+        })
+
+        reviewTextAreaElement.addEventListener('input', (event) => {
+            guideReviewLengthElement.innerText = reviewTextAreaElement.value.length;
+        })
     }
 
     static handleUploadImage(){

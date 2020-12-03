@@ -13,4 +13,8 @@ export default class DataController {
     static setScore(score){
         this.score = score;
     }
+
+    static setComment(comment){
+        this.comment = comment;
+    }
 }
