@@ -9,4 +9,8 @@ export default class DataController {
         this.reservationInfoId = param.reservationInfoId;
         this.productId = param.productId;
     }
+
+    static setScore(score){
+        this.score = score;
+    }
 }
