@@ -37,7 +37,7 @@
 						<i class="fn fn-backward1"></i>
 					</a>
 					<h2>
-						<span class="title">클림트 인사이드</span>
+						<span class="title">${requestScope.productDescription}</span>
 					</h2>
 				</div>
 				<!-- 리뷰 별점 -->

@@ -126,4 +126,18 @@ public class ProductServiceImpl implements ProductService {
 
 		return displayInfo;
 	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public String getDescriptionByProductId(Integer productId) {
+		String productDescription = null;
+
+		try {
+			productDescription = productDao.selectDescriptionByProductId(productId);
+		} catch (Exception e) {
+			LOGGER.error("Error Occured with params : {productId : {}} \r\n{}", productId, e.getLocalizedMessage());
+		}
+
+		return productDescription;
+	}
 }
