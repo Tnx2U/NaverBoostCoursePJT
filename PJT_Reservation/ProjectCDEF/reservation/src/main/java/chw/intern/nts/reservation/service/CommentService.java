@@ -9,5 +9,5 @@ import chw.intern.nts.reservation.dto.Comment;
 public interface CommentService {
 	public List<Comment> getCommentsByDisplayInfoId(Integer displayInfoId);
 	public double getAverageScore(List<Comment> commentList);
-	public Comment postComment(MultipartFile file);
+	public Comment postComment(MultipartFile attachedImage, String comment, Integer productId, Integer score, Integer reservationInfoId);
 }

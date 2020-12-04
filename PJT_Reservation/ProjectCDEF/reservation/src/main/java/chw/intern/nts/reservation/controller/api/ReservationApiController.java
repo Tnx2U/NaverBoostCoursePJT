@@ -56,13 +56,7 @@ public class ReservationApiController {
 			@RequestParam Integer productId, @RequestParam Integer score,
 			@PathVariable(name = "reservationInfoId", required = true) Integer reservationInfoId) {
 
-		System.out.println("attachedImage : " + attachedImage.toString());
-		System.out.println("comment : " + comment);
-		System.out.println("productId : " + productId);
-		System.out.println("score : " + score);
-		System.out.println("reservationInfoId : " + reservationInfoId);
-		Comment responseComment = new Comment();
-		// Comment responseComment = commentService.postComment(file);
+		Comment responseComment = commentService.postComment(attachedImage, comment, productId, score, reservationInfoId);
 
 		return responseComment;
 	}

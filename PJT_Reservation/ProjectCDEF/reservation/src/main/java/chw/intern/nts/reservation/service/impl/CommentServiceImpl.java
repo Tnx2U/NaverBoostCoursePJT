@@ -26,7 +26,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Value("${spring.filesrc.address}")
 	private String fileSrcAddress;
-	
+
 	@Autowired
 	CommentDao commentDao;
 
@@ -76,27 +76,33 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public Comment postComment(MultipartFile file) {
-		Comment comment = null;
+	public Comment postComment(MultipartFile attachedImage, String comment, Integer productId, Integer score,
+			Integer reservationInfoId) {
+		Comment responseComment = null;
 
-		//이미지 파일 저장
-		System.out.println("파일 이름 : " + file.getOriginalFilename());
-		System.out.println("파일 크기 : " + file.getSize());
+		// 이미지 파일 저장
+		System.out.println("파일 이름 : " + attachedImage.getOriginalFilename());
+		System.out.println("파일 크기 : " + attachedImage.getSize());
 
-		try (FileOutputStream fos = new FileOutputStream(fileSrcAddress + file.getOriginalFilename());
-				InputStream is = file.getInputStream();) {
+		// 파일이름 중복방지(파일이름_reserInfoId)
+		try (FileOutputStream fos = new FileOutputStream(fileSrcAddress + attachedImage.getOriginalFilename());
+				InputStream is = attachedImage.getInputStream();) {
 			int readCount = 0;
 			byte[] buffer = new byte[1024];
 			while ((readCount = is.read(buffer)) != -1) {
 				fos.write(buffer, 0, readCount);
 			}
-		} catch (Exception ex) {
-			throw new RuntimeException("file Save Error");
+		} catch (Exception e) {
+			// Think : 코드상에서 가독성을 위해 메시지 줄바꿈을 하면 + 연산자 써야 하는데 성능이 떨어짐. 
+			LOGGER.error(
+					"Error Occured with params : {attachedImageName : {}, comment : {}, productId : {}, score : {}, reservationInfoId : {}} \r\n{}",
+					attachedImage.getOriginalFilename(), comment, productId, score, reservationInfoId,
+					e.getLocalizedMessage());
 		}
 
-		//코멘트 dao를 통해 insert
+		// 코멘트 dao를 통해 insert
 		
 		
-		return comment;
+		return responseComment;
 	}
 }
