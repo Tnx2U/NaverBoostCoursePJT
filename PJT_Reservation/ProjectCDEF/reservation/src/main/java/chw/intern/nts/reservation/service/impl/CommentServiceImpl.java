@@ -15,8 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import chw.intern.nts.reservation.dao.CommentDao;
+import chw.intern.nts.reservation.dao.FileInfoDao;
+import chw.intern.nts.reservation.dao.ReservationUserCommentDao;
 import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.CommentImage;
+import chw.intern.nts.reservation.entity.FileInfo;
+import chw.intern.nts.reservation.entity.ReservationUserComment;
+import chw.intern.nts.reservation.entity.ReservationUserCommentImage;
 import chw.intern.nts.reservation.service.CommentService;
 
 @PropertySource("classpath:application.properties")
@@ -29,6 +34,12 @@ public class CommentServiceImpl implements CommentService {
 
 	@Autowired
 	CommentDao commentDao;
+
+	@Autowired
+	FileInfoDao fileInfoDao;
+
+	@Autowired
+	ReservationUserCommentDao reservationUserCommentDao;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -80,12 +91,41 @@ public class CommentServiceImpl implements CommentService {
 			Integer reservationInfoId) {
 		Comment responseComment = null;
 
+		// 코멘트 dao를 통해 insert
+		ReservationUserComment reservationUserComment = null;
+		FileInfo fileInfo = null;
+		ReservationUserCommentImage reservationUserCommentImage = null;
+		Integer fileInfoId = -1;
+		
+		
+		try {
+			String fileName = attachedImage.getOriginalFilename();
+			String saveFileName = "img/"+attachedImage.getOriginalFilename();
+			String contentType = attachedImage.getContentType();
+			
+			reservationUserComment = new ReservationUserComment(productId, reservationInfoId, score, comment);
+			Integer reservationUserCommentId = reservationUserCommentDao.insertReservationUserComment(reservationUserComment);
+			
+			fileInfo = new FileInfo(fileName, saveFileName, contentType);
+			fileInfoId = fileInfoDao.insertFileInfo(fileInfo);
+			
+			reservationUserCommentImage = new ReservationUserCommentImage(reservationInfoId, reservationUserCommentId, fileInfoId);
+			Integer reservationUserCommentImageId = reservationUserCommentDao.insertReservationUserCommentImage(reservationUserCommentImage);
+			
+			
+		} catch (Exception e) {
+			LOGGER.error(
+					"Error Occured with params : {attachedImageName : {}, comment : {}, productId : {}, score : {}, reservationInfoId : {}} \r\n{}",
+					attachedImage.getOriginalFilename(), comment, productId, score, reservationInfoId,
+					e.getLocalizedMessage());
+		}
+		
 		// 이미지 파일 저장
 		System.out.println("파일 이름 : " + attachedImage.getOriginalFilename());
 		System.out.println("파일 크기 : " + attachedImage.getSize());
 
 		// 파일이름 중복방지(파일이름_reserInfoId)
-		try (FileOutputStream fos = new FileOutputStream(fileSrcAddress + attachedImage.getOriginalFilename());
+		try (FileOutputStream fos = new FileOutputStream(fileSrcAddress + fileInfoId + attachedImage.getOriginalFilename());
 				InputStream is = attachedImage.getInputStream();) {
 			int readCount = 0;
 			byte[] buffer = new byte[1024];
@@ -93,16 +133,13 @@ public class CommentServiceImpl implements CommentService {
 				fos.write(buffer, 0, readCount);
 			}
 		} catch (Exception e) {
-			// Think : 코드상에서 가독성을 위해 메시지 줄바꿈을 하면 + 연산자 써야 하는데 성능이 떨어짐. 
+			// Think : 코드상에서 가독성을 위해 메시지 줄바꿈을 하면 + 연산자 써야 하는데 성능이 떨어짐.
 			LOGGER.error(
 					"Error Occured with params : {attachedImageName : {}, comment : {}, productId : {}, score : {}, reservationInfoId : {}} \r\n{}",
 					attachedImage.getOriginalFilename(), comment, productId, score, reservationInfoId,
 					e.getLocalizedMessage());
 		}
 
-		// 코멘트 dao를 통해 insert
-		
-		
 		return responseComment;
 	}
 }

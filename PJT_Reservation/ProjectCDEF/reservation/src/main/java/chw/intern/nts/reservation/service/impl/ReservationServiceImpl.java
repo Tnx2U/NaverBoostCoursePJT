@@ -56,6 +56,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 		try {
 			insertedReservationInfoId = reservationInfoDao.insertReservationInfo(reservationInfo);
+			System.out.println(insertedReservationInfoId);
 			if (insertedReservationInfoId == -1) {
 				throw new Exception("ReservationInfoDao.insertReservationInfoPrice has no return value ");
 			}
