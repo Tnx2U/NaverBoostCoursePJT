@@ -2375,7 +2375,7 @@ button {
 }
 
 .section_review_list .grade_area .graph_mask,.section_review_list .grade_area .graph_value,.section_review_list .short_review_area .review_info .grade:before {
-    background-image: url("/api/image?saveFileName=img/spr_comment.png");
+    background-image: url(/reservation/api/image?saveFileName=img/spr_comment.png);
     background-repeat: no-repeat;
     background-size: 90px 130px
 }
