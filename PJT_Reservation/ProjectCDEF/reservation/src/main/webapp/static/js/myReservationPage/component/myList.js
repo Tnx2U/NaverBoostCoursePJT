@@ -88,7 +88,7 @@ export default class MyList {
         } else if (type == "used") {
             bookingCancelHtmlSrc = `
             <div class="booking_cancel">
-                <a href="./reviewWrite?reservationInfoId=${data.reservationInfoId}&productId=${data.productId}"
+                <a href="./reviewWrite?reservationInfoId=${data.reservationInfoId}&productId=${data.productId}&reservationEmail=${data.reservationEmail}"
                     id="a_${data.reservationInfoId}">
                     <button class="btn">
                         <span>예매자 리뷰 남기기</span>

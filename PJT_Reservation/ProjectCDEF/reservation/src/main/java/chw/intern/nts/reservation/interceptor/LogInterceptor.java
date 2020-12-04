@@ -19,7 +19,8 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String reservationEmail = (String) session.getAttribute("reservationEmail");
 
-		LOGGER.info("{} is Called.", handler.toString());
+		LOGGER.info("{} is Called. URL : {}, ClienIP : {}", handler.toString(), request.getRequestURL(),
+				request.getRemoteAddr());
 
 		if (reservationEmail == null) {
 			LOGGER.info("There is no login Info.");

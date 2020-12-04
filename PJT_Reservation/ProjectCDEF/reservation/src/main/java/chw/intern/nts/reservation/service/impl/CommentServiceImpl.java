@@ -28,7 +28,7 @@ import chw.intern.nts.reservation.service.CommentService;
 @PropertySource("classpath:application.properties")
 @Service
 public class CommentServiceImpl implements CommentService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
 
 	@Value("${spring.filesrc.address}")
 	private String fileSrcAddress;
@@ -108,13 +108,13 @@ public class CommentServiceImpl implements CommentService {
 	public Comment postComment(MultipartFile attachedImage, String comment, Integer productId, Integer score,
 			Integer reservationInfoId) {
 		Comment responseComment = null;
-		String nowDateString = new Date(System.currentTimeMillis()).toString();
+		long nowDateLong = new Date(System.currentTimeMillis()).getTime();
 
 		try {
 			// Dao로 DB에 insert
-			String fileName = String.format("%d_%s_%s", reservationInfoId, nowDateString,
+			String fileName = String.format("%d_%d_%s", reservationInfoId, nowDateLong,
 					attachedImage.getOriginalFilename());
-			String saveFileName = String.format("img_comment/%d_%s_%s", reservationInfoId, nowDateString,
+			String saveFileName = String.format("img_comment/%d_%d_%s", reservationInfoId, nowDateLong,
 					attachedImage.getOriginalFilename());
 			String contentType = attachedImage.getContentType();
 

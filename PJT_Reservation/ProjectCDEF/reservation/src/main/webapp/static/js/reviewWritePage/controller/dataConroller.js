@@ -1,13 +1,14 @@
 export default class DataController {
     static reservationInfoId = null;
+    static reservationEmail = null;
     static productId = null;
     static comment = null;
     static score = null;
     static image = null;
 
     static initializeData(param) {
-        console.log("param", param);
         this.reservationInfoId = param.reservationInfoId;
+        this.reservationEmail = param.reservationEmail;
         this.productId = param.productId;
     }
 
@@ -43,5 +44,9 @@ export default class DataController {
 
     static getScore(){
         return this.score;
+    }
+
+    static getReservationEmail(){
+        return this.reservationEmail;
     }
 }

@@ -132,6 +132,10 @@ export default class EventController {
         submitButtonElement.addEventListener('click', (event) => {
             event.preventDefault();
 
+            if (!confirm("리뷰를 등록하시겠습니까?")) {
+                return;
+            }
+
             let formData = new FormData();
             formData.append("attachedImage", DataController.getImage());
 
@@ -146,7 +150,16 @@ export default class EventController {
     }
 
     static handleSubmitResult(response) {
-        console.log(`response : ${response}`);
+        if(response == undefined){
+            alert("리뷰 등록에 문제가 발생했습니다. 이전 페이지로 돌아갑니다.");
+        }else{
+            alert("리뷰 등록을 완료했습니다. 이전 페이지로 돌아갑니다.");
+        }
+        const param = {
+            reservationEmail: DataController.getReservationEmail()
+        }
+        const paramsUrl = getParamUrlByParams(param);
+        location.href = `./myReservation${paramsUrl}`;
     }
 
     // --------- 기타 지역 유틸 함수 ---------
