@@ -2,6 +2,7 @@ package chw.intern.nts.reservation.service.impl;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,6 +62,23 @@ public class CommentServiceImpl implements CommentService {
 		return commentList;
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Comment getCommentById(Integer commentId) {
+		Comment comment = null;
+		try {
+			comment = commentDao.selectById(commentId);
+			comment.setScore(convertDigit(comment.getScore()));
+
+			List<CommentImage> commentImages = commentDao.selectAllByCommentId(commentId);
+			comment.setCommentImages(commentImages);
+		} catch (Exception e) {
+			LOGGER.error("Error Occured with params : {commentId : {}} \r\n{}", commentId, e.getLocalizedMessage());
+		}
+
+		return comment;
+	}
+
 	private double convertDigit(double number) {
 		double convertedNumber = number;
 
@@ -90,48 +108,46 @@ public class CommentServiceImpl implements CommentService {
 	public Comment postComment(MultipartFile attachedImage, String comment, Integer productId, Integer score,
 			Integer reservationInfoId) {
 		Comment responseComment = null;
+		String nowDateString = new Date(System.currentTimeMillis()).toString();
 
-		// 코멘트 dao를 통해 insert
-		ReservationUserComment reservationUserComment = null;
-		FileInfo fileInfo = null;
-		ReservationUserCommentImage reservationUserCommentImage = null;
-		Integer fileInfoId = -1;
-		
-		
 		try {
-			String fileName = attachedImage.getOriginalFilename();
-			String saveFileName = "img/"+attachedImage.getOriginalFilename();
+			// Dao로 DB에 insert
+			String fileName = String.format("%d_%s_%s", reservationInfoId, nowDateString,
+					attachedImage.getOriginalFilename());
+			String saveFileName = String.format("img_comment/%d_%s_%s", reservationInfoId, nowDateString,
+					attachedImage.getOriginalFilename());
 			String contentType = attachedImage.getContentType();
-			
-			reservationUserComment = new ReservationUserComment(productId, reservationInfoId, score, comment);
-			Integer reservationUserCommentId = reservationUserCommentDao.insertReservationUserComment(reservationUserComment);
-			
-			fileInfo = new FileInfo(fileName, saveFileName, contentType);
-			fileInfoId = fileInfoDao.insertFileInfo(fileInfo);
-			
-			reservationUserCommentImage = new ReservationUserCommentImage(reservationInfoId, reservationUserCommentId, fileInfoId);
-			Integer reservationUserCommentImageId = reservationUserCommentDao.insertReservationUserCommentImage(reservationUserCommentImage);
-			
-			
-		} catch (Exception e) {
-			LOGGER.error(
-					"Error Occured with params : {attachedImageName : {}, comment : {}, productId : {}, score : {}, reservationInfoId : {}} \r\n{}",
-					attachedImage.getOriginalFilename(), comment, productId, score, reservationInfoId,
-					e.getLocalizedMessage());
-		}
-		
-		// 이미지 파일 저장
-		System.out.println("파일 이름 : " + attachedImage.getOriginalFilename());
-		System.out.println("파일 크기 : " + attachedImage.getSize());
 
-		// 파일이름 중복방지(파일이름_reserInfoId)
-		try (FileOutputStream fos = new FileOutputStream(fileSrcAddress + fileInfoId + attachedImage.getOriginalFilename());
-				InputStream is = attachedImage.getInputStream();) {
+			ReservationUserComment reservationUserComment = new ReservationUserComment(productId, reservationInfoId,
+					score, comment);
+			Integer reservationUserCommentId = reservationUserCommentDao
+					.insertReservationUserComment(reservationUserComment);
+
+			FileInfo fileInfo = new FileInfo(fileName, saveFileName, contentType);
+			Integer fileInfoId = fileInfoDao.insertFileInfo(fileInfo);
+
+			ReservationUserCommentImage reservationUserCommentImage = new ReservationUserCommentImage(reservationInfoId,
+					reservationUserCommentId, fileInfoId);
+			Integer reservationUserCommentImageId = reservationUserCommentDao
+					.insertReservationUserCommentImage(reservationUserCommentImage);
+
+			// 외부 디렉토리에 파일 저장
+
+			// TODO : try catch나 close 사용하지 않고 깔끔하게 저장하는 라이브러리 없는지 체크
+			FileOutputStream fos = new FileOutputStream(fileSrcAddress + saveFileName);
+			InputStream is = attachedImage.getInputStream();
+
 			int readCount = 0;
 			byte[] buffer = new byte[1024];
 			while ((readCount = is.read(buffer)) != -1) {
 				fos.write(buffer, 0, readCount);
 			}
+
+			fos.close();
+			is.close();
+
+			// 응답 데이터 생성
+			responseComment = getCommentById(reservationUserCommentId);
 		} catch (Exception e) {
 			// Think : 코드상에서 가독성을 위해 메시지 줄바꿈을 하면 + 연산자 써야 하는데 성능이 떨어짐.
 			LOGGER.error(

@@ -37,4 +37,10 @@ public class CommentDao {
 		
 		return jdbcTemplate.query(SELECT_COMMENT_IMAGES_ALL_BY_COMMENT_ID, param, commentImageRowMapper);
 	}
+
+	public Comment selectById(Integer commentId) {
+		Map<String, Integer> params = Collections.singletonMap("commentId", commentId);
+		
+		return jdbcTemplate.queryForObject(SELECT_BY_ID, params, commentRowMapper);
+	}
 }

@@ -31,4 +31,19 @@ public class CommentDaoSqls {
 			+ " JOIN file_info fi"
 			+ " ON ruci.file_id = fi.id"
 			+ " ORDER BY ruci.id";
+	
+	public static final String SELECT_BY_ID = "SELECT c.comment,"
+			+ " c.id comment_id,"
+			+ " c.create_date,"
+			+ " c.modify_date,"
+			+ " c.product_id,"
+			+ " ri.reservation_date,"
+			+ " ri.reservation_email,"
+			+ " ri.id reservation_info_id,"
+			+ " ri.reservation_name,"
+			+ " ri.reservation_tel reservation_telephone,"
+			+ " c.score"
+			+ " FROM (SELECT * FROM reservation_user_comment WHERE id = :commentId) c"
+			+ " JOIN reservation_info ri"
+			+ " ON c.reservation_info_id = ri.id ";
 }
