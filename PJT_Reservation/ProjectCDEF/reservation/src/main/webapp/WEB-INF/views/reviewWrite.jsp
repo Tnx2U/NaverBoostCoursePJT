@@ -67,6 +67,7 @@
 			<span class="copyright">© NAVER Corp.</span>
 		</div>
 	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="module" src="static/js/reviewWritePage/reviewWritePage.js"></script>
 </body>
 </html>

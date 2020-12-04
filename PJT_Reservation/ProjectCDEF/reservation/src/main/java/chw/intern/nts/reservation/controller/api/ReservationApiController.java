@@ -1,7 +1,5 @@
 package chw.intern.nts.reservation.controller.api;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +28,7 @@ import chw.intern.nts.reservation.service.ReservationService;
 public class ReservationApiController {
 	@Autowired
 	ReservationService reservationService;
-	
+
 	@Autowired
 	CommentService commentService;
 
@@ -54,9 +52,17 @@ public class ReservationApiController {
 	}
 
 	@PostMapping(path = "/{reservationInfoId}/comments")
-	public Comment postComment(@RequestParam("file") MultipartFile file) {
+	public Comment postComment(@RequestParam("attachedImage") MultipartFile attachedImage, @RequestParam String comment,
+			@RequestParam Integer productId, @RequestParam Integer score,
+			@PathVariable(name = "reservationInfoId", required = true) Integer reservationInfoId) {
 
-		Comment responseComment = commentService.postComment(file);
+		System.out.println("attachedImage : " + attachedImage.toString());
+		System.out.println("comment : " + comment);
+		System.out.println("productId : " + productId);
+		System.out.println("score : " + score);
+		System.out.println("reservationInfoId : " + reservationInfoId);
+		Comment responseComment = new Comment();
+		// Comment responseComment = commentService.postComment(file);
 
 		return responseComment;
 	}

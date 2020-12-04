@@ -74,10 +74,8 @@ public class PageController {
 	public String getMyReservationPage(@RequestParam(name = "productId", required = true) Integer productId,
 			HttpServletRequest request) {
 
-		System.out.println("productId :" + productId);
 		String productDescription = productService.getDescriptionByProductId(productId);
 		request.setAttribute("productDescription", productDescription);
-		System.out.println(request.getAttribute("productDescription"));
 		
 		return "reviewWrite";
 	}

@@ -1,5 +1,6 @@
 import DataController from './dataConroller.js';
-import { handlePostAjax } from '../../share/ajaxHandler.js';
+import { handlePostAjaxMultipart } from '../../share/ajaxHandler.js';
+import { getParamUrlByParams } from '../../share/util.js';
 
 export default class EventController {
 
@@ -89,10 +90,13 @@ export default class EventController {
                 return;
             }
 
+            // 기존에 선택된 이미지가 있으면 대체
             const thumnailImgElement = document.querySelector("li.item .item_thumb");
-            if(thumnailImgElement != null){
+            if (thumnailImgElement != null) {
                 thumnailImgElement.remove();
             }
+
+            DataController.setImage(selectedImage);
 
             let thumnailImgElemnt = document.createElement("img");
             thumnailImgElemnt.classList.add("item_thumb");
@@ -108,20 +112,41 @@ export default class EventController {
         const inputImageElement = document.querySelector("#input_image");
         const thumnailLiElement = document.querySelector(".item_preview_thumbs li.item");
         const cancelAnchorElement = document.querySelector(".anchor");
-        
+
         cancelAnchorElement.addEventListener('click', () => {
             const thumnailImgElement = document.querySelector("li.item .item_thumb");
             if (confirm("선택한 이미지 업로드를 취소하시겠습니까?")) {
                 inputImageElement.value = null;
                 thumnailImgElement.remove();
                 thumnailLiElement.style.display = "none";
+                DataController.setImage(null);
                 alert("삭제하였습니다.");
             }
         })
     }
 
     static handleSubmitForm() {
+        const submitButtonElement = document.querySelector(".bk_btn");
+        const callbackFunc = this.handleSubmitResult;
 
+        submitButtonElement.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            let formData = new FormData();
+            formData.append("attachedImage", DataController.getImage());
+
+            console.log(formData.getAll("attachedImage"));
+            formData.append("comment", DataController.getComment());
+            formData.append("productId", DataController.getProductId());
+            formData.append("score", DataController.getScore());
+
+            const targetUrl = `reservations/${DataController.getReservationInfoId()}/comments`;
+            handlePostAjaxMultipart(callbackFunc, targetUrl, formData);
+        })
+    }
+
+    static handleSubmitResult(response) {
+        console.log(`response : ${response}`);
     }
 
     // --------- 기타 지역 유틸 함수 ---------
