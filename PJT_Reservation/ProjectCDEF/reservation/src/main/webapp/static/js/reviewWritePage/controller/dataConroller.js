@@ -10,6 +10,7 @@ export default class DataController {
         this.reservationInfoId = param.reservationInfoId;
         this.reservationEmail = param.reservationEmail;
         this.productId = param.productId;
+        this.score = "0";
     }
 
     // ----------- setter ------------

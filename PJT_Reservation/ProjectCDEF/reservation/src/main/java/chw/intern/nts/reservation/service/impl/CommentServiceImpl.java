@@ -158,4 +158,25 @@ public class CommentServiceImpl implements CommentService {
 
 		return responseComment;
 	}
+
+	@Override
+	public Comment postComment(String comment, Integer productId, Integer score, Integer reservationInfoId) {
+		Comment responseComment = null;
+		
+		try {
+			ReservationUserComment reservationUserComment = new ReservationUserComment(productId, reservationInfoId,
+					score, comment);
+			Integer reservationUserCommentId = reservationUserCommentDao
+					.insertReservationUserComment(reservationUserComment);
+			// 응답 데이터 생성
+			responseComment = getCommentById(reservationUserCommentId);
+		} catch (Exception e) {
+			// Think : 코드상에서 가독성을 위해 메시지 줄바꿈을 하면 + 연산자 써야 하는데 성능이 떨어짐.
+			LOGGER.error(
+					"Error Occured with params : {comment : {}, productId : {}, score : {}, reservationInfoId : {}} \r\n{}",
+					comment, productId, score, reservationInfoId, e.getLocalizedMessage());
+		}
+
+		return responseComment;
+	}
 }
