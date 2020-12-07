@@ -49,8 +49,8 @@ public class ProductServiceImpl implements ProductService {
 				productList = productDao.selectByCategoryIdWithOffset(categoryId, start, limit);
 			}
 		} catch (Exception e) {
-			LOGGER.error(String.format("Error Occured with params : {categoryId : %d, start : %d, limit: %d} ",
-					categoryId, start, limit) + e.getLocalizedMessage());
+			LOGGER.error("Error Occured with params : {categoryId : {}, start : {}, limit: {}} \r\n{}", categoryId,
+					start, limit, e.getLocalizedMessage());
 		}
 
 		return productList;
@@ -67,8 +67,7 @@ public class ProductServiceImpl implements ProductService {
 				totalCount = productDao.selectCountByCategoryId(categoryId);
 			}
 		} catch (Exception e) {
-			LOGGER.error(String.format("Error Occured with params : {categoryId : %d} ", categoryId)
-					+ e.getLocalizedMessage());
+			LOGGER.error("Error Occured with params : {categoryId : {}} \r\n{}", categoryId, e.getLocalizedMessage());
 		}
 
 		return totalCount;
@@ -107,8 +106,8 @@ public class ProductServiceImpl implements ProductService {
 			displayInfoResponse.setProductImages(productImageList);
 			displayInfoResponse.setProductPrices(ProductPriceList);
 		} catch (Exception e) {
-			LOGGER.error(String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId)
-					+ e.getLocalizedMessage());
+			LOGGER.error("Error Occured with params : {displayInfoId : {}} \r\n{}", displayInfoId,
+					e.getLocalizedMessage());
 		}
 		return displayInfoResponse;
 	}
@@ -121,10 +120,24 @@ public class ProductServiceImpl implements ProductService {
 		try {
 			displayInfo = displayInfoDao.selectById(displayInfoId);
 		} catch (Exception e) {
-			LOGGER.error(String.format("Error Occured with params : {displayInfoId : %d} ", displayInfoId)
-					+ e.getLocalizedMessage());
+			LOGGER.error("Error Occured with params : {displayInfoId : {}} \r\n{}", displayInfoId,
+					e.getLocalizedMessage());
 		}
 
 		return displayInfo;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public String getDescriptionByProductId(Integer productId) {
+		String productDescription = null;
+
+		try {
+			productDescription = productDao.selectDescriptionByProductId(productId);
+		} catch (Exception e) {
+			LOGGER.error("Error Occured with params : {productId : {}} \r\n{}", productId, e.getLocalizedMessage());
+		}
+
+		return productDescription;
 	}
 }

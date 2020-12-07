@@ -70,4 +70,10 @@ public class ProductDao {
 
 		return jdbcTemplate.query(SELECT_PRODUCT_PRICES_BY_PRODUCT_ID, params, productPriceRowMapper);
 	}
+
+	public String selectDescriptionByProductId(Integer productId) {
+		Map<String, Integer> params = Collections.singletonMap("productId", productId);
+		
+		return jdbcTemplate.queryForObject(SELECT_DESCRPTION_BY_PRODUCT_ID, params, String.class);
+	}
 }

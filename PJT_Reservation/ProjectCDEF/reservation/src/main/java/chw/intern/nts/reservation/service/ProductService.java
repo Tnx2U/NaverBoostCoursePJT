@@ -11,4 +11,5 @@ public interface ProductService {
 	public int getProductsCount(Integer categoryId);
 	public DisplayInfoResponse getDisplayInfoResponseByDisplayInfoId(Integer displayInfoId);
 	public DisplayInfo getDisplayInfoById(Integer displayInfoId);
+	public String getDescriptionByProductId(Integer productId);
 }

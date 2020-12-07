@@ -44,6 +44,26 @@ function handlePostAjax(callbackFunc, target, params){
     xhRequest.send(JSON.stringify(params));
 }
 
+// 편의성을 위해 multipart formData 전송은 jquery 문법 사용
+function handlePostAjaxMultipart(callbackFunc, target, formData){
+    $.ajax({
+        url : `api/${target}`,
+        type : 'POST',
+        enctype : 'multipart/form-data',
+        data : formData,
+        asynsc : true,
+        cache : false,
+        contentType: false,
+        processData: false,
+        success: function(result){
+            callbackFunc(result);
+        },
+        error: function(errorResult){
+            callbackFunc(errorResult);
+        }
+    })
+}
+
 function handlePutAjax(callbackFunc, target, params){
     let xhRequest = new XMLHttpRequest();
     const baseUrl = `api/${target}`;
@@ -67,4 +87,4 @@ function handlePutAjax(callbackFunc, target, params){
     }
 }
 
-export { handleGetAjax, handlePostAjax, handlePutAjax }
+export { handleGetAjax, handlePostAjax, handlePostAjaxMultipart, handlePutAjax }

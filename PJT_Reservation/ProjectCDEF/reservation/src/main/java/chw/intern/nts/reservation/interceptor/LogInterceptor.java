@@ -19,14 +19,15 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String reservationEmail = (String) session.getAttribute("reservationEmail");
 
-		LOGGER.info(handler.toString() + " is Called.");
+		LOGGER.info("{} is Called. URL : {}, ClienIP : {}", handler.toString(), request.getRequestURL(),
+				request.getRemoteAddr());
 
 		if (reservationEmail == null) {
 			LOGGER.info("There is no login Info.");
 		} else {
-			LOGGER.info(String.format("User Login with %s.", reservationEmail));
-			LOGGER.info(String.format("SessionCreationTime : %d,  RecentSessionCall : %d", session.getCreationTime(),
-					session.getLastAccessedTime()));
+			LOGGER.info("User Login with {}.", reservationEmail);
+			LOGGER.info("SessionCreationTime : {},  RecentSessionCall : {}", session.getCreationTime(),
+					session.getLastAccessedTime());
 		}
 
 		return true;

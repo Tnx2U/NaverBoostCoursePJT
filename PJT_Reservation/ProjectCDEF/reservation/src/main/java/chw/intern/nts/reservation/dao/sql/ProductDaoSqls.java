@@ -68,4 +68,8 @@ public class ProductDaoSqls {
 			+ " pp.id product_price_id"
 			+ " FROM product_price pp"
 			+ " WHERE pp.product_id = :productId";
+	
+	public static final String SELECT_DESCRPTION_BY_PRODUCT_ID = "SELECT description"
+			+ " FROM product"
+			+ " WHERE id = :productId";
 }

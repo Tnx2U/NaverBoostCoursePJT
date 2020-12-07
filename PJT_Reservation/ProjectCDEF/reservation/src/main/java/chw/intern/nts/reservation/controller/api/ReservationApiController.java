@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.ReservationParam;
 import chw.intern.nts.reservation.entity.ReservationInfo;
+import chw.intern.nts.reservation.service.CommentService;
 import chw.intern.nts.reservation.service.ReservationService;
 
 @CrossOrigin
@@ -25,6 +28,9 @@ import chw.intern.nts.reservation.service.ReservationService;
 public class ReservationApiController {
 	@Autowired
 	ReservationService reservationService;
+
+	@Autowired
+	CommentService commentService;
 
 	@GetMapping
 	public Map<String, Object> getReservations(
@@ -44,6 +50,22 @@ public class ReservationApiController {
 
 		return responseReservation;
 	}
+
+	@PostMapping(path = "/{reservationInfoId}/comments")
+	public Comment postComment(@RequestParam(name = "attachedImage", required = false) MultipartFile attachedImage,
+			@RequestParam String comment, @RequestParam Integer productId, @RequestParam Integer score,
+			@PathVariable(name = "reservationInfoId", required = true) Integer reservationInfoId) {
+
+		Comment responseComment = null;
+		if (attachedImage != null) {
+			responseComment = commentService.postComment(attachedImage, comment, productId, score, reservationInfoId);
+		} else {
+			responseComment = commentService.postComment(comment, productId, score, reservationInfoId);
+		}
+
+		return responseComment;
+	}
+
 
 	@PutMapping("/{reservationId}")
 	public ReservationParam putCancelFlag(

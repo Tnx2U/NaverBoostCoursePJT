@@ -20,7 +20,7 @@ export default class DataController {
     static getGroupVisualData() {
         const groupVisualData = {
             fileName: this.displayInfoResponse.productImages[0].fileName,
-            saveFileName: 'static/' + this.displayInfoResponse.productImages[0].saveFileName,
+            saveFileName: this.displayInfoResponse.productImages[0].saveFileName,
             startPrice: this.displayInfoResponse.productPrices.reduce((prev, current) =>
                 (prev.price < current.price) ? prev.price : current.price),
             displayDate: this.displayInfoResponse.displayInfo.openingHours.split(/- [ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{3,4}:?/g)[1],
