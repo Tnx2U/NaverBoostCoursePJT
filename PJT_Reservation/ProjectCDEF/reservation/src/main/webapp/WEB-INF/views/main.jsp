@@ -135,7 +135,6 @@
             </a>
         </li>
     </script>
-    <script type="text/javascript" src="static/js/mainPage/properties.js"></script>
     <script type="text/javascript" src="static/js/mainPage/ajaxHandler.js"></script>
     <script type="text/javascript" src="static/js/mainPage/eventHandler.js"></script>
     <script type="text/javascript" src="static/js/mainPage/renderer.js"></script>

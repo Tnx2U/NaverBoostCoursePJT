@@ -1,7 +1,6 @@
 function handleGetAjax(renderFunction, target, params) {
     let xhRequest = new XMLHttpRequest();
     const baseUrl = `api/${target}`;
-    //const baseUrl = `http://${SERVER_IP}:${TARGET_PORT}/reservation/api/${target}`;
     let paramUrl = "";
 
     if (params != null) {

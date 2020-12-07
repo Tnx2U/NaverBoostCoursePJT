@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import chw.intern.nts.reservation.interceptor.LogInterceptor;
 
@@ -59,7 +60,7 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public MultipartResolver multipartResolver() {
-		org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver = new org.springframework.web.multipart.commons.CommonsMultipartResolver();
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
 		multipartResolver.setMaxUploadSize(10485760); // 1024 * 1024 * 10
 		
 		return multipartResolver;
