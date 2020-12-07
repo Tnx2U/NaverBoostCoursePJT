@@ -111,40 +111,40 @@ public class CommentServiceImpl implements CommentService {
 		long nowDateLong = new Date(System.currentTimeMillis()).getTime();
 
 		try {
-			// Dao로 DB에 insert
-			String fileName = String.format("%d_%d_%s", reservationInfoId, nowDateLong,
-					attachedImage.getOriginalFilename());
-			String saveFileName = String.format("img_comment/%d_%d_%s", reservationInfoId, nowDateLong,
-					attachedImage.getOriginalFilename());
-			String contentType = attachedImage.getContentType();
-
 			ReservationUserComment reservationUserComment = new ReservationUserComment(productId, reservationInfoId,
 					score, comment);
 			Integer reservationUserCommentId = reservationUserCommentDao
 					.insertReservationUserComment(reservationUserComment);
 
-			FileInfo fileInfo = new FileInfo(fileName, saveFileName, contentType);
-			Integer fileInfoId = fileInfoDao.insertFileInfo(fileInfo);
+			if (attachedImage != null) {
+				String fileName = String.format("%d_%d_%s", reservationInfoId, nowDateLong,
+						attachedImage.getOriginalFilename());
+				String saveFileName = String.format("img_comment/%d_%d_%s", reservationInfoId, nowDateLong,
+						attachedImage.getOriginalFilename());
+				String contentType = attachedImage.getContentType();
 
-			ReservationUserCommentImage reservationUserCommentImage = new ReservationUserCommentImage(reservationInfoId,
-					reservationUserCommentId, fileInfoId);
-			Integer reservationUserCommentImageId = reservationUserCommentDao
-					.insertReservationUserCommentImage(reservationUserCommentImage);
+				FileInfo fileInfo = new FileInfo(fileName, saveFileName, contentType);
+				Integer fileInfoId = fileInfoDao.insertFileInfo(fileInfo);
 
-			// 외부 디렉토리에 파일 저장
+				ReservationUserCommentImage reservationUserCommentImage = new ReservationUserCommentImage(
+						reservationInfoId, reservationUserCommentId, fileInfoId);
+				Integer reservationUserCommentImageId = reservationUserCommentDao
+						.insertReservationUserCommentImage(reservationUserCommentImage);
 
-			// TODO : try catch나 close 사용하지 않고 깔끔하게 저장하는 라이브러리 없는지 체크
-			FileOutputStream fos = new FileOutputStream(fileSrcAddress + saveFileName);
-			InputStream is = attachedImage.getInputStream();
+				// 외부 디렉토리에 파일 저장
+				// TODO : try catch나 close 사용하지 않고 깔끔하게 저장하는 라이브러리 없는지 체크
+				FileOutputStream fos = new FileOutputStream(fileSrcAddress + saveFileName);
+				InputStream is = attachedImage.getInputStream();
 
-			int readCount = 0;
-			byte[] buffer = new byte[1024];
-			while ((readCount = is.read(buffer)) != -1) {
-				fos.write(buffer, 0, readCount);
+				int readCount = 0;
+				byte[] buffer = new byte[1024];
+				while ((readCount = is.read(buffer)) != -1) {
+					fos.write(buffer, 0, readCount);
+				}
+
+				fos.close();
+				is.close();
 			}
-
-			fos.close();
-			is.close();
 
 			// 응답 데이터 생성
 			responseComment = getCommentById(reservationUserCommentId);
@@ -162,7 +162,7 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Comment postComment(String comment, Integer productId, Integer score, Integer reservationInfoId) {
 		Comment responseComment = null;
-		
+
 		try {
 			ReservationUserComment reservationUserComment = new ReservationUserComment(productId, reservationInfoId,
 					score, comment);

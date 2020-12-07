@@ -56,16 +56,11 @@ public class ReservationApiController {
 			@RequestParam String comment, @RequestParam Integer productId, @RequestParam Integer score,
 			@PathVariable(name = "reservationInfoId", required = true) Integer reservationInfoId) {
 
-		Comment responseComment = null;
-		if (attachedImage != null) {
-			responseComment = commentService.postComment(attachedImage, comment, productId, score, reservationInfoId);
-		} else {
-			responseComment = commentService.postComment(comment, productId, score, reservationInfoId);
-		}
+		Comment responseComment = commentService.postComment(attachedImage, comment, productId, score,
+				reservationInfoId);
 
 		return responseComment;
 	}
-
 
 	@PutMapping("/{reservationId}")
 	public ReservationParam putCancelFlag(

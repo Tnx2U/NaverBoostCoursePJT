@@ -62,13 +62,7 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
 		multipartResolver.setMaxUploadSize(10485760); // 1024 * 1024 * 10
-		
+
 		return multipartResolver;
 	}
-
-//	@Override
-//	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-//		System.out.println("아규먼트 리졸버 등록..");
-//		argumentResolvers.add(new HeaderMapArgumentResolver());
-//	}
 }
