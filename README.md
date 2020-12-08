@@ -1,9 +1,8 @@
 
 ### 🐯 개요
 
-- 8주간 진행될 엔테크 인턴십의 전체 READ ME 페이지입니다.
+- Edwith의 부스트코스를 수강하며 진행한 프로젝트입니다.
 - 프로젝트별 READ ME는 별도로 각 프로젝트 디렉토리 최상단에 추가될 예정입니다.
-- 본 문서는 갱신중인 문서입니다.
 
 
 
@@ -11,7 +10,7 @@
 
 - 프로젝트별 강의 공부, 일일 일지, 코드리뷰 피드백 등이 있는 문서입니다.
 
-- [링크](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/wikis/home)
+- [링크](https://github.com/Tnx2U/NaverBoostCoursePJT/wiki)
 
 
 
@@ -45,10 +44,10 @@
 
 ### 🐶 프로젝트별 READ ME
 
-1. [PJT01](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/PJT1_dev/PJT_01/PJT01_README.md)
-2. [PJT02](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/PJT2_dev/PJT_02/PJT02_README.md)
-3. [PJT03](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT03_README.md)
-4. [PJT04](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT04_README.md)
-5. [PJT05](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT05_README.md)
-6. [PJT06](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/blob/master/PJT_Reservation/PJT06_README.md)
+1. [PJT01](https://github.com/Tnx2U/NaverBoostCoursePJT/blob/master/PJT_AboutMe/PJT01_README.md)
+2. [PJT02](https://github.com/Tnx2U/NaverBoostCoursePJT/blob/master/PJT_Todo/PJT02_README.md)
+3. [PJT03](https://github.com/Tnx2U/NaverBoostCoursePJT/blob/master/PJT_Reservation/PJT03_README.md)
+4. [PJT04](https://github.com/Tnx2U/NaverBoostCoursePJT/blob/master/PJT_Reservation/PJT04_README.md)
+5. [PJT05](https://github.com/Tnx2U/NaverBoostCoursePJT/blob/master/PJT_Reservation/PJT05_README.md)
+6. [PJT06](https://github.com/Tnx2U/NaverBoostCoursePJT/blob/master/PJT_Reservation/PJT06_README.md)
 
