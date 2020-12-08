@@ -3,7 +3,7 @@
 function handleCategoryClick() {
     let eventTabElement = document.querySelector(".event_tab_lst");
 
-    eventTabElement.addEventListener('click', function(event) {
+    eventTabElement.addEventListener('click', function (event) {
         let selectCategoryId = -1;
         let params;
         if (event.target.tagName === 'SPAN') {
@@ -20,7 +20,6 @@ function handleCategoryClick() {
             "start": 0,
         }
 
-        //TODO : 예매가능 행사 표시
         showMoreButton();
         removeProduct();
         handleGetAjax(renderProductList, "products", params);
@@ -30,7 +29,7 @@ function handleCategoryClick() {
 
 // 더보기 버튼 클릭 이벤트
 function handleClickMoreButton() {
-    document.querySelector("#button_more").addEventListener("click", function() {
+    document.querySelector("#button_more").addEventListener("click", function () {
         const productParmas = { "categoryId": (globalCategoryId != null) ? globalCategoryId : "", "start": globalLoadCount };
         handleGetAjax(renderProductList, "products", productParmas);
     })
@@ -42,46 +41,42 @@ function setInitialEventListener() {
 }
 
 //카로셀 뷰 구현을 위한 이벤트
-function setCarouselEvent(){
+function setCarouselEvent() {
     let promotionUlElement = document.querySelector(".container_visual > .visual_img");
     let promotionLiElements = document.querySelectorAll(".visual_img > .item");
     let itemLength = promotionLiElements.length;
     let showIdx = 0;
 
     promotionUlElement.style.position = "relative";
-        promotionLiElements.forEach((promotion,index) => {
-            if(index == 0){
-                promotion.style.zIndex ="20";
-                promotion.style.right ="0";
-            }
-            promotion.style.position = "absolute";
-            promotion.style.display = "inline-block";
+    promotionLiElements.forEach((promotion, index) => {
+        if (index == 0) {
+            promotion.style.zIndex = "20";
+            promotion.style.right = "0";
+        }
+        promotion.style.position = "absolute";
+        promotion.style.display = "inline-block";
     })
 
-    
+
     //TODO : class 적용이 안되는 문제 추후 해결
-    setInterval(function(){
+    setInterval(function () {
         promotionLiElements.forEach((promotion, index) => {
-            // promotion.classList.remove(".hide_promotion");
-            // promotion.classList.remove(".show_promotion");
-            promotion.style.zIndex ="0";
-            promotion.style.right ="-414px";
+            promotion.style.zIndex = "0";
+            promotion.style.right = "-414px";
 
 
-            if(index == showIdx){
-                //promotion.classList.add(".show_promotion");
-                promotion.style.zIndex ="20";
-                promotion.style.right ="0";
-            }else if(index == showIdx - 1 || (index == itemLength-1 && showIdx==0)) {
-                promotion.style.zIndex ="10";
-                promotion.style.right ="414px";
-                //promotion.classList.add(".hide_promotion");
+            if (index == showIdx) {
+                promotion.style.zIndex = "20";
+                promotion.style.right = "0";
+            } else if (index == showIdx - 1 || (index == itemLength - 1 && showIdx == 0)) {
+                promotion.style.zIndex = "10";
+                promotion.style.right = "414px";
             }
         });
 
-        if(showIdx == itemLength-1){
+        if (showIdx == itemLength - 1) {
             showIdx = 0;
-        }else{
+        } else {
             showIdx++;
         }
 

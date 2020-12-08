@@ -92,7 +92,6 @@ export default class EventController {
         const thumnailLiElement = document.querySelector(".item_preview_thumbs li.item");
 
         inputImageElement.addEventListener("change", (event) => {
-            console.log("event.target.files", event.target.files);
             const selectedImage = event.target.files[0];
 
             if (!this.validImageType(selectedImage)) {
@@ -148,8 +147,6 @@ export default class EventController {
 
             let formData = new FormData();
             formData.append("attachedImage", DataController.getImage());
-
-            console.log(formData.getAll("attachedImage"));
             formData.append("comment", DataController.getComment());
             formData.append("productId", DataController.getProductId());
             formData.append("score", DataController.getScore());

@@ -1,4 +1,3 @@
-
 export default class DataController {
     static reservations = null;
     static cancelReserves = null;
@@ -10,23 +9,21 @@ export default class DataController {
         this.reservations = reservationResponse.reservations;
         console.log(this.reservations);
 
-        if(this.reservations.length == 0){
+        if (this.reservations.length == 0) {
             return;
         }
-        
+
         this.isEmpty = false;
 
         const nowDate = new Date();
-        // 예약확정
-        console.log(this.reservations[1]);
 
         this.confirmReserves = this.reservations.filter((element) => {
-            if(!element.cancelYn){
+            if (!element.cancelYn) {
                 const dateInfo = element.reservationDate.split("-");
                 let reserveDate = new Date();
-                reserveDate.setFullYear(dateInfo[0],dateInfo[1]-1,dateInfo[2]);
+                reserveDate.setFullYear(dateInfo[0], dateInfo[1] - 1, dateInfo[2]);
 
-                if(reserveDate.getTime() >= nowDate.getTime()){
+                if (reserveDate.getTime() >= nowDate.getTime()) {
                     return true;
                 }
             }
@@ -36,12 +33,12 @@ export default class DataController {
 
         // 이용 완료
         this.usedReserves = this.reservations.filter((element) => {
-            if(!element.cancelYn){
+            if (!element.cancelYn) {
                 const dateInfo = element.reservationDate.split("-");
                 let reserveDate = new Date();
-                reserveDate.setFullYear(dateInfo[0],dateInfo[1]-1,dateInfo[2]);
+                reserveDate.setFullYear(dateInfo[0], dateInfo[1] - 1, dateInfo[2]);
 
-                if(reserveDate.getTime() < nowDate.getTime()){
+                if (reserveDate.getTime() < nowDate.getTime()) {
                     return true;
                 }
             }
@@ -56,45 +53,28 @@ export default class DataController {
     }
 
 
-    static getIsEmpty(){
+    static getIsEmpty() {
         return this.isEmpty;
     }
 
-
-    static getMylistData(){
-        return;
-    }
-
-    static getMySummaryData(){
+    static getMySummaryData() {
         const mySummayData = {
-            totalCount : this.reservations.length,
-            confirmCount : this.confirmReserves.length,
-            usedCount : this.usedReserves.length,
-            cancelCount : this.cancelReserves.length
+            totalCount: this.reservations.length,
+            confirmCount: this.confirmReserves.length,
+            usedCount: this.usedReserves.length,
+            cancelCount: this.cancelReserves.length
         }
 
         return mySummayData;
     }
 
-    static getMyListData(){
+    static getMyListData() {
         const mylistData = {
-            confirmReserves : this.confirmReserves,
-            usedReserves : this.usedReserves,
-            cancelReserves : this.cancelReserves
+            confirmReserves: this.confirmReserves,
+            usedReserves: this.usedReserves,
+            cancelReserves: this.cancelReserves
         }
 
         return mylistData;
     }
-
-    // static getCancelReservesData(){
-    //     return this.cancelReserves;
-    // }
-
-    // static getConfirmReserves(){
-    //     return this.confirmReserves;
-    // }
-
-    // static getUsedReserves(){
-    //     return this.usedReserves;
-    // }
 }

@@ -2,7 +2,6 @@ export default class ReviewContent {
     constructor() {}
 
     getRenderedElement() {
-        // 컴포넌트 기본 src 
         let reviewContentElement = document.createElement("div");
         reviewContentElement.classList.add("review_contents","write");
         reviewContentElement.innerHTML = this.getHtmlSrc();

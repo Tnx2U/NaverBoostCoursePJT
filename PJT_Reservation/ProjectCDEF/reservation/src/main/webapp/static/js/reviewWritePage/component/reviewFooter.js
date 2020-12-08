@@ -2,7 +2,6 @@ export default class ReviewFooter {
     constructor() {}
 
     getRenderedElement() {
-        // 컴포넌트 기본 src 
         let reviewFooterElement = document.createElement("div");
         reviewFooterElement.classList.add("review_write_footer_wrap");
         reviewFooterElement.innerHTML = this.getHtmlSrc();

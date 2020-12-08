@@ -1,4 +1,3 @@
-import DataController from './dataController.js';
 import { handlePutAjax } from '../../share/ajaxHandler.js';
 
 export default class EventController {

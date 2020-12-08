@@ -13,7 +13,6 @@ function setEventhandler() {
 function handleClickReservateButton(){
     const reservateButtonElement = document.querySelector("#button_reservate");
     const paramsUrl = getParamUrlByParams(getParamsByUrl());
-    console.log("paramsUrl : ",paramsUrl);
 
     reservateButtonElement.addEventListener('click', function(){
         location.href = `./reserve${paramsUrl}`

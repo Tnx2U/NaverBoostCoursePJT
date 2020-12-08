@@ -1,5 +1,4 @@
 import DataController from '../controller/dataController.js';
-import EventController from '../controller/eventController.js';
 
 export default class BookingForm {
     constructor() {

@@ -7,8 +7,8 @@ function handleGetAjax(renderFunction, target, params) {
         paramUrl += "?";
         for (key in params) {
             paramUrl += `${key}=${params[key]}&`;
-            // js에서 맨 뒤의 params문법 삭제해주는 라이브러리? 기능 공부
         }
+        paramUrl = paramUrl.slice(0, -1);
     }
 
     xhRequest.onreadystatechange = function() {
