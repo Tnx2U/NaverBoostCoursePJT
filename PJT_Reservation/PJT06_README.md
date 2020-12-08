@@ -29,6 +29,6 @@
 
 
 # 🐻 프로젝트 산출물
-- [강의내용공부](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/wikis/lecture06)
+- [강의내용공부](https://github.com/Tnx2U/NaverBoostCoursePJT/wiki/lecture06)
 
-- [일지](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/wikis/DailyWorkPJT6)
+- [일지](https://github.com/Tnx2U/NaverBoostCoursePJT/wiki/DailyWorkPJT6)
