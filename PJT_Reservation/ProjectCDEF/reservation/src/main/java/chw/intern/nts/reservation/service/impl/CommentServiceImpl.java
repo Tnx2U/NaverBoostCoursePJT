@@ -1,11 +1,17 @@
 package chw.intern.nts.reservation.service.impl;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
+
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +35,8 @@ import chw.intern.nts.reservation.service.CommentService;
 @Service
 public class CommentServiceImpl implements CommentService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
-
+	private static final String EXTENSION_REGEXR = "^\\S+.(?i)(jpg|jpeg|png)$";
+	
 	@Value("${spring.filesrc.address}")
 	private String fileSrcAddress;
 
@@ -132,18 +139,7 @@ public class CommentServiceImpl implements CommentService {
 						.insertReservationUserCommentImage(reservationUserCommentImage);
 
 				// 외부 디렉토리에 파일 저장
-				// TODO : try catch나 close 사용하지 않고 깔끔하게 저장하는 라이브러리 없는지 체크
-				FileOutputStream fos = new FileOutputStream(fileSrcAddress + saveFileName);
-				InputStream is = attachedImage.getInputStream();
-
-				int readCount = 0;
-				byte[] buffer = new byte[1024];
-				while ((readCount = is.read(buffer)) != -1) {
-					fos.write(buffer, 0, readCount);
-				}
-
-				fos.close();
-				is.close();
+				upLoadImage(attachedImage, saveFileName);
 			}
 
 			// 응답 데이터 생성
@@ -159,24 +155,24 @@ public class CommentServiceImpl implements CommentService {
 		return responseComment;
 	}
 
-	@Override
-	public Comment postComment(String comment, Integer productId, Integer score, Integer reservationInfoId) {
-		Comment responseComment = null;
-
-		try {
-			ReservationUserComment reservationUserComment = new ReservationUserComment(productId, reservationInfoId,
-					score, comment);
-			Integer reservationUserCommentId = reservationUserCommentDao
-					.insertReservationUserComment(reservationUserComment);
-			// 응답 데이터 생성
-			responseComment = getCommentById(reservationUserCommentId);
-		} catch (Exception e) {
-			// Think : 코드상에서 가독성을 위해 메시지 줄바꿈을 하면 + 연산자 써야 하는데 성능이 떨어짐.
-			LOGGER.error(
-					"Error Occured with params : {comment : {}, productId : {}, score : {}, reservationInfoId : {}} \r\n{}",
-					comment, productId, score, reservationInfoId, e.getLocalizedMessage());
+	public void upLoadImage(MultipartFile attachedImage, String saveFileName) throws IOException {
+		try(FileOutputStream outPutStream = new FileOutputStream(fileSrcAddress + saveFileName);
+				InputStream inputStream = attachedImage.getInputStream();){
+			int readCount = 0;
+			byte[] buffer = new byte[1024];
+			while ((readCount = inputStream.read(buffer)) != -1) {
+				outPutStream.write(buffer, 0, readCount);
+			}
+		}catch(IOException e){
+			throw e;
 		}
-
-		return responseComment;
+		
+//		Matcher matcher = Pattern.compile(EXTENSION_REGEXR).matcher(attachedImage.getOriginalFilename());
+//		if(matcher.find()) {
+//			// 확장자 일치
+//		}else {
+//			// 일치 확장자 없음
+//		}
+//		ImageIO.write(im, formatName, output)
 	}
 }

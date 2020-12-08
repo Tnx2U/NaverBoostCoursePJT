@@ -1,5 +1,6 @@
 package chw.intern.nts.reservation.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -11,5 +12,5 @@ public interface CommentService {
 	public double getAverageScore(List<Comment> commentList);
 	public Comment postComment(MultipartFile attachedImage, String comment, Integer productId, Integer score, Integer reservationInfoId);
 	public Comment getCommentById(Integer commentId);
-	public Comment postComment(String comment, Integer productId, Integer score, Integer reservationInfoId);
+	public void upLoadImage(MultipartFile attachedImage, String saveFileName) throws IOException;
 }

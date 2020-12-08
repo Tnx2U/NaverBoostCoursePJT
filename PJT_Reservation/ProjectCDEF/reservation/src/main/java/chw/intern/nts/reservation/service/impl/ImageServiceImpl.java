@@ -17,17 +17,14 @@ import chw.intern.nts.reservation.service.ImageService;
 public class ImageServiceImpl implements ImageService {
 	@Value("${spring.filesrc.address}")
 	private String fileSrcAddress;
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ImageServiceImpl.class);
 
 	@Override
 	public byte[] getImageByFileSaveName(String saveFileName) {
-		FileInputStream imageStream = null;
 		byte[] imageByte = null;
 
-		try {
-			imageStream = new FileInputStream(
-					new File(fileSrcAddress + saveFileName));
+		try (FileInputStream imageStream = new FileInputStream(new File(fileSrcAddress + saveFileName))) {
 			imageByte = IOUtils.toByteArray(imageStream);
 		} catch (IOException e) {
 			LOGGER.error("Error Occured with params : {saveFileName : {}} \r\n{}", saveFileName,
