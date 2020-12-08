@@ -147,6 +147,7 @@ export default class EventController {
 
             let formData = new FormData();
             formData.append("attachedImage", DataController.getImage());
+            formData.append("reservationInfoId", DataController.getReservationInfoId());
             formData.append("comment", DataController.getComment());
             formData.append("productId", DataController.getProductId());
             formData.append("score", DataController.getScore());

@@ -2,6 +2,8 @@ package chw.intern.nts.reservation.entity;
 
 import java.sql.Date;
 
+import chw.intern.nts.reservation.dto.CommentRequest;
+
 public class ReservationUserComment {
 	private Integer id;
 	private Integer productId;
@@ -18,6 +20,12 @@ public class ReservationUserComment {
 		this.comment = comment;
 		this.createDate = new Date(System.currentTimeMillis());
 		this.modifyDate = new Date(System.currentTimeMillis());
+	}
+
+	public static ReservationUserComment from(CommentRequest commentRequest) {
+		ReservationUserComment reservatonUserComment = new ReservationUserComment(commentRequest.getProductId(),
+				commentRequest.getReservationInfoId(), commentRequest.getScore(), commentRequest.getComment());
+		return reservatonUserComment;
 	}
 
 	public Integer getId() {
@@ -75,4 +83,5 @@ public class ReservationUserComment {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
+
 }

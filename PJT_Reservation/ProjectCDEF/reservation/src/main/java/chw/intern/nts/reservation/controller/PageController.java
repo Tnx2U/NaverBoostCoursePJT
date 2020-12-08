@@ -79,4 +79,11 @@ public class PageController {
 		
 		return "reviewWrite";
 	}
+	
+	@GetMapping(path ="/logout")
+	public String doLogout(HttpSession session) {
+		session.removeAttribute("reservationEmail");
+		
+		return "main";
+	}
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import chw.intern.nts.reservation.dto.Comment;
+import chw.intern.nts.reservation.dto.CommentRequest;
 import chw.intern.nts.reservation.dto.ReservationParam;
 import chw.intern.nts.reservation.entity.ReservationInfo;
 import chw.intern.nts.reservation.service.CommentService;
@@ -52,12 +53,8 @@ public class ReservationApiController {
 	}
 
 	@PostMapping(path = "/{reservationInfoId}/comments")
-	public Comment postComment(@RequestParam(name = "attachedImage", required = false) MultipartFile attachedImage,
-			@RequestParam String comment, @RequestParam Integer productId, @RequestParam Integer score,
-			@PathVariable(name = "reservationInfoId", required = true) Integer reservationInfoId) {
-
-		Comment responseComment = commentService.postComment(attachedImage, comment, productId, score,
-				reservationInfoId);
+	public Comment postComment(CommentRequest commentRequest) {
+		Comment responseComment = commentService.postComment(commentRequest);
 
 		return responseComment;
 	}

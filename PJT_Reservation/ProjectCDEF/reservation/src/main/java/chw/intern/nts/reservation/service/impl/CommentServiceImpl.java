@@ -26,6 +26,7 @@ import chw.intern.nts.reservation.dao.FileInfoDao;
 import chw.intern.nts.reservation.dao.ReservationUserCommentDao;
 import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.CommentImage;
+import chw.intern.nts.reservation.dto.CommentRequest;
 import chw.intern.nts.reservation.entity.FileInfo;
 import chw.intern.nts.reservation.entity.ReservationUserComment;
 import chw.intern.nts.reservation.entity.ReservationUserCommentImage;
@@ -36,7 +37,7 @@ import chw.intern.nts.reservation.service.CommentService;
 public class CommentServiceImpl implements CommentService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
 	private static final String EXTENSION_REGEXR = "^\\S+.(?i)(jpg|jpeg|png)$";
-	
+
 	@Value("${spring.filesrc.address}")
 	private String fileSrcAddress;
 
@@ -112,16 +113,21 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public Comment postComment(MultipartFile attachedImage, String comment, Integer productId, Integer score,
-			Integer reservationInfoId) {
+	public Comment postComment(CommentRequest commentRequest) {
 		Comment responseComment = null;
 		long nowDateLong = new Date(System.currentTimeMillis()).getTime();
 
 		try {
-			ReservationUserComment reservationUserComment = new ReservationUserComment(productId, reservationInfoId,
-					score, comment);
+
+//			ReservationUserComment reservationUserComment = new ReservationUserComment(productId, reservationInfoId,
+//					score, comment);
+			ReservationUserComment reservationUserComment = ReservationUserComment.from(commentRequest);
 			Integer reservationUserCommentId = reservationUserCommentDao
 					.insertReservationUserComment(reservationUserComment);
+
+			// 이미지가 있으면 fileInfo, user_comment_image 테이블에 insert 하고 사진저장
+			MultipartFile attachedImage = commentRequest.getAttachedImage();
+			Integer reservationInfoId = commentRequest.getReservationInfoId();
 
 			if (attachedImage != null) {
 				String fileName = String.format("%d_%d_%s", reservationInfoId, nowDateLong,
@@ -145,10 +151,7 @@ public class CommentServiceImpl implements CommentService {
 			// 응답 데이터 생성
 			responseComment = getCommentById(reservationUserCommentId);
 		} catch (Exception e) {
-			// Think : 코드상에서 가독성을 위해 메시지 줄바꿈을 하면 + 연산자 써야 하는데 성능이 떨어짐.
-			LOGGER.error(
-					"Error Occured with params : {attachedImageName : {}, comment : {}, productId : {}, score : {}, reservationInfoId : {}} \r\n{}",
-					attachedImage.getOriginalFilename(), comment, productId, score, reservationInfoId,
+			LOGGER.error("Error Occured with params : { commentRequest : {} } \r\n{}", commentRequest,
 					e.getLocalizedMessage());
 		}
 
@@ -156,17 +159,17 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	public void upLoadImage(MultipartFile attachedImage, String saveFileName) throws IOException {
-		try(FileOutputStream outPutStream = new FileOutputStream(fileSrcAddress + saveFileName);
-				InputStream inputStream = attachedImage.getInputStream();){
+		try (FileOutputStream outPutStream = new FileOutputStream(fileSrcAddress + saveFileName);
+				InputStream inputStream = attachedImage.getInputStream();) {
 			int readCount = 0;
 			byte[] buffer = new byte[1024];
 			while ((readCount = inputStream.read(buffer)) != -1) {
 				outPutStream.write(buffer, 0, readCount);
 			}
-		}catch(IOException e){
+		} catch (IOException e) {
 			throw e;
 		}
-		
+
 //		Matcher matcher = Pattern.compile(EXTENSION_REGEXR).matcher(attachedImage.getOriginalFilename());
 //		if(matcher.find()) {
 //			// 확장자 일치
