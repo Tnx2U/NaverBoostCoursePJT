@@ -38,6 +38,6 @@
 
 
 # 🐻 프로젝트 산출물
-- [위키](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/wikis/lecture02)
+- [위키](https://github.com/Tnx2U/NaverBoostCoursePJT/wiki/lecture02)
 
-- [DB 상세구조](https://gitlab.edwith.org/nts-2020-2nd-team3/cho_hyun_wook/wikis/PJT02DB)
+- [DB 상세구조](https://github.com/Tnx2U/NaverBoostCoursePJT/wiki/PJT02DB)
