@@ -1,13 +1,17 @@
 package chw.intern.nts.reservation.dto;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.web.multipart.MultipartFile;
 
-public class CommentRequest {
-	private MultipartFile attachedImage;
+public class CommentRequest {	
+	@NotNull
 	private String comment;
+	@NotNull
 	private Integer productId;
+	@NotNull
 	private Integer score;
-	private Integer reservationInfoId;
+	private MultipartFile attachedImage;
 
 	public MultipartFile getAttachedImage() {
 		return attachedImage;
@@ -41,17 +45,9 @@ public class CommentRequest {
 		this.score = score;
 	}
 
-	public Integer getReservationInfoId() {
-		return reservationInfoId;
-	}
-
-	public void setReservationInfoId(Integer reservationInfoId) {
-		this.reservationInfoId = reservationInfoId;
-	}
-
 	@Override
 	public String toString() {
 		return "CommentRequest [attachedImage=" + attachedImage + ", comment=" + comment + ", productId=" + productId
-				+ ", score=" + score + ", reservationInfoId=" + reservationInfoId + "]";
+				+ ", score=" + score + "]";
 	}
 }

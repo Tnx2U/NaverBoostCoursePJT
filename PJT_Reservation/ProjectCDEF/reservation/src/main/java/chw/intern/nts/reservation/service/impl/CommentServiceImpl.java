@@ -6,12 +6,7 @@ import java.io.InputStream;
 import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.imageio.ImageIO;
-
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +21,6 @@ import chw.intern.nts.reservation.dao.FileInfoDao;
 import chw.intern.nts.reservation.dao.ReservationUserCommentDao;
 import chw.intern.nts.reservation.dto.Comment;
 import chw.intern.nts.reservation.dto.CommentImage;
-import chw.intern.nts.reservation.dto.CommentRequest;
 import chw.intern.nts.reservation.entity.FileInfo;
 import chw.intern.nts.reservation.entity.ReservationUserComment;
 import chw.intern.nts.reservation.entity.ReservationUserCommentImage;
@@ -36,7 +30,6 @@ import chw.intern.nts.reservation.service.CommentService;
 @Service
 public class CommentServiceImpl implements CommentService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
-	private static final String EXTENSION_REGEXR = "^\\S+.(?i)(jpg|jpeg|png)$";
 
 	@Value("${spring.filesrc.address}")
 	private String fileSrcAddress;
@@ -98,7 +91,7 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public double getAverageScore(List<Comment> commentList) {
 		double averageScore = 0;
-		// TODO stream이나 람다를 사용해 의도가 드러나면서도 좀 더 깔끔하게 할 수 없는지 공부
+
 		for (Comment comment : commentList) {
 			averageScore += comment.getScore();
 		}
@@ -113,21 +106,16 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public Comment postComment(CommentRequest commentRequest) {
+	public Comment postComment(MultipartFile attachedImage, String comment, Integer productId, Integer score,
+			Integer reservationInfoId) {
 		Comment responseComment = null;
 		long nowDateLong = new Date(System.currentTimeMillis()).getTime();
 
 		try {
-
-//			ReservationUserComment reservationUserComment = new ReservationUserComment(productId, reservationInfoId,
-//					score, comment);
-			ReservationUserComment reservationUserComment = ReservationUserComment.from(commentRequest);
+			ReservationUserComment reservationUserComment = new ReservationUserComment(productId, reservationInfoId,
+					score, comment);
 			Integer reservationUserCommentId = reservationUserCommentDao
 					.insertReservationUserComment(reservationUserComment);
-
-			// 이미지가 있으면 fileInfo, user_comment_image 테이블에 insert 하고 사진저장
-			MultipartFile attachedImage = commentRequest.getAttachedImage();
-			Integer reservationInfoId = commentRequest.getReservationInfoId();
 
 			if (attachedImage != null) {
 				String fileName = String.format("%d_%d_%s", reservationInfoId, nowDateLong,
@@ -151,10 +139,11 @@ public class CommentServiceImpl implements CommentService {
 			// 응답 데이터 생성
 			responseComment = getCommentById(reservationUserCommentId);
 		} catch (Exception e) {
-			LOGGER.error("Error Occured with params : { commentRequest : {} } \r\n{}", commentRequest,
+			LOGGER.error(
+					"Error Occured with params : {attachedImageName : {}, comment : {}, productId : {}, score : {}, reservationInfoId : {}} \r\n{}",
+					attachedImage.getOriginalFilename(), comment, productId, score, reservationInfoId,
 					e.getLocalizedMessage());
 		}
-
 		return responseComment;
 	}
 
@@ -169,13 +158,5 @@ public class CommentServiceImpl implements CommentService {
 		} catch (IOException e) {
 			throw e;
 		}
-
-//		Matcher matcher = Pattern.compile(EXTENSION_REGEXR).matcher(attachedImage.getOriginalFilename());
-//		if(matcher.find()) {
-//			// 확장자 일치
-//		}else {
-//			// 일치 확장자 없음
-//		}
-//		ImageIO.write(im, formatName, output)
 	}
 }

@@ -146,11 +146,11 @@ export default class EventController {
             }
 
             let formData = new FormData();
-            formData.append("attachedImage", DataController.getImage());
-            formData.append("reservationInfoId", DataController.getReservationInfoId());
+            //직렬화로 json 보내서 다시 리트라이
             formData.append("comment", DataController.getComment());
             formData.append("productId", DataController.getProductId());
             formData.append("score", DataController.getScore());
+            formData.append("attachedImage", DataController.getImage());
 
             const targetUrl = `reservations/${DataController.getReservationInfoId()}/comments`;
             handlePostAjaxMultipart(callbackFunc, targetUrl, formData);

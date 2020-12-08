@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -53,11 +56,16 @@ public class ReservationApiController {
 	}
 
 	@PostMapping(path = "/{reservationInfoId}/comments")
-	public Comment postComment(CommentRequest commentRequest) {
-		Comment responseComment = commentService.postComment(commentRequest);
+	public Comment postComment(@RequestParam(name = "attachedImage", required = false) MultipartFile attachedImage,
+			@RequestParam String comment, @RequestParam Integer productId, @RequestParam Integer score,
+			@PathVariable(name = "reservationInfoId", required = true) Integer reservationInfoId) {
+
+		Comment responseComment = commentService.postComment(attachedImage, comment, productId, score,
+				reservationInfoId);
 
 		return responseComment;
 	}
+
 
 	@PutMapping("/{reservationId}")
 	public ReservationParam putCancelFlag(

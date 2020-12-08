@@ -22,9 +22,9 @@ public class ReservationUserComment {
 		this.modifyDate = new Date(System.currentTimeMillis());
 	}
 
-	public static ReservationUserComment from(CommentRequest commentRequest) {
+	public static ReservationUserComment from(CommentRequest commentRequest, Integer reservationInfoId) {
 		ReservationUserComment reservatonUserComment = new ReservationUserComment(commentRequest.getProductId(),
-				commentRequest.getReservationInfoId(), commentRequest.getScore(), commentRequest.getComment());
+				reservationInfoId, commentRequest.getScore(), commentRequest.getComment());
 		return reservatonUserComment;
 	}
 

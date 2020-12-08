@@ -11,7 +11,8 @@ import chw.intern.nts.reservation.dto.CommentRequest;
 public interface CommentService {
 	public List<Comment> getCommentsByDisplayInfoId(Integer displayInfoId);
 	public double getAverageScore(List<Comment> commentList);
-	public Comment postComment(CommentRequest commentRequest); 
 	public Comment getCommentById(Integer commentId);
 	public void upLoadImage(MultipartFile attachedImage, String saveFileName) throws IOException;
+	public Comment postComment(MultipartFile attachedImage, String comment, Integer productId, Integer score,
+			Integer reservationInfoId);
 }
