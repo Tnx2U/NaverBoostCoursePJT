@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import chw.intern.nts.reservation.dto.Comment;
+import chw.intern.nts.reservation.dto.CommentRequest;
 import chw.intern.nts.reservation.dto.ReservationParam;
 import chw.intern.nts.reservation.entity.ReservationInfo;
 import chw.intern.nts.reservation.service.CommentService;
@@ -56,12 +60,8 @@ public class ReservationApiController {
 			@RequestParam String comment, @RequestParam Integer productId, @RequestParam Integer score,
 			@PathVariable(name = "reservationInfoId", required = true) Integer reservationInfoId) {
 
-		Comment responseComment = null;
-		if (attachedImage != null) {
-			responseComment = commentService.postComment(attachedImage, comment, productId, score, reservationInfoId);
-		} else {
-			responseComment = commentService.postComment(comment, productId, score, reservationInfoId);
-		}
+		Comment responseComment = commentService.postComment(attachedImage, comment, productId, score,
+				reservationInfoId);
 
 		return responseComment;
 	}

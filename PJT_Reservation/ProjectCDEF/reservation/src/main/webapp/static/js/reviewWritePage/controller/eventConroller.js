@@ -57,7 +57,7 @@ export default class EventController {
         })
 
         reviewTextAreaElement.addEventListener('focusout', (event) => {
-            let CommentLengthChecker = /.{5,400}/;
+            let CommentLengthChecker = /^(.){5,400}$/;
 
             if (reviewTextAreaElement.value == "") {
                 reviewInfoElement.style.display = "block";
@@ -73,7 +73,17 @@ export default class EventController {
         })
 
         reviewTextAreaElement.addEventListener('input', (event) => {
-            guideReviewLengthElement.innerText = reviewTextAreaElement.value.length;
+            const MAX_COMMENT_LENGTH = 400;
+            const textLength = reviewTextAreaElement.value.length;
+            
+            if(textLength > MAX_COMMENT_LENGTH){
+                // 한글 입력시 2~3번 이벤트 발생, event 쓰로틀링이랑 디바운싱 알아보기
+                // alert("최대 400자 까지만 입력이 가능합니다.")
+                reviewTextAreaElement.value = reviewTextAreaElement.value.slice(0,400);
+                guideReviewLengthElement.innerText = MAX_COMMENT_LENGTH;
+            }else{
+                guideReviewLengthElement.innerText = textLength;
+            }
         })
     }
 
@@ -82,7 +92,6 @@ export default class EventController {
         const thumnailLiElement = document.querySelector(".item_preview_thumbs li.item");
 
         inputImageElement.addEventListener("change", (event) => {
-            console.log("event.target.files", event.target.files);
             const selectedImage = event.target.files[0];
 
             if (!this.validImageType(selectedImage)) {
@@ -137,12 +146,11 @@ export default class EventController {
             }
 
             let formData = new FormData();
-            formData.append("attachedImage", DataController.getImage());
-
-            console.log(formData.getAll("attachedImage"));
+            //직렬화로 json 보내서 다시 리트라이
             formData.append("comment", DataController.getComment());
             formData.append("productId", DataController.getProductId());
             formData.append("score", DataController.getScore());
+            formData.append("attachedImage", DataController.getImage());
 
             const targetUrl = `reservations/${DataController.getReservationInfoId()}/comments`;
             handlePostAjaxMultipart(callbackFunc, targetUrl, formData);

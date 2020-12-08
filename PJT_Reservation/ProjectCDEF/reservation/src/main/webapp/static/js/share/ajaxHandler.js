@@ -1,10 +1,8 @@
 import { getParamUrlByParams } from './util.js';
-import { SERVER_IP, TARGET_PORT } from './properties.js';
 
 // ajax 이벤트
 function handleGetAjax(renderFunction, target, params) {
     let xhRequest = new XMLHttpRequest();
-    //const baseUrl = `http://${SERVER_IP}:${TARGET_PORT}/reservation/api/${target}`;
     const baseUrl = `api/${target}`;
     let paramUrl = "";
 

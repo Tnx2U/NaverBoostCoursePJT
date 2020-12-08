@@ -6,7 +6,6 @@ export default class StoreDetail {
         this.data = DataController.getStoreDetailData();
     }
 
-    // 어차피 클래스별 1개만 존재하므로 네이밍 컨벤션에서 대상 삭제
     getRenderedElement() {
         let storeDetailElement = document.createElement("div");
         storeDetailElement.classList.add("section_store_details");
